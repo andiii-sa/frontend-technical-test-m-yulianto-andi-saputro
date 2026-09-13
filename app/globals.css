@@ -1,26 +1,379 @@
+/* ==========================================================================
+   ProcureFlow — Design Tokens
+   Diekstrak langsung dari procureflow-design-system.html (v1.0)
+   Target: Tailwind CSS v4 (@theme). Untuk v3, pindahkan blok @theme
+   ke theme.extend pada tailwind.config.ts dengan nilai yang sama.
+   ========================================================================== */
+
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
+@custom-variant dark (&:is(.dark *));
+
+/* --------------------------------------------------------------------------
+   1. PRIMITIVE TOKENS — salinan 1:1 dari :root design system.
+      Jangan dipakai langsung di komponen; pakai semantic token di bawahnya.
+   -------------------------------------------------------------------------- */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Blue */
+  --blue-light: #e6ecf3;
+  --blue-light-hover: #d9e2ed;
+  --blue-light-active: #b1c3d9;
+  --blue-normal: #043c86;
+  --blue-normal-hover: #043679;
+  --blue-normal-active: #03306b;
+  --blue-dark: #032d65;
+  --blue-dark-hover: #022450;
+  --blue-dark-active: #021b3c;
+  --blue-darker: #01152f;
+
+  /* Surface */
+  --surface-white: #ffffff;
+  --surface-white-hover: #fcfdfd;
+  --surface-white-active: #f5f7f9;
+  --surface-light: #fcfdfd;
+  --surface-light-hover: #f5f7f9;
+  --surface-light-active: #f0f3f6;
+  --surface-normal: #f9fafb;
+  --surface-normal-hover: #f2f4f7;
+  --surface-normal-active: #ebeef2;
+  --surface-dark: #f6f8f9;
+
+  /* Dark / neutral */
+  --dark-lighter: #b2bbc6;
+  --dark-light: #a3adbb;
+  --dark-light-active: #909dad;
+  --dark-normal: #546881;
+  --dark-normal-hover: #47586e;
+  --dark-normal-active: #3d4c5e;
+  --dark: #1d242d;
+  --dark-hover: #151a20;
+  --dark-active: #090b0e;
+
+  /* Semantic status */
+  --success-bg: #eaf5f1;
+  --success-fg: #2b6e5c;
+  --success-border: #d6ebe4;
+  --warning-bg: #f8f3e7;
+  --warning-fg: #8b6d2a;
+  --warning-border: #eee3c8;
+  --danger-bg: #f8eaec;
+  --danger-fg: #995062;
+  --danger-border: #eed8de;
+
+  /* Struktur */
+  --page-bg: #eff1f3;
+  --border: oklch(0.922 0 0);
+  --border-strong: #dce1e6;
+
+  /* Elevation */
+  --shadow-soft: 0 1px 2px rgba(9, 11, 14, 0.04), 0 6px 18px rgba(9, 11, 14, 0.03);
+  --shadow-frame: 0 16px 44px rgba(9, 11, 14, 0.08);
+  --shadow-modal: 0 18px 40px rgba(9, 11, 14, 0.12);
+  --shadow-toast: 0 10px 24px rgba(9, 11, 14, 0.16);
+
+  /* Focus ring (DS: outline 3px rgba(4,60,134,.12), offset 2px) */
+  --focus-ring: rgba(4, 60, 134, 0.12);
+
+  /* Ukuran kontrol (DS: tinggi button/input 34px, radius 7px) */
+  --control-height: 34px;
+  --sidebar-width: 240px;
+  --topbar-height: 60px;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
 }
 
+/* --------------------------------------------------------------------------
+   2. SEMANTIC + TAILWIND THEME
+      Nama di sini yang dipakai di komponen: bg-primary, text-fg-muted,
+      border-border-strong, rounded-control, text-h1, shadow-modal, dsb.
+   -------------------------------------------------------------------------- */
 @theme inline {
-  --color-background: var(--background);
+  /* --- Brand / interaktif --- */
+  --color-primary: var(--blue-normal);
+  --color-primary-hover: var(--blue-normal-hover);
+  --color-primary-active: var(--blue-normal-active);
+  --color-primary-fg: #ffffff;
+  --color-primary-subtle: var(--blue-light);
+  --color-primary-subtle-hover: var(--blue-light-hover);
+
+  /* --- Permukaan --- */
+  --color-page: var(--page-bg);
+  --color-panel: var(--surface-white);
+  --color-panel-hover: var(--surface-white-hover);
+  --color-surface: var(--surface-normal);
+  --color-surface-hover: var(--surface-normal-hover);
+  --color-surface-active: var(--surface-normal-active);
+  --color-sidebar: #f5f6f7;
+  --color-sidebar-item-active: #e9ecef;
+  --color-table-header: #fbfcfd;
+
+  /* --- Teks ---
+     fg-muted dipakai untuk teks sekunder yang membawa informasi (5.7:1).
+     fg-subtle (2.8:1) hanya untuk elemen dekoratif / non-teks — lihat
+     catatan deviasi aksesibilitas di PROJECT-PLAN.md §7 Step 9. */
+  --color-fg: var(--dark-active);
+  --color-fg-strong: var(--dark);
+  --color-fg-muted: var(--dark-normal);
+  --color-fg-subtle: var(--dark-light-active);
+  --color-fg-disabled: var(--dark-lighter);
+
+  /* --- Garis --- */
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-border-input-error: #d6aab5;
+
+  /* --- Status (badge & feedback) --- */
+  --color-success-bg: var(--success-bg);
+  --color-success-fg: var(--success-fg);
+  --color-success-border: var(--success-border);
+  --color-warning-bg: var(--warning-bg);
+  --color-warning-fg: var(--warning-fg);
+  --color-warning-border: var(--warning-border);
+  --color-danger-bg: var(--danger-bg);
+  --color-danger-fg: var(--danger-fg);
+  --color-danger-border: var(--danger-border);
+  --color-info-bg: var(--blue-light);
+  --color-info-fg: var(--blue-normal);
+  --color-info-border: #d8e2ef;
+
+  /* --- Tipografi --- */
+  --font-sans: var(--font-sans);
+
+  --text-display-xl: 72px;
+  --text-display-xl--line-height: 1.05;
+  --text-display-xl--letter-spacing: -1.4px;
+  --text-display-lg: 58px;
+  --text-display-lg--line-height: 1.08;
+  --text-display-lg--letter-spacing: -1.1px;
+  --text-display: 46px;
+  --text-display--line-height: 1.1;
+  --text-display--letter-spacing: -0.8px;
+  --text-h1: 37px;
+  --text-h1--line-height: 1.15;
+  --text-h1--letter-spacing: -0.5px;
+  --text-h2: 30px;
+  --text-h2--line-height: 1.15;
+  --text-h2--letter-spacing: -0.4px;
+  --text-h3: 24px;
+  --text-h3--line-height: 1.2;
+  --text-h4: 19px;
+  --text-h4--line-height: 1.25;
+  --text-body: 15px;
+  --text-body--line-height: 1.4;
+  --text-sm: 13px;
+  --text-sm--line-height: 1.4;
+  /* Deviasi sadar: DS memakai 10–11px untuk tabel/input/helper.
+     Floor dinaikkan ke 12px agar tetap terbaca; density visual dijaga
+     lewat padding & line-height, bukan lewat ukuran font. */
+  --text-xs: 12px;
+  --text-xs--line-height: 1.4;
+
+  /* --- Spacing (skala 4px DS) --- */
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 18px;
+  --spacing-6: 24px;
+  --spacing-8: 32px;
+
+  /* --- Radius --- */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-control: 7px; /* button, input, select */
+  --radius-md: 8px;
+  --radius-lg: 10px; /* panel, card, summary card */
+  --radius-xl: 12px; /* dialog */
+  --radius-2xl: 16px; /* app frame */
+
+  /* --- Shadow --- */
+  --shadow-soft: var(--shadow-soft);
+  --shadow-frame: var(--shadow-frame);
+  --shadow-modal: var(--shadow-modal);
+  --shadow-toast: var(--shadow-toast);
+
+  /* --- Breakpoint (mengikuti media query DS) --- */
+  --breakpoint-md: 780px;
+  --breakpoint-lg: 1000px;
+  --breakpoint-xl: 1500px;
+  --font-heading: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* --------------------------------------------------------------------------
+   3. BASE LAYER
+   -------------------------------------------------------------------------- */
+@layer base {
+  * {
+    box-sizing: border-box;
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    @apply font-sans;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-page);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: 1.4;
+    -webkit-font-smoothing: antialiased;
+    @apply bg-background text-foreground;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  /* Focus ring design system — berlaku untuk semua kontrol interaktif */
+  :focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+
+  /* Skeleton shimmer (DS: .skeleton) */
+  @keyframes shimmer {
+    to {
+      background-position: -200% 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* --------------------------------------------------------------------------
+   4. UTILITY KECIL YANG DIPAKAI BERULANG
+   -------------------------------------------------------------------------- */
+@utility skeleton-shimmer {
+  background: linear-gradient(90deg, #f0f3f6, #f9fafb, #f0f3f6);
+  background-size: 200% 100%;
+  animation: shimmer 1.2s infinite;
+}
+
+/* Hanya untuk screen reader (label, live region, deskripsi tabel) */
+@utility sr-only-focusable {
+  &:not(:focus):not(:focus-within) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
 }
