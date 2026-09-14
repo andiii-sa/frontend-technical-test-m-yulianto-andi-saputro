@@ -68,7 +68,8 @@
   --border-strong: #dce1e6;
 
   /* Elevation */
-  --shadow-soft: 0 1px 2px rgba(9, 11, 14, 0.04), 0 6px 18px rgba(9, 11, 14, 0.03);
+  --shadow-soft:
+    0 1px 2px rgba(9, 11, 14, 0.04), 0 6px 18px rgba(9, 11, 14, 0.03);
   --shadow-frame: 0 16px 44px rgba(9, 11, 14, 0.08);
   --shadow-modal: 0 18px 40px rgba(9, 11, 14, 0.12);
   --shadow-toast: 0 10px 24px rgba(9, 11, 14, 0.16);
@@ -145,6 +146,7 @@
   --color-fg: var(--dark-active);
   --color-fg-strong: var(--dark);
   --color-fg-muted: var(--dark-normal);
+  --color-fg-active: var(--dark-normal-active);
   --color-fg-subtle: var(--dark-light-active);
   --color-fg-disabled: var(--dark-lighter);
 
@@ -224,9 +226,9 @@
   --shadow-toast: var(--shadow-toast);
 
   /* --- Breakpoint (mengikuti media query DS) --- */
-  --breakpoint-md: 780px;
+  /* --breakpoint-md: 780px;
   --breakpoint-lg: 1000px;
-  --breakpoint-xl: 1500px;
+  --breakpoint-xl: 1500px; */
   --font-heading: var(--font-sans);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -376,4 +378,11 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+}
+
+.card {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px;
+  background: #fff;
 }

@@ -1,0 +1,17 @@
+import { SVGProps } from "react";
+
+const IconAlert = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.7"
+    strokeLinecap="round"
+    {...props}
+  >
+    <circle cx="12" cy="12" r="9" />
+    <path d="M12 7.5v5M12 16.5h.01" />
+  </svg>
+);
+
+export default IconAlert;
