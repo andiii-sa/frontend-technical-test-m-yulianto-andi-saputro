@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/base/AppSidebar";
 import Navbar from "@/components/base/Navbar";
+import { GeneralStoreProvider } from "@/providers";
+import { Toaster } from "@/components/ui/toast";
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -30,15 +32,18 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-sans", inter.variable)}
     >
       <body className="min-h-full flex flex-col">
-        <SidebarProvider>
-          <AppSidebar />
-          <SidebarInset>
-            <Navbar />
-            <main className="p-2 sm:px-4 md:py-3 lg:px-5.5 lg:py-4">
-              {children}
-            </main>
-          </SidebarInset>
-        </SidebarProvider>
+        <GeneralStoreProvider>
+          <SidebarProvider>
+            <AppSidebar />
+            <SidebarInset>
+              <Navbar />
+              <main className="p-2 sm:px-4 md:py-3 lg:px-5.5 lg:py-4">
+                {children}
+              </main>
+              <Toaster />
+            </SidebarInset>
+          </SidebarProvider>
+        </GeneralStoreProvider>
       </body>
     </html>
   );

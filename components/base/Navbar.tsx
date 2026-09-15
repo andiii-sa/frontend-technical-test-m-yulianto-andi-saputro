@@ -1,5 +1,9 @@
+"use client"
 
-import { CheckLine, ChevronDown, Menu, User2Icon } from "lucide-react"
+import { listUsers } from "@/constants"
+import { useGeneralStore } from "@/providers"
+import { User } from "@/types"
+import { ChevronDown, Menu } from "lucide-react"
 import { Button } from "../ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu"
 import { Separator } from "../ui/separator"
@@ -7,8 +11,10 @@ import { SidebarTrigger } from "../ui/sidebar"
 
 
 const Navbar = () => {
+    const { user, setUser } = useGeneralStore((s) => (s))
+
     return (
-        <nav className="flex sticky top-0 bg-white shrink-0 items-center gap-2 border-b p-2 md:p-4 lg:p-5.5">
+        <nav className="flex sticky top-0 z-20 bg-white shrink-0 items-center gap-2 border-b p-2 md:p-4 lg:p-5.5">
             <div className="flex w-full items-center gap-1 lg:gap-2">
                 <SidebarTrigger icon={<Menu />} className="" />
                 <Separator
@@ -19,18 +25,17 @@ const Navbar = () => {
                 <div className="ml-auto flex items-center gap-2">
                     <DropdownMenu>
                         <DropdownMenuTrigger render={<Button variant="outline">
-                            User Account <ChevronDown />
+                            Login as : {user?.name} ({user?.role}) <ChevronDown />
                         </Button>} />
                         <DropdownMenuContent>
                             <DropdownMenuGroup>
-                                <DropdownMenuItem>
-                                    <User2Icon />
-                                    User
-                                </DropdownMenuItem>
-                                <DropdownMenuItem>
-                                    <CheckLine />
-                                    Approver
-                                </DropdownMenuItem>
+                                {
+                                    listUsers.map((item, idx) => (
+                                        <DropdownMenuItem key={idx} onClick={() => setUser(item as User)} >
+                                            {item.name} - {item.role}
+                                        </DropdownMenuItem>
+                                    ))
+                                }
                             </DropdownMenuGroup>
                         </DropdownMenuContent>
                     </DropdownMenu>

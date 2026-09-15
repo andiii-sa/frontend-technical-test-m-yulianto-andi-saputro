@@ -29,7 +29,7 @@ const menus = [
     {
         isGroup: false,
         name: "Purchase Requests",
-        url: "/",
+        url: "/purchase-requests",
         icon: <IconDocument className="text-xs text-dark-active" />
     },
     {

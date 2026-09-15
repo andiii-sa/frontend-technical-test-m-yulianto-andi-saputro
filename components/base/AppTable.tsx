@@ -33,9 +33,12 @@ interface AppTableProps {
     showHeader?: boolean
     showPaginationNumber?: boolean
     showPaginationMore?: boolean
+    showAddButton?: boolean
     handleChangePage: (page: number) => void;
     handleChangePerPage: (page: number) => void;
     handleRetryFetch: () => void;
+    handleAddData?: () => void;
+    handleResetFilter?: () => void;
 }
 
 const AppTable = ({
@@ -59,7 +62,10 @@ const AppTable = ({
     showPaginationNumber = true,
     handleChangePage,
     handleChangePerPage,
-    handleRetryFetch
+    handleRetryFetch,
+    handleAddData,
+    handleResetFilter,
+    showAddButton = false
 }: AppTableProps) => {
     return (
         <div className={cn("card !p-0", className)}>
@@ -124,6 +130,8 @@ const AppTable = ({
                                     </p>
 
                                     {isErrorFetch && <Button variant="destructive" className="mt-3" onClick={handleRetryFetch} loading={isLoading}>Coba Lagi</Button>}
+                                    {isHaveFilter && !data?.length && <Button variant="default" className="mt-3" onClick={handleResetFilter} loading={isLoading}>Reset Filter</Button>}
+                                    {showAddButton && !isHaveFilter && !data?.length && <Button variant="default" className="mt-3" onClick={handleAddData} loading={isLoading}>Tambah Data</Button>}
                                 </div>
                             </TableCell>
                         </TableRow>

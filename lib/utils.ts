@@ -14,3 +14,10 @@ export const convertDate = (
   }
   return moment(date).format(format);
 };
+
+export const typeBadgeStatusPurchase = {
+    SUBMITTED: "blue",
+    APPROVED: "green",
+    DRAFT: "gray",
+    REJECTED: "red",
+};

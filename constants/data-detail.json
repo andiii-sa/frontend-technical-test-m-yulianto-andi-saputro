@@ -1,0 +1,3519 @@
+{
+  "warehouses": [
+    {
+      "id": 1,
+      "code": "JKT-01",
+      "name": "Jakarta Warehouse",
+      "city": "Jakarta"
+    },
+    {
+      "id": 2,
+      "code": "MAIN-01",
+      "name": "Main Warehouse",
+      "city": "Bekasi"
+    },
+    {
+      "id": 3,
+      "code": "SBY-01",
+      "name": "Surabaya Hub",
+      "city": "Surabaya"
+    }
+  ],
+  "suppliers": [
+    {
+      "id": 1,
+      "code": "SUP-001",
+      "name": "PT Sumber Jaya Teknik"
+    },
+    {
+      "id": 2,
+      "code": "SUP-002",
+      "name": "Global Parts Indonesia"
+    },
+    {
+      "id": 3,
+      "code": "SUP-003",
+      "name": "Safety First Supplies"
+    },
+    {
+      "id": 4,
+      "code": "SUP-004",
+      "name": "Nusantara Lubricants"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "role": "USER",
+      "email": "john.doe@evindo.co.id"
+    },
+    {
+      "id": 2,
+      "name": "Daniel Wong",
+      "role": "USER",
+      "email": "daniel.wong@evindo.co.id"
+    },
+    {
+      "id": 3,
+      "name": "Aditya Putra",
+      "role": "USER",
+      "email": "aditya.putra@evindo.co.id"
+    },
+    {
+      "id": 4,
+      "name": "Sarah Lim",
+      "role": "APPROVER",
+      "email": "sarah.lim@evindo.co.id"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "sku": "OIL-001",
+      "name": "Industrial Oil",
+      "unit": "PCS",
+      "category": "Lubricants",
+      "defaultSupplierId": 4,
+      "defaultSupplier": {
+        "id": 4,
+        "code": "SUP-004",
+        "name": "Nusantara Lubricants"
+      }
+    },
+    {
+      "id": 2,
+      "sku": "SAFE-001",
+      "name": "Safety Gloves",
+      "unit": "BOX",
+      "category": "Safety Equipment",
+      "defaultSupplierId": 3,
+      "defaultSupplier": {
+        "id": 3,
+        "code": "SUP-003",
+        "name": "Safety First Supplies"
+      }
+    },
+    {
+      "id": 3,
+      "sku": "FILT-001",
+      "name": "Industrial Filter A",
+      "unit": "PCS",
+      "category": "Spare Parts",
+      "defaultSupplierId": 2,
+      "defaultSupplier": {
+        "id": 2,
+        "code": "SUP-002",
+        "name": "Global Parts Indonesia"
+      }
+    },
+    {
+      "id": 4,
+      "sku": "FILT-002",
+      "name": "Industrial Filter B",
+      "unit": "PCS",
+      "category": "Spare Parts",
+      "defaultSupplierId": 2,
+      "defaultSupplier": {
+        "id": 2,
+        "code": "SUP-002",
+        "name": "Global Parts Indonesia"
+      }
+    },
+    {
+      "id": 5,
+      "sku": "SAFE-002",
+      "name": "Safety Helmet",
+      "unit": "PCS",
+      "category": "Safety Equipment",
+      "defaultSupplierId": 3,
+      "defaultSupplier": {
+        "id": 3,
+        "code": "SUP-003",
+        "name": "Safety First Supplies"
+      }
+    },
+    {
+      "id": 6,
+      "sku": "SAFE-003",
+      "name": "Safety Goggles",
+      "unit": "BOX",
+      "category": "Safety Equipment",
+      "defaultSupplierId": 3,
+      "defaultSupplier": {
+        "id": 3,
+        "code": "SUP-003",
+        "name": "Safety First Supplies"
+      }
+    },
+    {
+      "id": 7,
+      "sku": "OIL-002",
+      "name": "Hydraulic Oil",
+      "unit": "LITER",
+      "category": "Lubricants",
+      "defaultSupplierId": 4,
+      "defaultSupplier": {
+        "id": 4,
+        "code": "SUP-004",
+        "name": "Nusantara Lubricants"
+      }
+    },
+    {
+      "id": 8,
+      "sku": "OIL-003",
+      "name": "Grease Cartridge",
+      "unit": "PCS",
+      "category": "Lubricants",
+      "defaultSupplierId": 4,
+      "defaultSupplier": {
+        "id": 4,
+        "code": "SUP-004",
+        "name": "Nusantara Lubricants"
+      }
+    },
+    {
+      "id": 9,
+      "sku": "BRG-001",
+      "name": "Ball Bearing 6204",
+      "unit": "PCS",
+      "category": "Spare Parts",
+      "defaultSupplierId": 1,
+      "defaultSupplier": {
+        "id": 1,
+        "code": "SUP-001",
+        "name": "PT Sumber Jaya Teknik"
+      }
+    },
+    {
+      "id": 10,
+      "sku": "BLT-001",
+      "name": "V-Belt A-52",
+      "unit": "PCS",
+      "category": "Spare Parts",
+      "defaultSupplierId": 1,
+      "defaultSupplier": {
+        "id": 1,
+        "code": "SUP-001",
+        "name": "PT Sumber Jaya Teknik"
+      }
+    },
+    {
+      "id": 11,
+      "sku": "CLN-001",
+      "name": "Degreaser Concentrate",
+      "unit": "LITER",
+      "category": "Cleaning",
+      "defaultSupplierId": 2,
+      "defaultSupplier": {
+        "id": 2,
+        "code": "SUP-002",
+        "name": "Global Parts Indonesia"
+      }
+    },
+    {
+      "id": 12,
+      "sku": "PKG-001",
+      "name": "Carton Box 40x30",
+      "unit": "PCS",
+      "category": "Packaging",
+      "defaultSupplierId": 2,
+      "defaultSupplier": {
+        "id": 2,
+        "code": "SUP-002",
+        "name": "Global Parts Indonesia"
+      }
+    },
+    {
+      "id": 13,
+      "sku": "TOL-001",
+      "name": "Torque Wrench Set",
+      "unit": "SET",
+      "category": "Tools",
+      "defaultSupplierId": 1,
+      "defaultSupplier": {
+        "id": 1,
+        "code": "SUP-001",
+        "name": "PT Sumber Jaya Teknik"
+      }
+    },
+    {
+      "id": 14,
+      "sku": "ELC-001",
+      "name": "LED High Bay 150W",
+      "unit": "PCS",
+      "category": "Electrical",
+      "defaultSupplierId": 1,
+      "defaultSupplier": {
+        "id": 1,
+        "code": "SUP-001",
+        "name": "PT Sumber Jaya Teknik"
+      }
+    },
+    {
+      "id": 15,
+      "sku": "CHM-001",
+      "name": "Industrial Detergent",
+      "unit": "KG",
+      "category": "Cleaning",
+      "defaultSupplierId": 2,
+      "defaultSupplier": {
+        "id": 2,
+        "code": "SUP-002",
+        "name": "Global Parts Indonesia"
+      }
+    }
+  ],
+  "purchaseRequests": [
+    {
+      "id": 1,
+      "requestNumber": "PR-2026-000001",
+      "status": "SUBMITTED",
+      "warehouseId": 1,
+      "warehouse": {
+        "id": 1,
+        "code": "JKT-01",
+        "name": "Jakarta Warehouse",
+        "city": "Jakarta"
+      },
+      "requestedById": 1,
+      "requestedBy": {
+        "id": 1,
+        "name": "John Doe",
+        "role": "USER",
+        "email": "john.doe@evindo.co.id"
+      },
+      "items": [
+        {
+          "id": 1,
+          "productId": 1,
+          "product": {
+            "id": 1,
+            "sku": "OIL-001",
+            "name": "Industrial Oil",
+            "unit": "PCS",
+            "category": "Lubricants"
+          },
+          "quantity": 100,
+          "unit": "PCS"
+        },
+        {
+          "id": 2,
+          "productId": 2,
+          "product": {
+            "id": 2,
+            "sku": "SAFE-001",
+            "name": "Safety Gloves",
+            "unit": "BOX",
+            "category": "Safety Equipment"
+          },
+          "quantity": 20,
+          "unit": "BOX"
+        },
+        {
+          "id": 3,
+          "productId": 3,
+          "product": {
+            "id": 3,
+            "sku": "FILT-001",
+            "name": "Industrial Filter A",
+            "unit": "PCS",
+            "category": "Spare Parts"
+          },
+          "quantity": 12,
+          "unit": "PCS"
+        }
+      ],
+      "totalItems": 3,
+      "totalQuantity": 132,
+      "notes": null,
+      "rejectionReason": null,
+      "createdAt": "2026-09-01T09:00:00Z",
+      "updatedAt": "2026-09-01T10:30:00Z",
+      "submittedAt": "2026-09-01T10:30:00Z",
+      "decidedAt": null,
+      "decidedById": null,
+      "decidedBy": null,
+      "purchaseOrderId": null,
+      "purchaseOrder": null
+    },
+    {
+      "id": 2,
+      "requestNumber": "PR-2026-000002",
+      "status": "APPROVED",
+      "warehouseId": 1,
+      "warehouse": {
+        "id": 1,
+        "code": "JKT-01",
+        "name": "Jakarta Warehouse",
+        "city": "Jakarta"
+      },
+      "requestedById": 1,
+      "requestedBy": {
+        "id": 1,
+        "name": "John Doe",
+        "role": "USER",
+        "email": "john.doe@evindo.co.id"
+      },
+      "items": [
+        {
+          "id": 4,
+          "productId": 1,
+          "product": {
+            "id": 1,
+            "sku": "OIL-001",
+            "name": "Industrial Oil",
+            "unit": "PCS",
+            "category": "Lubricants"
+          },
+          "quantity": 100,
+          "unit": "PCS"
+        }
+      ],
+      "totalItems": 1,
+      "totalQuantity": 100,
+      "notes": null,
+      "rejectionReason": null,
+      "createdAt": "2026-09-01T09:00:00Z",
+      "updatedAt": "2026-09-02T08:15:00Z",
+      "submittedAt": "2026-09-01T10:30:00Z",
+      "decidedAt": "2026-09-02T08:15:00Z",
+      "decidedById": 4,
+      "decidedBy": {
+        "id": 4,
+        "name": "Sarah Lim",
+        "role": "APPROVER",
+        "email": "sarah.lim@evindo.co.id"
+      },
+      "purchaseOrderId": 1,
+      "purchaseOrder": {
+        "id": 1,
+        "orderNumber": "PO-2026-000001",
+        "status": "RECEIVED"
+      }
+    },
+    {
+      "id": 3,
+      "requestNumber": "PR-2026-000003",
+      "status": "APPROVED",
+      "warehouseId": 2,
+      "warehouse": {
+        "id": 2,
+        "code": "MAIN-01",
+        "name": "Main Warehouse",
+        "city": "Bekasi"
+      },
+      "requestedById": 2,
+      "requestedBy": {
+        "id": 2,
+        "name": "Daniel Wong",
+        "role": "USER",
+        "email": "daniel.wong@evindo.co.id"
+      },
+      "items": [
+        {
+          "id": 5,
+          "productId": 1,
+          "product": {
+            "id": 1,
+            "sku": "OIL-001",
+            "name": "Industrial Oil",
+            "unit": "PCS",
+            "category": "Lubricants"
+          },
+          "quantity": 100,
+          "unit": "PCS"
+        },
+        {
+          "id": 6,
+          "productId": 2,
+          "product": {
+            "id": 2,
+            "sku": "SAFE-001",
+            "name": "Safety Gloves",
+            "unit": "BOX",
+            "category": "Safety Equipment"
+          },
+          "quantity": 40,
+          "unit": "BOX"
+        }
+      ],
+      "totalItems": 2,
+      "totalQuantity": 140,
+      "notes": null,
+      "rejectionReason": null,
+      "createdAt": "2026-09-02T09:00:00Z",
+      "updatedAt": "2026-09-03T08:15:00Z",
+      "submittedAt": "2026-09-02T10:30:00Z",
+      "decidedAt": "2026-09-03T08:15:00Z",
+      "decidedById": 4,
+      "decidedBy": {
+        "id": 4,
+        "name": "Sarah Lim",
+        "role": "APPROVER",
+        "email": "sarah.lim@evindo.co.id"
+      },
+      "purchaseOrderId": 2,
+      "purchaseOrder": {
+        "id": 2,
+        "orderNumber": "PO-2026-000002",
+        "status": "PARTIALLY_RECEIVED"
+      }
+    },
+    {
+      "id": 4,
+      "requestNumber": "PR-2026-000004",
+      "status": "REJECTED",
+      "warehouseId": 2,
+      "warehouse": {
+        "id": 2,
+        "code": "MAIN-01",
+        "name": "Main Warehouse",
+        "city": "Bekasi"
+      },
+      "requestedById": 3,
+      "requestedBy": {
+        "id": 3,
+        "name": "Aditya Putra",
+        "role": "USER",
+        "email": "aditya.putra@evindo.co.id"
+      },
+      "items": [
+        {
+          "id": 7,
+          "productId": 13,
+          "product": {
+            "id": 13,
+            "sku": "TOL-001",
+            "name": "Torque Wrench Set",
+            "unit": "SET",
+            "category": "Tools"
+          },
+          "quantity": 12,
+          "unit": "SET"
+        }
+      ],
+      "totalItems": 1,
+      "totalQuantity": 12,
+      "notes": null,
+      "rejectionReason": "Budget for tools is not available this quarter. Please resubmit in October.",
+      "createdAt": "2026-09-02T09:00:00Z",
+      "updatedAt": "2026-09-03T08:15:00Z",
+      "submittedAt": "2026-09-02T10:30:00Z",
+      "decidedAt": "2026-09-03T08:15:00Z",
+      "decidedById": 4,
+      "decidedBy": {
+        "id": 4,
+        "name": "Sarah Lim",
+        "role": "APPROVER",
+        "email": "sarah.lim@evindo.co.id"
+      },
+      "purchaseOrderId": null,
+      "purchaseOrder": null
+    },
+    {
+      "id": 5,
+      "requestNumber": "PR-2026-000005",
+      "status": "APPROVED",
+      "warehouseId": 1,
+      "warehouse": {
+        "id": 1,
+        "code": "JKT-01",
+        "name": "Jakarta Warehouse",
+        "city": "Jakarta"
+      },
+      "requestedById": 1,
+      "requestedBy": {
+        "id": 1,
+        "name": "John Doe",
+        "role": "USER",
+        "email": "john.doe@evindo.co.id"
+      },
+      "items": [
+        {
+          "id": 8,
+          "productId": 1,
+          "product": {
+            "id": 1,
+            "sku": "OIL-001",
+            "name": "Industrial Oil",
+            "unit": "PCS",
+            "category": "Lubricants"
+          },
+          "quantity": 50,
+          "unit": "PCS"
+        },
+        {
+          "id": 9,
+          "productId": 2,
+          "product": {
+            "id": 2,
+            "sku": "SAFE-001",
+            "name": "Safety Gloves",
+            "unit": "BOX",
+            "category": "Safety Equipment"
+          },
+          "quantity": 20,
+          "unit": "BOX"
+        }
+      ],
+      "totalItems": 2,
+      "totalQuantity": 70,
+      "notes": null,
+      "rejectionReason": null,
+      "createdAt": "2026-09-03T09:00:00Z",
+      "updatedAt": "2026-09-04T08:15:00Z",
+      "submittedAt": "2026-09-03T10:30:00Z",
+      "decidedAt": "2026-09-04T08:15:00Z",
+      "decidedById": 4,
+      "decidedBy": {
+        "id": 4,
+        "name": "Sarah Lim",
+        "role": "APPROVER",
+        "email": "sarah.lim@evindo.co.id"
+      },
+      "purchaseOrderId": 3,
+      "purchaseOrder": {
+        "id": 3,
+        "orderNumber": "PO-2026-000003",
+        "status": "PARTIALLY_RECEIVED"
+      }
+    },
+    {
+      "id": 6,
+      "requestNumber": "PR-2026-000006",
+      "status": "DRAFT",
+      "warehouseId": 1,
+      "warehouse": {
+        "id": 1,
+        "code": "JKT-01",
+        "name": "Jakarta Warehouse",
+        "city": "Jakarta"
+      },
+      "requestedById": 1,
+      "requestedBy": {
+        "id": 1,
+        "name": "John Doe",
+        "role": "USER",
+        "email": "john.doe@evindo.co.id"
+      },
+      "items": [
+        {
+          "id": 10,
+          "productId": 9,
+          "product": {
+            "id": 9,
+            "sku": "BRG-001",
+            "name": "Ball Bearing 6204",
+            "unit": "PCS",
+            "category": "Spare Parts"
+          },
+          "quantity": 24,
+          "unit": "PCS"
+        },
+        {
+          "id": 11,
+          "productId": 10,
+          "product": {
+            "id": 10,
+            "sku": "BLT-001",
+            "name": "V-Belt A-52",
+            "unit": "PCS",
+            "category": "Spare Parts"
+          },
+          "quantity": 12,
+          "unit": "PCS"
+        }
+      ],
+      "totalItems": 2,
+      "totalQuantity": 36,
+      "notes": null,
+      "rejectionReason": null,
+      "createdAt": "2026-09-03T09:00:00Z",
+      "updatedAt": "2026-09-03T09:00:00Z",
+      "submittedAt": null,
+      "decidedAt": null,
+      "decidedById": null,
+      "decidedBy": null,
+      "purchaseOrderId": null,
+      "purchaseOrder": null
+    },
+    {
+      "id": 7,
+      "requestNumber": "PR-2026-000007",
+      "status": "APPROVED",
+      "warehouseId": 3,
+      "warehouse": {
+        "id": 3,
+        "code": "SBY-01",
+        "name": "Surabaya Hub",
+        "city": "Surabaya"
+      },
+      "requestedById": 2,
+      "requestedBy": {
+        "id": 2,
+        "name": "Daniel Wong",
+        "role": "USER",
+        "email": "daniel.wong@evindo.co.id"
+      },
+      "items": [
+        {
+          "id": 12,
+          "productId": 7,
+          "product": {
+            "id": 7,
+            "sku": "OIL-002",
+            "name": "Hydraulic Oil",
+            "unit": "LITER",
+            "category": "Lubricants"
+          },
+          "quantity": 200,
+          "unit": "LITER"
+        },
+        {
+          "id": 13,
+          "productId": 5,
+          "product": {
+            "id": 5,
+            "sku": "SAFE-002",
+            "name": "Safety Helmet",
+            "unit": "PCS",
+            "category": "Safety Equipment"
+          },
+          "quantity": 25,
+          "unit": "PCS"
+        }
+      ],
+      "totalItems": 2,
+      "totalQuantity": 225,
+      "notes": null,
+      "rejectionReason": null,
+      "createdAt": "2026-09-04T09:00:00Z",
+      "updatedAt": "2026-09-05T08:15:00Z",
+      "submittedAt": "2026-09-04T10:30:00Z",
+      "decidedAt": "2026-09-05T08:15:00Z",
+      "decidedById": 4,
+      "decidedBy": {
+        "id": 4,
+        "name": "Sarah Lim",
+        "role": "APPROVER",
+        "email": "sarah.lim@evindo.co.id"
+      },
+      "purchaseOrderId": 4,
+      "purchaseOrder": {
+        "id": 4,
+        "orderNumber": "PO-2026-000004",
+        "status": "PARTIALLY_RECEIVED"
+      }
+    },
+    {
+      "id": 8,
+      "requestNumber": "PR-2026-000008",
+      "status": "SUBMITTED",
+      "warehouseId": 2,
+      "warehouse": {
+        "id": 2,
+        "code": "MAIN-01",
+        "name": "Main Warehouse",
+        "city": "Bekasi"
+      },
+      "requestedById": 3,
+      "requestedBy": {
+        "id": 3,
+        "name": "Aditya Putra",
+        "role": "USER",
+        "email": "aditya.putra@evindo.co.id"
+      },
+      "items": [
+        {
+          "id": 14,
+          "productId": 12,
+          "product": {
+            "id": 12,
+            "sku": "PKG-001",
+            "name": "Carton Box 40x30",
+            "unit": "PCS",
+            "category": "Packaging"
+          },
+          "quantity": 300,
+          "unit": "PCS"
+        },
+        {
+          "id": 15,
+          "productId": 11,
+          "product": {
+            "id": 11,
+            "sku": "CLN-001",
+            "name": "Degreaser Concentrate",
+            "unit": "LITER",
+            "category": "Cleaning"
+          },
+          "quantity": 40,
+          "unit": "LITER"
+        }
+      ],
+      "totalItems": 2,
+      "totalQuantity": 340,
+      "notes": null,
+      "rejectionReason": null,
+      "createdAt": "2026-09-04T09:00:00Z",
+      "updatedAt": "2026-09-04T10:30:00Z",
+      "submittedAt": "2026-09-04T10:30:00Z",
+      "decidedAt": null,
+      "decidedById": null,
+      "decidedBy": null,
+      "purchaseOrderId": null,
+      "purchaseOrder": null
+    },
+    {
+      "id": 9,
+      "requestNumber": "PR-2026-000009",
+      "status": "APPROVED",
+      "warehouseId": 1,
+      "warehouse": {
+        "id": 1,
+        "code": "JKT-01",
+        "name": "Jakarta Warehouse",
+        "city": "Jakarta"
+      },
+      "requestedById": 1,
+      "requestedBy": {
+        "id": 1,
+        "name": "John Doe",
+        "role": "USER",
+        "email": "john.doe@evindo.co.id"
+      },
+      "items": [
+        {
+          "id": 16,
+          "productId": 9,
+          "product": {
+            "id": 9,
+            "sku": "BRG-001",
+            "name": "Ball Bearing 6204",
+            "unit": "PCS",
+            "category": "Spare Parts"
+          },
+          "quantity": 40,
+          "unit": "PCS"
+        },
+        {
+          "id": 17,
+          "productId": 10,
+          "product": {
+            "id": 10,
+            "sku": "BLT-001",
+            "name": "V-Belt A-52",
+            "unit": "PCS",
+            "category": "Spare Parts"
+          },
+          "quantity": 30,
+          "unit": "PCS"
+        }
+      ],
+      "totalItems": 2,
+      "totalQuantity": 70,
+      "notes": null,
+      "rejectionReason": null,
+      "createdAt": "2026-09-05T09:00:00Z",
+      "updatedAt": "2026-09-06T08:15:00Z",
+      "submittedAt": "2026-09-05T10:30:00Z",
+      "decidedAt": "2026-09-06T08:15:00Z",
+      "decidedById": 4,
+      "decidedBy": {
+        "id": 4,
+        "name": "Sarah Lim",
+        "role": "APPROVER",
+        "email": "sarah.lim@evindo.co.id"
+      },
+      "purchaseOrderId": 5,
+      "purchaseOrder": {
+        "id": 5,
+        "orderNumber": "PO-2026-000005",
+        "status": "ORDERED"
+      }
+    },
+    {
+      "id": 10,
+      "requestNumber": "PR-2026-000010",
+      "status": "REJECTED",
+      "warehouseId": 3,
+      "warehouse": {
+        "id": 3,
+        "code": "SBY-01",
+        "name": "Surabaya Hub",
+        "city": "Surabaya"
+      },
+      "requestedById": 2,
+      "requestedBy": {
+        "id": 2,
+        "name": "Daniel Wong",
+        "role": "USER",
+        "email": "daniel.wong@evindo.co.id"
+      },
+      "items": [
+        {
+          "id": 18,
+          "productId": 14,
+          "product": {
+            "id": 14,
+            "sku": "ELC-001",
+            "name": "LED High Bay 150W",
+            "unit": "PCS",
+            "category": "Electrical"
+          },
+          "quantity": 60,
+          "unit": "PCS"
+        }
+      ],
+      "totalItems": 1,
+      "totalQuantity": 60,
+      "notes": null,
+      "rejectionReason": "Quantity exceeds the approved lighting replacement plan for Surabaya Hub.",
+      "createdAt": "2026-09-05T09:00:00Z",
+      "updatedAt": "2026-09-06T08:15:00Z",
+      "submittedAt": "2026-09-05T10:30:00Z",
+      "decidedAt": "2026-09-06T08:15:00Z",
+      "decidedById": 4,
+      "decidedBy": {
+        "id": 4,
+        "name": "Sarah Lim",
+        "role": "APPROVER",
+        "email": "sarah.lim@evindo.co.id"
+      },
+      "purchaseOrderId": null,
+      "purchaseOrder": null
+    },
+    {
+      "id": 11,
+      "requestNumber": "PR-2026-000011",
+      "status": "APPROVED",
+      "warehouseId": 2,
+      "warehouse": {
+        "id": 2,
+        "code": "MAIN-01",
+        "name": "Main Warehouse",
+        "city": "Bekasi"
+      },
+      "requestedById": 3,
+      "requestedBy": {
+        "id": 3,
+        "name": "Aditya Putra",
+        "role": "USER",
+        "email": "aditya.putra@evindo.co.id"
+      },
+      "items": [
+        {
+          "id": 19,
+          "productId": 12,
+          "product": {
+            "id": 12,
+            "sku": "PKG-001",
+            "name": "Carton Box 40x30",
+            "unit": "PCS",
+            "category": "Packaging"
+          },
+          "quantity": 500,
+          "unit": "PCS"
+        },
+        {
+          "id": 20,
+          "productId": 11,
+          "product": {
+            "id": 11,
+            "sku": "CLN-001",
+            "name": "Degreaser Concentrate",
+            "unit": "LITER",
+            "category": "Cleaning"
+          },
+          "quantity": 60,
+          "unit": "LITER"
+        }
+      ],
+      "totalItems": 2,
+      "totalQuantity": 560,
+      "notes": null,
+      "rejectionReason": null,
+      "createdAt": "2026-09-06T09:00:00Z",
+      "updatedAt": "2026-09-07T08:15:00Z",
+      "submittedAt": "2026-09-06T10:30:00Z",
+      "decidedAt": "2026-09-07T08:15:00Z",
+      "decidedById": 4,
+      "decidedBy": {
+        "id": 4,
+        "name": "Sarah Lim",
+        "role": "APPROVER",
+        "email": "sarah.lim@evindo.co.id"
+      },
+      "purchaseOrderId": 6,
+      "purchaseOrder": {
+        "id": 6,
+        "orderNumber": "PO-2026-000006",
+        "status": "ORDERED"
+      }
+    },
+    {
+      "id": 12,
+      "requestNumber": "PR-2026-000012",
+      "status": "DRAFT",
+      "warehouseId": 3,
+      "warehouse": {
+        "id": 3,
+        "code": "SBY-01",
+        "name": "Surabaya Hub",
+        "city": "Surabaya"
+      },
+      "requestedById": 2,
+      "requestedBy": {
+        "id": 2,
+        "name": "Daniel Wong",
+        "role": "USER",
+        "email": "daniel.wong@evindo.co.id"
+      },
+      "items": [
+        {
+          "id": 21,
+          "productId": 6,
+          "product": {
+            "id": 6,
+            "sku": "SAFE-003",
+            "name": "Safety Goggles",
+            "unit": "BOX",
+            "category": "Safety Equipment"
+          },
+          "quantity": 10,
+          "unit": "BOX"
+        }
+      ],
+      "totalItems": 1,
+      "totalQuantity": 10,
+      "notes": null,
+      "rejectionReason": null,
+      "createdAt": "2026-09-07T09:00:00Z",
+      "updatedAt": "2026-09-07T09:00:00Z",
+      "submittedAt": null,
+      "decidedAt": null,
+      "decidedById": null,
+      "decidedBy": null,
+      "purchaseOrderId": null,
+      "purchaseOrder": null
+    },
+    {
+      "id": 13,
+      "requestNumber": "PR-2026-000013",
+      "status": "APPROVED",
+      "warehouseId": 3,
+      "warehouse": {
+        "id": 3,
+        "code": "SBY-01",
+        "name": "Surabaya Hub",
+        "city": "Surabaya"
+      },
+      "requestedById": 2,
+      "requestedBy": {
+        "id": 2,
+        "name": "Daniel Wong",
+        "role": "USER",
+        "email": "daniel.wong@evindo.co.id"
+      },
+      "items": [
+        {
+          "id": 22,
+          "productId": 14,
+          "product": {
+            "id": 14,
+            "sku": "ELC-001",
+            "name": "LED High Bay 150W",
+            "unit": "PCS",
+            "category": "Electrical"
+          },
+          "quantity": 24,
+          "unit": "PCS"
+        },
+        {
+          "id": 23,
+          "productId": 13,
+          "product": {
+            "id": 13,
+            "sku": "TOL-001",
+            "name": "Torque Wrench Set",
+            "unit": "SET",
+            "category": "Tools"
+          },
+          "quantity": 3,
+          "unit": "SET"
+        }
+      ],
+      "totalItems": 2,
+      "totalQuantity": 27,
+      "notes": null,
+      "rejectionReason": null,
+      "createdAt": "2026-09-08T09:00:00Z",
+      "updatedAt": "2026-09-09T08:15:00Z",
+      "submittedAt": "2026-09-08T10:30:00Z",
+      "decidedAt": "2026-09-09T08:15:00Z",
+      "decidedById": 4,
+      "decidedBy": {
+        "id": 4,
+        "name": "Sarah Lim",
+        "role": "APPROVER",
+        "email": "sarah.lim@evindo.co.id"
+      },
+      "purchaseOrderId": 7,
+      "purchaseOrder": {
+        "id": 7,
+        "orderNumber": "PO-2026-000007",
+        "status": "ORDERED"
+      }
+    },
+    {
+      "id": 14,
+      "requestNumber": "PR-2026-000014",
+      "status": "SUBMITTED",
+      "warehouseId": 1,
+      "warehouse": {
+        "id": 1,
+        "code": "JKT-01",
+        "name": "Jakarta Warehouse",
+        "city": "Jakarta"
+      },
+      "requestedById": 1,
+      "requestedBy": {
+        "id": 1,
+        "name": "John Doe",
+        "role": "USER",
+        "email": "john.doe@evindo.co.id"
+      },
+      "items": [
+        {
+          "id": 24,
+          "productId": 5,
+          "product": {
+            "id": 5,
+            "sku": "SAFE-002",
+            "name": "Safety Helmet",
+            "unit": "PCS",
+            "category": "Safety Equipment"
+          },
+          "quantity": 30,
+          "unit": "PCS"
+        },
+        {
+          "id": 25,
+          "productId": 6,
+          "product": {
+            "id": 6,
+            "sku": "SAFE-003",
+            "name": "Safety Goggles",
+            "unit": "BOX",
+            "category": "Safety Equipment"
+          },
+          "quantity": 15,
+          "unit": "BOX"
+        }
+      ],
+      "totalItems": 2,
+      "totalQuantity": 45,
+      "notes": null,
+      "rejectionReason": null,
+      "createdAt": "2026-09-08T09:00:00Z",
+      "updatedAt": "2026-09-08T10:30:00Z",
+      "submittedAt": "2026-09-08T10:30:00Z",
+      "decidedAt": null,
+      "decidedById": null,
+      "decidedBy": null,
+      "purchaseOrderId": null,
+      "purchaseOrder": null
+    },
+    {
+      "id": 15,
+      "requestNumber": "PR-2026-000015",
+      "status": "APPROVED",
+      "warehouseId": 1,
+      "warehouse": {
+        "id": 1,
+        "code": "JKT-01",
+        "name": "Jakarta Warehouse",
+        "city": "Jakarta"
+      },
+      "requestedById": 3,
+      "requestedBy": {
+        "id": 3,
+        "name": "Aditya Putra",
+        "role": "USER",
+        "email": "aditya.putra@evindo.co.id"
+      },
+      "items": [
+        {
+          "id": 26,
+          "productId": 6,
+          "product": {
+            "id": 6,
+            "sku": "SAFE-003",
+            "name": "Safety Goggles",
+            "unit": "BOX",
+            "category": "Safety Equipment"
+          },
+          "quantity": 15,
+          "unit": "BOX"
+        },
+        {
+          "id": 27,
+          "productId": 8,
+          "product": {
+            "id": 8,
+            "sku": "OIL-003",
+            "name": "Grease Cartridge",
+            "unit": "PCS",
+            "category": "Lubricants"
+          },
+          "quantity": 80,
+          "unit": "PCS"
+        },
+        {
+          "id": 28,
+          "productId": 3,
+          "product": {
+            "id": 3,
+            "sku": "FILT-001",
+            "name": "Industrial Filter A",
+            "unit": "PCS",
+            "category": "Spare Parts"
+          },
+          "quantity": 40,
+          "unit": "PCS"
+        }
+      ],
+      "totalItems": 3,
+      "totalQuantity": 135,
+      "notes": null,
+      "rejectionReason": null,
+      "createdAt": "2026-09-09T09:00:00Z",
+      "updatedAt": "2026-09-10T08:15:00Z",
+      "submittedAt": "2026-09-09T10:30:00Z",
+      "decidedAt": "2026-09-10T08:15:00Z",
+      "decidedById": 4,
+      "decidedBy": {
+        "id": 4,
+        "name": "Sarah Lim",
+        "role": "APPROVER",
+        "email": "sarah.lim@evindo.co.id"
+      },
+      "purchaseOrderId": 8,
+      "purchaseOrder": {
+        "id": 8,
+        "orderNumber": "PO-2026-000008",
+        "status": "ORDERED"
+      }
+    },
+    {
+      "id": 16,
+      "requestNumber": "PR-2026-000016",
+      "status": "REJECTED",
+      "warehouseId": 2,
+      "warehouse": {
+        "id": 2,
+        "code": "MAIN-01",
+        "name": "Main Warehouse",
+        "city": "Bekasi"
+      },
+      "requestedById": 2,
+      "requestedBy": {
+        "id": 2,
+        "name": "Daniel Wong",
+        "role": "USER",
+        "email": "daniel.wong@evindo.co.id"
+      },
+      "items": [
+        {
+          "id": 29,
+          "productId": 15,
+          "product": {
+            "id": 15,
+            "sku": "CHM-001",
+            "name": "Industrial Detergent",
+            "unit": "KG",
+            "category": "Cleaning"
+          },
+          "quantity": 400,
+          "unit": "KG"
+        }
+      ],
+      "totalItems": 1,
+      "totalQuantity": 400,
+      "notes": null,
+      "rejectionReason": "Please split this request per warehouse before submitting.",
+      "createdAt": "2026-09-09T09:00:00Z",
+      "updatedAt": "2026-09-10T08:15:00Z",
+      "submittedAt": "2026-09-09T10:30:00Z",
+      "decidedAt": "2026-09-10T08:15:00Z",
+      "decidedById": 4,
+      "decidedBy": {
+        "id": 4,
+        "name": "Sarah Lim",
+        "role": "APPROVER",
+        "email": "sarah.lim@evindo.co.id"
+      },
+      "purchaseOrderId": null,
+      "purchaseOrder": null
+    },
+    {
+      "id": 17,
+      "requestNumber": "PR-2026-000017",
+      "status": "APPROVED",
+      "warehouseId": 2,
+      "warehouse": {
+        "id": 2,
+        "code": "MAIN-01",
+        "name": "Main Warehouse",
+        "city": "Bekasi"
+      },
+      "requestedById": 1,
+      "requestedBy": {
+        "id": 1,
+        "name": "John Doe",
+        "role": "USER",
+        "email": "john.doe@evindo.co.id"
+      },
+      "items": [
+        {
+          "id": 30,
+          "productId": 15,
+          "product": {
+            "id": 15,
+            "sku": "CHM-001",
+            "name": "Industrial Detergent",
+            "unit": "KG",
+            "category": "Cleaning"
+          },
+          "quantity": 120,
+          "unit": "KG"
+        },
+        {
+          "id": 31,
+          "productId": 4,
+          "product": {
+            "id": 4,
+            "sku": "FILT-002",
+            "name": "Industrial Filter B",
+            "unit": "PCS",
+            "category": "Spare Parts"
+          },
+          "quantity": 25,
+          "unit": "PCS"
+        }
+      ],
+      "totalItems": 2,
+      "totalQuantity": 145,
+      "notes": null,
+      "rejectionReason": null,
+      "createdAt": "2026-09-10T09:00:00Z",
+      "updatedAt": "2026-09-11T08:15:00Z",
+      "submittedAt": "2026-09-10T10:30:00Z",
+      "decidedAt": "2026-09-11T08:15:00Z",
+      "decidedById": 4,
+      "decidedBy": {
+        "id": 4,
+        "name": "Sarah Lim",
+        "role": "APPROVER",
+        "email": "sarah.lim@evindo.co.id"
+      },
+      "purchaseOrderId": 9,
+      "purchaseOrder": {
+        "id": 9,
+        "orderNumber": "PO-2026-000009",
+        "status": "ORDERED"
+      }
+    },
+    {
+      "id": 18,
+      "requestNumber": "PR-2026-000018",
+      "status": "DRAFT",
+      "warehouseId": 2,
+      "warehouse": {
+        "id": 2,
+        "code": "MAIN-01",
+        "name": "Main Warehouse",
+        "city": "Bekasi"
+      },
+      "requestedById": 3,
+      "requestedBy": {
+        "id": 3,
+        "name": "Aditya Putra",
+        "role": "USER",
+        "email": "aditya.putra@evindo.co.id"
+      },
+      "items": [
+        {
+          "id": 32,
+          "productId": 4,
+          "product": {
+            "id": 4,
+            "sku": "FILT-002",
+            "name": "Industrial Filter B",
+            "unit": "PCS",
+            "category": "Spare Parts"
+          },
+          "quantity": 10,
+          "unit": "PCS"
+        },
+        {
+          "id": 33,
+          "productId": 3,
+          "product": {
+            "id": 3,
+            "sku": "FILT-001",
+            "name": "Industrial Filter A",
+            "unit": "PCS",
+            "category": "Spare Parts"
+          },
+          "quantity": 10,
+          "unit": "PCS"
+        }
+      ],
+      "totalItems": 2,
+      "totalQuantity": 20,
+      "notes": null,
+      "rejectionReason": null,
+      "createdAt": "2026-09-10T09:00:00Z",
+      "updatedAt": "2026-09-10T09:00:00Z",
+      "submittedAt": null,
+      "decidedAt": null,
+      "decidedById": null,
+      "decidedBy": null,
+      "purchaseOrderId": null,
+      "purchaseOrder": null
+    },
+    {
+      "id": 19,
+      "requestNumber": "PR-2026-000019",
+      "status": "SUBMITTED",
+      "warehouseId": 3,
+      "warehouse": {
+        "id": 3,
+        "code": "SBY-01",
+        "name": "Surabaya Hub",
+        "city": "Surabaya"
+      },
+      "requestedById": 2,
+      "requestedBy": {
+        "id": 2,
+        "name": "Daniel Wong",
+        "role": "USER",
+        "email": "daniel.wong@evindo.co.id"
+      },
+      "items": [
+        {
+          "id": 34,
+          "productId": 7,
+          "product": {
+            "id": 7,
+            "sku": "OIL-002",
+            "name": "Hydraulic Oil",
+            "unit": "LITER",
+            "category": "Lubricants"
+          },
+          "quantity": 150,
+          "unit": "LITER"
+        }
+      ],
+      "totalItems": 1,
+      "totalQuantity": 150,
+      "notes": null,
+      "rejectionReason": null,
+      "createdAt": "2026-09-11T09:00:00Z",
+      "updatedAt": "2026-09-11T10:30:00Z",
+      "submittedAt": "2026-09-11T10:30:00Z",
+      "decidedAt": null,
+      "decidedById": null,
+      "decidedBy": null,
+      "purchaseOrderId": null,
+      "purchaseOrder": null
+    },
+    {
+      "id": 20,
+      "requestNumber": "PR-2026-000020",
+      "status": "DRAFT",
+      "warehouseId": 1,
+      "warehouse": {
+        "id": 1,
+        "code": "JKT-01",
+        "name": "Jakarta Warehouse",
+        "city": "Jakarta"
+      },
+      "requestedById": 1,
+      "requestedBy": {
+        "id": 1,
+        "name": "John Doe",
+        "role": "USER",
+        "email": "john.doe@evindo.co.id"
+      },
+      "items": [
+        {
+          "id": 35,
+          "productId": 2,
+          "product": {
+            "id": 2,
+            "sku": "SAFE-001",
+            "name": "Safety Gloves",
+            "unit": "BOX",
+            "category": "Safety Equipment"
+          },
+          "quantity": 25,
+          "unit": "BOX"
+        }
+      ],
+      "totalItems": 1,
+      "totalQuantity": 25,
+      "notes": null,
+      "rejectionReason": null,
+      "createdAt": "2026-09-11T09:00:00Z",
+      "updatedAt": "2026-09-11T09:00:00Z",
+      "submittedAt": null,
+      "decidedAt": null,
+      "decidedById": null,
+      "decidedBy": null,
+      "purchaseOrderId": null,
+      "purchaseOrder": null
+    },
+    {
+      "id": 21,
+      "requestNumber": "PR-2026-000021",
+      "status": "SUBMITTED",
+      "warehouseId": 1,
+      "warehouse": {
+        "id": 1,
+        "code": "JKT-01",
+        "name": "Jakarta Warehouse",
+        "city": "Jakarta"
+      },
+      "requestedById": 3,
+      "requestedBy": {
+        "id": 3,
+        "name": "Aditya Putra",
+        "role": "USER",
+        "email": "aditya.putra@evindo.co.id"
+      },
+      "items": [
+        {
+          "id": 36,
+          "productId": 1,
+          "product": {
+            "id": 1,
+            "sku": "OIL-001",
+            "name": "Industrial Oil",
+            "unit": "PCS",
+            "category": "Lubricants"
+          },
+          "quantity": 1000,
+          "unit": "PCS"
+        }
+      ],
+      "totalItems": 1,
+      "totalQuantity": 1000,
+      "notes": null,
+      "rejectionReason": null,
+      "createdAt": "2026-09-12T09:00:00Z",
+      "updatedAt": "2026-09-12T10:30:00Z",
+      "submittedAt": "2026-09-12T10:30:00Z",
+      "decidedAt": null,
+      "decidedById": null,
+      "decidedBy": null,
+      "purchaseOrderId": null,
+      "purchaseOrder": null
+    },
+    {
+      "id": 22,
+      "requestNumber": "PR-2026-000022",
+      "status": "DRAFT",
+      "warehouseId": 3,
+      "warehouse": {
+        "id": 3,
+        "code": "SBY-01",
+        "name": "Surabaya Hub",
+        "city": "Surabaya"
+      },
+      "requestedById": 2,
+      "requestedBy": {
+        "id": 2,
+        "name": "Daniel Wong",
+        "role": "USER",
+        "email": "daniel.wong@evindo.co.id"
+      },
+      "items": [
+        {
+          "id": 37,
+          "productId": 11,
+          "product": {
+            "id": 11,
+            "sku": "CLN-001",
+            "name": "Degreaser Concentrate",
+            "unit": "LITER",
+            "category": "Cleaning"
+          },
+          "quantity": 20,
+          "unit": "LITER"
+        },
+        {
+          "id": 38,
+          "productId": 12,
+          "product": {
+            "id": 12,
+            "sku": "PKG-001",
+            "name": "Carton Box 40x30",
+            "unit": "PCS",
+            "category": "Packaging"
+          },
+          "quantity": 100,
+          "unit": "PCS"
+        }
+      ],
+      "totalItems": 2,
+      "totalQuantity": 120,
+      "notes": null,
+      "rejectionReason": null,
+      "createdAt": "2026-09-12T09:00:00Z",
+      "updatedAt": "2026-09-12T09:00:00Z",
+      "submittedAt": null,
+      "decidedAt": null,
+      "decidedById": null,
+      "decidedBy": null,
+      "purchaseOrderId": null,
+      "purchaseOrder": null
+    },
+    {
+      "id": 23,
+      "requestNumber": "PR-2026-000023",
+      "status": "REJECTED",
+      "warehouseId": 2,
+      "warehouse": {
+        "id": 2,
+        "code": "MAIN-01",
+        "name": "Main Warehouse",
+        "city": "Bekasi"
+      },
+      "requestedById": 1,
+      "requestedBy": {
+        "id": 1,
+        "name": "John Doe",
+        "role": "USER",
+        "email": "john.doe@evindo.co.id"
+      },
+      "items": [
+        {
+          "id": 39,
+          "productId": 9,
+          "product": {
+            "id": 9,
+            "sku": "BRG-001",
+            "name": "Ball Bearing 6204",
+            "unit": "PCS",
+            "category": "Spare Parts"
+          },
+          "quantity": 60,
+          "unit": "PCS"
+        },
+        {
+          "id": 40,
+          "productId": 10,
+          "product": {
+            "id": 10,
+            "sku": "BLT-001",
+            "name": "V-Belt A-52",
+            "unit": "PCS",
+            "category": "Spare Parts"
+          },
+          "quantity": 60,
+          "unit": "PCS"
+        },
+        {
+          "id": 41,
+          "productId": 13,
+          "product": {
+            "id": 13,
+            "sku": "TOL-001",
+            "name": "Torque Wrench Set",
+            "unit": "SET",
+            "category": "Tools"
+          },
+          "quantity": 2,
+          "unit": "SET"
+        }
+      ],
+      "totalItems": 3,
+      "totalQuantity": 122,
+      "notes": null,
+      "rejectionReason": "Bearing and belt quantities exceed the maintenance plan for this quarter. Please reduce and resubmit.",
+      "createdAt": "2026-09-13T09:00:00Z",
+      "updatedAt": "2026-09-14T08:15:00Z",
+      "submittedAt": "2026-09-13T10:30:00Z",
+      "decidedAt": "2026-09-14T08:15:00Z",
+      "decidedById": 4,
+      "decidedBy": {
+        "id": 4,
+        "name": "Sarah Lim",
+        "role": "APPROVER",
+        "email": "sarah.lim@evindo.co.id"
+      },
+      "purchaseOrderId": null,
+      "purchaseOrder": null
+    },
+    {
+      "id": 24,
+      "requestNumber": "PR-2026-000024",
+      "status": "DRAFT",
+      "warehouseId": 1,
+      "warehouse": {
+        "id": 1,
+        "code": "JKT-01",
+        "name": "Jakarta Warehouse",
+        "city": "Jakarta"
+      },
+      "requestedById": 1,
+      "requestedBy": {
+        "id": 1,
+        "name": "John Doe",
+        "role": "USER",
+        "email": "john.doe@evindo.co.id"
+      },
+      "items": [],
+      "totalItems": 0,
+      "totalQuantity": 0,
+      "notes": null,
+      "rejectionReason": null,
+      "createdAt": "2026-09-14T09:00:00Z",
+      "updatedAt": "2026-09-14T09:00:00Z",
+      "submittedAt": null,
+      "decidedAt": null,
+      "decidedById": null,
+      "decidedBy": null,
+      "purchaseOrderId": null,
+      "purchaseOrder": null
+    }
+  ],
+  "purchaseOrders": [
+    {
+      "id": 1,
+      "orderNumber": "PO-2026-000001",
+      "status": "RECEIVED",
+      "purchaseRequestId": 2,
+      "purchaseRequest": {
+        "id": 2,
+        "requestNumber": "PR-2026-000002",
+        "status": "APPROVED",
+        "requestedBy": {
+          "id": 1,
+          "name": "John Doe",
+          "role": "USER",
+          "email": "john.doe@evindo.co.id"
+        }
+      },
+      "supplierId": 4,
+      "supplier": {
+        "id": 4,
+        "code": "SUP-004",
+        "name": "Nusantara Lubricants"
+      },
+      "warehouseId": 1,
+      "warehouse": {
+        "id": 1,
+        "code": "JKT-01",
+        "name": "Jakarta Warehouse",
+        "city": "Jakarta"
+      },
+      "items": [
+        {
+          "id": 1,
+          "productId": 1,
+          "product": {
+            "id": 1,
+            "sku": "OIL-001",
+            "name": "Industrial Oil",
+            "unit": "PCS",
+            "category": "Lubricants"
+          },
+          "orderedQuantity": 100,
+          "receivedQuantity": 100,
+          "remainingQuantity": 0,
+          "unit": "PCS"
+        }
+      ],
+      "totalItems": 1,
+      "totalOrderedQuantity": 100,
+      "totalReceivedQuantity": 100,
+      "totalRemainingQuantity": 0,
+      "receivingProgress": 100,
+      "goodsReceipts": [
+        {
+          "id": 1,
+          "receiptNumber": "GR-2026-000001",
+          "receivedAt": "2026-09-06T13:45:00Z",
+          "receivedBy": {
+            "id": 1,
+            "name": "John Doe",
+            "role": "USER",
+            "email": "john.doe@evindo.co.id"
+          },
+          "totalQuantity": 60
+        },
+        {
+          "id": 2,
+          "receiptNumber": "GR-2026-000002",
+          "receivedAt": "2026-09-07T13:45:00Z",
+          "receivedBy": {
+            "id": 1,
+            "name": "John Doe",
+            "role": "USER",
+            "email": "john.doe@evindo.co.id"
+          },
+          "totalQuantity": 40
+        }
+      ],
+      "createdAt": "2026-09-02T08:15:00Z",
+      "updatedAt": "2026-09-07T13:45:00Z",
+      "expectedDate": "2026-09-09T09:00:00Z"
+    },
+    {
+      "id": 2,
+      "orderNumber": "PO-2026-000002",
+      "status": "PARTIALLY_RECEIVED",
+      "purchaseRequestId": 3,
+      "purchaseRequest": {
+        "id": 3,
+        "requestNumber": "PR-2026-000003",
+        "status": "APPROVED",
+        "requestedBy": {
+          "id": 2,
+          "name": "Daniel Wong",
+          "role": "USER",
+          "email": "daniel.wong@evindo.co.id"
+        }
+      },
+      "supplierId": 4,
+      "supplier": {
+        "id": 4,
+        "code": "SUP-004",
+        "name": "Nusantara Lubricants"
+      },
+      "warehouseId": 2,
+      "warehouse": {
+        "id": 2,
+        "code": "MAIN-01",
+        "name": "Main Warehouse",
+        "city": "Bekasi"
+      },
+      "items": [
+        {
+          "id": 2,
+          "productId": 1,
+          "product": {
+            "id": 1,
+            "sku": "OIL-001",
+            "name": "Industrial Oil",
+            "unit": "PCS",
+            "category": "Lubricants"
+          },
+          "orderedQuantity": 100,
+          "receivedQuantity": 60,
+          "remainingQuantity": 40,
+          "unit": "PCS"
+        },
+        {
+          "id": 3,
+          "productId": 2,
+          "product": {
+            "id": 2,
+            "sku": "SAFE-001",
+            "name": "Safety Gloves",
+            "unit": "BOX",
+            "category": "Safety Equipment"
+          },
+          "orderedQuantity": 40,
+          "receivedQuantity": 0,
+          "remainingQuantity": 40,
+          "unit": "BOX"
+        }
+      ],
+      "totalItems": 2,
+      "totalOrderedQuantity": 140,
+      "totalReceivedQuantity": 60,
+      "totalRemainingQuantity": 80,
+      "receivingProgress": 43,
+      "goodsReceipts": [
+        {
+          "id": 3,
+          "receiptNumber": "GR-2026-000003",
+          "receivedAt": "2026-09-08T13:45:00Z",
+          "receivedBy": {
+            "id": 2,
+            "name": "Daniel Wong",
+            "role": "USER",
+            "email": "daniel.wong@evindo.co.id"
+          },
+          "totalQuantity": 60
+        }
+      ],
+      "createdAt": "2026-09-03T08:15:00Z",
+      "updatedAt": "2026-09-08T13:45:00Z",
+      "expectedDate": "2026-09-10T09:00:00Z"
+    },
+    {
+      "id": 3,
+      "orderNumber": "PO-2026-000003",
+      "status": "PARTIALLY_RECEIVED",
+      "purchaseRequestId": 5,
+      "purchaseRequest": {
+        "id": 5,
+        "requestNumber": "PR-2026-000005",
+        "status": "APPROVED",
+        "requestedBy": {
+          "id": 1,
+          "name": "John Doe",
+          "role": "USER",
+          "email": "john.doe@evindo.co.id"
+        }
+      },
+      "supplierId": 4,
+      "supplier": {
+        "id": 4,
+        "code": "SUP-004",
+        "name": "Nusantara Lubricants"
+      },
+      "warehouseId": 1,
+      "warehouse": {
+        "id": 1,
+        "code": "JKT-01",
+        "name": "Jakarta Warehouse",
+        "city": "Jakarta"
+      },
+      "items": [
+        {
+          "id": 4,
+          "productId": 1,
+          "product": {
+            "id": 1,
+            "sku": "OIL-001",
+            "name": "Industrial Oil",
+            "unit": "PCS",
+            "category": "Lubricants"
+          },
+          "orderedQuantity": 50,
+          "receivedQuantity": 20,
+          "remainingQuantity": 30,
+          "unit": "PCS"
+        },
+        {
+          "id": 5,
+          "productId": 2,
+          "product": {
+            "id": 2,
+            "sku": "SAFE-001",
+            "name": "Safety Gloves",
+            "unit": "BOX",
+            "category": "Safety Equipment"
+          },
+          "orderedQuantity": 20,
+          "receivedQuantity": 20,
+          "remainingQuantity": 0,
+          "unit": "BOX"
+        }
+      ],
+      "totalItems": 2,
+      "totalOrderedQuantity": 70,
+      "totalReceivedQuantity": 40,
+      "totalRemainingQuantity": 30,
+      "receivingProgress": 57,
+      "goodsReceipts": [
+        {
+          "id": 4,
+          "receiptNumber": "GR-2026-000004",
+          "receivedAt": "2026-09-09T13:45:00Z",
+          "receivedBy": {
+            "id": 1,
+            "name": "John Doe",
+            "role": "USER",
+            "email": "john.doe@evindo.co.id"
+          },
+          "totalQuantity": 40
+        }
+      ],
+      "createdAt": "2026-09-04T08:15:00Z",
+      "updatedAt": "2026-09-09T13:45:00Z",
+      "expectedDate": "2026-09-11T09:00:00Z"
+    },
+    {
+      "id": 4,
+      "orderNumber": "PO-2026-000004",
+      "status": "PARTIALLY_RECEIVED",
+      "purchaseRequestId": 7,
+      "purchaseRequest": {
+        "id": 7,
+        "requestNumber": "PR-2026-000007",
+        "status": "APPROVED",
+        "requestedBy": {
+          "id": 2,
+          "name": "Daniel Wong",
+          "role": "USER",
+          "email": "daniel.wong@evindo.co.id"
+        }
+      },
+      "supplierId": 4,
+      "supplier": {
+        "id": 4,
+        "code": "SUP-004",
+        "name": "Nusantara Lubricants"
+      },
+      "warehouseId": 3,
+      "warehouse": {
+        "id": 3,
+        "code": "SBY-01",
+        "name": "Surabaya Hub",
+        "city": "Surabaya"
+      },
+      "items": [
+        {
+          "id": 6,
+          "productId": 7,
+          "product": {
+            "id": 7,
+            "sku": "OIL-002",
+            "name": "Hydraulic Oil",
+            "unit": "LITER",
+            "category": "Lubricants"
+          },
+          "orderedQuantity": 200,
+          "receivedQuantity": 120,
+          "remainingQuantity": 80,
+          "unit": "LITER"
+        },
+        {
+          "id": 7,
+          "productId": 5,
+          "product": {
+            "id": 5,
+            "sku": "SAFE-002",
+            "name": "Safety Helmet",
+            "unit": "PCS",
+            "category": "Safety Equipment"
+          },
+          "orderedQuantity": 25,
+          "receivedQuantity": 25,
+          "remainingQuantity": 0,
+          "unit": "PCS"
+        }
+      ],
+      "totalItems": 2,
+      "totalOrderedQuantity": 225,
+      "totalReceivedQuantity": 145,
+      "totalRemainingQuantity": 80,
+      "receivingProgress": 64,
+      "goodsReceipts": [
+        {
+          "id": 5,
+          "receiptNumber": "GR-2026-000005",
+          "receivedAt": "2026-09-11T13:45:00Z",
+          "receivedBy": {
+            "id": 2,
+            "name": "Daniel Wong",
+            "role": "USER",
+            "email": "daniel.wong@evindo.co.id"
+          },
+          "totalQuantity": 145
+        }
+      ],
+      "createdAt": "2026-09-05T08:15:00Z",
+      "updatedAt": "2026-09-11T13:45:00Z",
+      "expectedDate": "2026-09-12T09:00:00Z"
+    },
+    {
+      "id": 5,
+      "orderNumber": "PO-2026-000005",
+      "status": "ORDERED",
+      "purchaseRequestId": 9,
+      "purchaseRequest": {
+        "id": 9,
+        "requestNumber": "PR-2026-000009",
+        "status": "APPROVED",
+        "requestedBy": {
+          "id": 1,
+          "name": "John Doe",
+          "role": "USER",
+          "email": "john.doe@evindo.co.id"
+        }
+      },
+      "supplierId": 1,
+      "supplier": {
+        "id": 1,
+        "code": "SUP-001",
+        "name": "PT Sumber Jaya Teknik"
+      },
+      "warehouseId": 1,
+      "warehouse": {
+        "id": 1,
+        "code": "JKT-01",
+        "name": "Jakarta Warehouse",
+        "city": "Jakarta"
+      },
+      "items": [
+        {
+          "id": 8,
+          "productId": 9,
+          "product": {
+            "id": 9,
+            "sku": "BRG-001",
+            "name": "Ball Bearing 6204",
+            "unit": "PCS",
+            "category": "Spare Parts"
+          },
+          "orderedQuantity": 40,
+          "receivedQuantity": 0,
+          "remainingQuantity": 40,
+          "unit": "PCS"
+        },
+        {
+          "id": 9,
+          "productId": 10,
+          "product": {
+            "id": 10,
+            "sku": "BLT-001",
+            "name": "V-Belt A-52",
+            "unit": "PCS",
+            "category": "Spare Parts"
+          },
+          "orderedQuantity": 30,
+          "receivedQuantity": 0,
+          "remainingQuantity": 30,
+          "unit": "PCS"
+        }
+      ],
+      "totalItems": 2,
+      "totalOrderedQuantity": 70,
+      "totalReceivedQuantity": 0,
+      "totalRemainingQuantity": 70,
+      "receivingProgress": 0,
+      "goodsReceipts": [],
+      "createdAt": "2026-09-06T08:15:00Z",
+      "updatedAt": "2026-09-06T08:15:00Z",
+      "expectedDate": "2026-09-13T09:00:00Z"
+    },
+    {
+      "id": 6,
+      "orderNumber": "PO-2026-000006",
+      "status": "ORDERED",
+      "purchaseRequestId": 11,
+      "purchaseRequest": {
+        "id": 11,
+        "requestNumber": "PR-2026-000011",
+        "status": "APPROVED",
+        "requestedBy": {
+          "id": 3,
+          "name": "Aditya Putra",
+          "role": "USER",
+          "email": "aditya.putra@evindo.co.id"
+        }
+      },
+      "supplierId": 2,
+      "supplier": {
+        "id": 2,
+        "code": "SUP-002",
+        "name": "Global Parts Indonesia"
+      },
+      "warehouseId": 2,
+      "warehouse": {
+        "id": 2,
+        "code": "MAIN-01",
+        "name": "Main Warehouse",
+        "city": "Bekasi"
+      },
+      "items": [
+        {
+          "id": 10,
+          "productId": 12,
+          "product": {
+            "id": 12,
+            "sku": "PKG-001",
+            "name": "Carton Box 40x30",
+            "unit": "PCS",
+            "category": "Packaging"
+          },
+          "orderedQuantity": 500,
+          "receivedQuantity": 0,
+          "remainingQuantity": 500,
+          "unit": "PCS"
+        },
+        {
+          "id": 11,
+          "productId": 11,
+          "product": {
+            "id": 11,
+            "sku": "CLN-001",
+            "name": "Degreaser Concentrate",
+            "unit": "LITER",
+            "category": "Cleaning"
+          },
+          "orderedQuantity": 60,
+          "receivedQuantity": 0,
+          "remainingQuantity": 60,
+          "unit": "LITER"
+        }
+      ],
+      "totalItems": 2,
+      "totalOrderedQuantity": 560,
+      "totalReceivedQuantity": 0,
+      "totalRemainingQuantity": 560,
+      "receivingProgress": 0,
+      "goodsReceipts": [],
+      "createdAt": "2026-09-07T08:15:00Z",
+      "updatedAt": "2026-09-07T08:15:00Z",
+      "expectedDate": "2026-09-14T09:00:00Z"
+    },
+    {
+      "id": 7,
+      "orderNumber": "PO-2026-000007",
+      "status": "ORDERED",
+      "purchaseRequestId": 13,
+      "purchaseRequest": {
+        "id": 13,
+        "requestNumber": "PR-2026-000013",
+        "status": "APPROVED",
+        "requestedBy": {
+          "id": 2,
+          "name": "Daniel Wong",
+          "role": "USER",
+          "email": "daniel.wong@evindo.co.id"
+        }
+      },
+      "supplierId": 1,
+      "supplier": {
+        "id": 1,
+        "code": "SUP-001",
+        "name": "PT Sumber Jaya Teknik"
+      },
+      "warehouseId": 3,
+      "warehouse": {
+        "id": 3,
+        "code": "SBY-01",
+        "name": "Surabaya Hub",
+        "city": "Surabaya"
+      },
+      "items": [
+        {
+          "id": 12,
+          "productId": 14,
+          "product": {
+            "id": 14,
+            "sku": "ELC-001",
+            "name": "LED High Bay 150W",
+            "unit": "PCS",
+            "category": "Electrical"
+          },
+          "orderedQuantity": 24,
+          "receivedQuantity": 0,
+          "remainingQuantity": 24,
+          "unit": "PCS"
+        },
+        {
+          "id": 13,
+          "productId": 13,
+          "product": {
+            "id": 13,
+            "sku": "TOL-001",
+            "name": "Torque Wrench Set",
+            "unit": "SET",
+            "category": "Tools"
+          },
+          "orderedQuantity": 3,
+          "receivedQuantity": 0,
+          "remainingQuantity": 3,
+          "unit": "SET"
+        }
+      ],
+      "totalItems": 2,
+      "totalOrderedQuantity": 27,
+      "totalReceivedQuantity": 0,
+      "totalRemainingQuantity": 27,
+      "receivingProgress": 0,
+      "goodsReceipts": [],
+      "createdAt": "2026-09-09T08:15:00Z",
+      "updatedAt": "2026-09-09T08:15:00Z",
+      "expectedDate": "2026-09-16T09:00:00Z"
+    },
+    {
+      "id": 8,
+      "orderNumber": "PO-2026-000008",
+      "status": "ORDERED",
+      "purchaseRequestId": 15,
+      "purchaseRequest": {
+        "id": 15,
+        "requestNumber": "PR-2026-000015",
+        "status": "APPROVED",
+        "requestedBy": {
+          "id": 3,
+          "name": "Aditya Putra",
+          "role": "USER",
+          "email": "aditya.putra@evindo.co.id"
+        }
+      },
+      "supplierId": 3,
+      "supplier": {
+        "id": 3,
+        "code": "SUP-003",
+        "name": "Safety First Supplies"
+      },
+      "warehouseId": 1,
+      "warehouse": {
+        "id": 1,
+        "code": "JKT-01",
+        "name": "Jakarta Warehouse",
+        "city": "Jakarta"
+      },
+      "items": [
+        {
+          "id": 14,
+          "productId": 6,
+          "product": {
+            "id": 6,
+            "sku": "SAFE-003",
+            "name": "Safety Goggles",
+            "unit": "BOX",
+            "category": "Safety Equipment"
+          },
+          "orderedQuantity": 15,
+          "receivedQuantity": 0,
+          "remainingQuantity": 15,
+          "unit": "BOX"
+        },
+        {
+          "id": 15,
+          "productId": 8,
+          "product": {
+            "id": 8,
+            "sku": "OIL-003",
+            "name": "Grease Cartridge",
+            "unit": "PCS",
+            "category": "Lubricants"
+          },
+          "orderedQuantity": 80,
+          "receivedQuantity": 0,
+          "remainingQuantity": 80,
+          "unit": "PCS"
+        },
+        {
+          "id": 16,
+          "productId": 3,
+          "product": {
+            "id": 3,
+            "sku": "FILT-001",
+            "name": "Industrial Filter A",
+            "unit": "PCS",
+            "category": "Spare Parts"
+          },
+          "orderedQuantity": 40,
+          "receivedQuantity": 0,
+          "remainingQuantity": 40,
+          "unit": "PCS"
+        }
+      ],
+      "totalItems": 3,
+      "totalOrderedQuantity": 135,
+      "totalReceivedQuantity": 0,
+      "totalRemainingQuantity": 135,
+      "receivingProgress": 0,
+      "goodsReceipts": [],
+      "createdAt": "2026-09-10T08:15:00Z",
+      "updatedAt": "2026-09-10T08:15:00Z",
+      "expectedDate": "2026-09-17T09:00:00Z"
+    },
+    {
+      "id": 9,
+      "orderNumber": "PO-2026-000009",
+      "status": "ORDERED",
+      "purchaseRequestId": 17,
+      "purchaseRequest": {
+        "id": 17,
+        "requestNumber": "PR-2026-000017",
+        "status": "APPROVED",
+        "requestedBy": {
+          "id": 1,
+          "name": "John Doe",
+          "role": "USER",
+          "email": "john.doe@evindo.co.id"
+        }
+      },
+      "supplierId": 2,
+      "supplier": {
+        "id": 2,
+        "code": "SUP-002",
+        "name": "Global Parts Indonesia"
+      },
+      "warehouseId": 2,
+      "warehouse": {
+        "id": 2,
+        "code": "MAIN-01",
+        "name": "Main Warehouse",
+        "city": "Bekasi"
+      },
+      "items": [
+        {
+          "id": 17,
+          "productId": 15,
+          "product": {
+            "id": 15,
+            "sku": "CHM-001",
+            "name": "Industrial Detergent",
+            "unit": "KG",
+            "category": "Cleaning"
+          },
+          "orderedQuantity": 120,
+          "receivedQuantity": 0,
+          "remainingQuantity": 120,
+          "unit": "KG"
+        },
+        {
+          "id": 18,
+          "productId": 4,
+          "product": {
+            "id": 4,
+            "sku": "FILT-002",
+            "name": "Industrial Filter B",
+            "unit": "PCS",
+            "category": "Spare Parts"
+          },
+          "orderedQuantity": 25,
+          "receivedQuantity": 0,
+          "remainingQuantity": 25,
+          "unit": "PCS"
+        }
+      ],
+      "totalItems": 2,
+      "totalOrderedQuantity": 145,
+      "totalReceivedQuantity": 0,
+      "totalRemainingQuantity": 145,
+      "receivingProgress": 0,
+      "goodsReceipts": [],
+      "createdAt": "2026-09-11T08:15:00Z",
+      "updatedAt": "2026-09-11T08:15:00Z",
+      "expectedDate": "2026-09-18T09:00:00Z"
+    }
+  ],
+  "goodsReceipts": [
+    {
+      "id": 1,
+      "receiptNumber": "GR-2026-000001",
+      "purchaseOrderId": 1,
+      "purchaseOrder": {
+        "id": 1,
+        "orderNumber": "PO-2026-000001",
+        "status": "RECEIVED",
+        "supplier": {
+          "id": 4,
+          "code": "SUP-004",
+          "name": "Nusantara Lubricants"
+        }
+      },
+      "warehouseId": 1,
+      "warehouse": {
+        "id": 1,
+        "code": "JKT-01",
+        "name": "Jakarta Warehouse",
+        "city": "Jakarta"
+      },
+      "receivedById": 1,
+      "receivedBy": {
+        "id": 1,
+        "name": "John Doe",
+        "role": "USER",
+        "email": "john.doe@evindo.co.id"
+      },
+      "items": [
+        {
+          "id": 1,
+          "productId": 1,
+          "product": {
+            "id": 1,
+            "sku": "OIL-001",
+            "name": "Industrial Oil",
+            "unit": "PCS",
+            "category": "Lubricants"
+          },
+          "receivedQuantity": 60,
+          "unit": "PCS"
+        }
+      ],
+      "totalQuantity": 60,
+      "receivedAt": "2026-09-06T13:45:00Z",
+      "note": "First delivery batch."
+    },
+    {
+      "id": 2,
+      "receiptNumber": "GR-2026-000002",
+      "purchaseOrderId": 1,
+      "purchaseOrder": {
+        "id": 1,
+        "orderNumber": "PO-2026-000001",
+        "status": "RECEIVED",
+        "supplier": {
+          "id": 4,
+          "code": "SUP-004",
+          "name": "Nusantara Lubricants"
+        }
+      },
+      "warehouseId": 1,
+      "warehouse": {
+        "id": 1,
+        "code": "JKT-01",
+        "name": "Jakarta Warehouse",
+        "city": "Jakarta"
+      },
+      "receivedById": 1,
+      "receivedBy": {
+        "id": 1,
+        "name": "John Doe",
+        "role": "USER",
+        "email": "john.doe@evindo.co.id"
+      },
+      "items": [
+        {
+          "id": 2,
+          "productId": 1,
+          "product": {
+            "id": 1,
+            "sku": "OIL-001",
+            "name": "Industrial Oil",
+            "unit": "PCS",
+            "category": "Lubricants"
+          },
+          "receivedQuantity": 40,
+          "unit": "PCS"
+        }
+      ],
+      "totalQuantity": 40,
+      "receivedAt": "2026-09-07T13:45:00Z",
+      "note": "Remaining quantity delivered."
+    },
+    {
+      "id": 3,
+      "receiptNumber": "GR-2026-000003",
+      "purchaseOrderId": 2,
+      "purchaseOrder": {
+        "id": 2,
+        "orderNumber": "PO-2026-000002",
+        "status": "PARTIALLY_RECEIVED",
+        "supplier": {
+          "id": 4,
+          "code": "SUP-004",
+          "name": "Nusantara Lubricants"
+        }
+      },
+      "warehouseId": 2,
+      "warehouse": {
+        "id": 2,
+        "code": "MAIN-01",
+        "name": "Main Warehouse",
+        "city": "Bekasi"
+      },
+      "receivedById": 2,
+      "receivedBy": {
+        "id": 2,
+        "name": "Daniel Wong",
+        "role": "USER",
+        "email": "daniel.wong@evindo.co.id"
+      },
+      "items": [
+        {
+          "id": 3,
+          "productId": 1,
+          "product": {
+            "id": 1,
+            "sku": "OIL-001",
+            "name": "Industrial Oil",
+            "unit": "PCS",
+            "category": "Lubricants"
+          },
+          "receivedQuantity": 60,
+          "unit": "PCS"
+        }
+      ],
+      "totalQuantity": 60,
+      "receivedAt": "2026-09-08T13:45:00Z",
+      "note": null
+    },
+    {
+      "id": 4,
+      "receiptNumber": "GR-2026-000004",
+      "purchaseOrderId": 3,
+      "purchaseOrder": {
+        "id": 3,
+        "orderNumber": "PO-2026-000003",
+        "status": "PARTIALLY_RECEIVED",
+        "supplier": {
+          "id": 4,
+          "code": "SUP-004",
+          "name": "Nusantara Lubricants"
+        }
+      },
+      "warehouseId": 1,
+      "warehouse": {
+        "id": 1,
+        "code": "JKT-01",
+        "name": "Jakarta Warehouse",
+        "city": "Jakarta"
+      },
+      "receivedById": 1,
+      "receivedBy": {
+        "id": 1,
+        "name": "John Doe",
+        "role": "USER",
+        "email": "john.doe@evindo.co.id"
+      },
+      "items": [
+        {
+          "id": 4,
+          "productId": 1,
+          "product": {
+            "id": 1,
+            "sku": "OIL-001",
+            "name": "Industrial Oil",
+            "unit": "PCS",
+            "category": "Lubricants"
+          },
+          "receivedQuantity": 20,
+          "unit": "PCS"
+        },
+        {
+          "id": 5,
+          "productId": 2,
+          "product": {
+            "id": 2,
+            "sku": "SAFE-001",
+            "name": "Safety Gloves",
+            "unit": "BOX",
+            "category": "Safety Equipment"
+          },
+          "receivedQuantity": 20,
+          "unit": "BOX"
+        }
+      ],
+      "totalQuantity": 40,
+      "receivedAt": "2026-09-09T13:45:00Z",
+      "note": "Partial delivery, gloves complete."
+    },
+    {
+      "id": 5,
+      "receiptNumber": "GR-2026-000005",
+      "purchaseOrderId": 4,
+      "purchaseOrder": {
+        "id": 4,
+        "orderNumber": "PO-2026-000004",
+        "status": "PARTIALLY_RECEIVED",
+        "supplier": {
+          "id": 4,
+          "code": "SUP-004",
+          "name": "Nusantara Lubricants"
+        }
+      },
+      "warehouseId": 3,
+      "warehouse": {
+        "id": 3,
+        "code": "SBY-01",
+        "name": "Surabaya Hub",
+        "city": "Surabaya"
+      },
+      "receivedById": 2,
+      "receivedBy": {
+        "id": 2,
+        "name": "Daniel Wong",
+        "role": "USER",
+        "email": "daniel.wong@evindo.co.id"
+      },
+      "items": [
+        {
+          "id": 6,
+          "productId": 7,
+          "product": {
+            "id": 7,
+            "sku": "OIL-002",
+            "name": "Hydraulic Oil",
+            "unit": "LITER",
+            "category": "Lubricants"
+          },
+          "receivedQuantity": 120,
+          "unit": "LITER"
+        },
+        {
+          "id": 7,
+          "productId": 5,
+          "product": {
+            "id": 5,
+            "sku": "SAFE-002",
+            "name": "Safety Helmet",
+            "unit": "PCS",
+            "category": "Safety Equipment"
+          },
+          "receivedQuantity": 25,
+          "unit": "PCS"
+        }
+      ],
+      "totalQuantity": 145,
+      "receivedAt": "2026-09-11T13:45:00Z",
+      "note": null
+    }
+  ],
+  "inventoryStocks": [
+    {
+      "id": 1,
+      "productId": 1,
+      "product": {
+        "id": 1,
+        "sku": "OIL-001",
+        "name": "Industrial Oil",
+        "unit": "PCS",
+        "category": "Lubricants"
+      },
+      "warehouseId": 1,
+      "warehouse": {
+        "id": 1,
+        "code": "JKT-01",
+        "name": "Jakarta Warehouse",
+        "city": "Jakarta"
+      },
+      "quantity": 120,
+      "unit": "PCS",
+      "updatedAt": "2026-09-09T13:45:00Z"
+    },
+    {
+      "id": 2,
+      "productId": 1,
+      "product": {
+        "id": 1,
+        "sku": "OIL-001",
+        "name": "Industrial Oil",
+        "unit": "PCS",
+        "category": "Lubricants"
+      },
+      "warehouseId": 2,
+      "warehouse": {
+        "id": 2,
+        "code": "MAIN-01",
+        "name": "Main Warehouse",
+        "city": "Bekasi"
+      },
+      "quantity": 60,
+      "unit": "PCS",
+      "updatedAt": "2026-09-08T13:45:00Z"
+    },
+    {
+      "id": 3,
+      "productId": 2,
+      "product": {
+        "id": 2,
+        "sku": "SAFE-001",
+        "name": "Safety Gloves",
+        "unit": "BOX",
+        "category": "Safety Equipment"
+      },
+      "warehouseId": 1,
+      "warehouse": {
+        "id": 1,
+        "code": "JKT-01",
+        "name": "Jakarta Warehouse",
+        "city": "Jakarta"
+      },
+      "quantity": 20,
+      "unit": "BOX",
+      "updatedAt": "2026-09-09T13:45:00Z"
+    },
+    {
+      "id": 4,
+      "productId": 3,
+      "product": {
+        "id": 3,
+        "sku": "FILT-001",
+        "name": "Industrial Filter A",
+        "unit": "PCS",
+        "category": "Spare Parts"
+      },
+      "warehouseId": 1,
+      "warehouse": {
+        "id": 1,
+        "code": "JKT-01",
+        "name": "Jakarta Warehouse",
+        "city": "Jakarta"
+      },
+      "quantity": 35,
+      "unit": "PCS",
+      "updatedAt": "2026-09-01T07:00:00Z"
+    },
+    {
+      "id": 5,
+      "productId": 3,
+      "product": {
+        "id": 3,
+        "sku": "FILT-001",
+        "name": "Industrial Filter A",
+        "unit": "PCS",
+        "category": "Spare Parts"
+      },
+      "warehouseId": 2,
+      "warehouse": {
+        "id": 2,
+        "code": "MAIN-01",
+        "name": "Main Warehouse",
+        "city": "Bekasi"
+      },
+      "quantity": 15,
+      "unit": "PCS",
+      "updatedAt": "2026-09-01T07:00:00Z"
+    },
+    {
+      "id": 6,
+      "productId": 4,
+      "product": {
+        "id": 4,
+        "sku": "FILT-002",
+        "name": "Industrial Filter B",
+        "unit": "PCS",
+        "category": "Spare Parts"
+      },
+      "warehouseId": 2,
+      "warehouse": {
+        "id": 2,
+        "code": "MAIN-01",
+        "name": "Main Warehouse",
+        "city": "Bekasi"
+      },
+      "quantity": 22,
+      "unit": "PCS",
+      "updatedAt": "2026-09-01T07:00:00Z"
+    },
+    {
+      "id": 7,
+      "productId": 5,
+      "product": {
+        "id": 5,
+        "sku": "SAFE-002",
+        "name": "Safety Helmet",
+        "unit": "PCS",
+        "category": "Safety Equipment"
+      },
+      "warehouseId": 1,
+      "warehouse": {
+        "id": 1,
+        "code": "JKT-01",
+        "name": "Jakarta Warehouse",
+        "city": "Jakarta"
+      },
+      "quantity": 12,
+      "unit": "PCS",
+      "updatedAt": "2026-09-01T07:00:00Z"
+    },
+    {
+      "id": 8,
+      "productId": 5,
+      "product": {
+        "id": 5,
+        "sku": "SAFE-002",
+        "name": "Safety Helmet",
+        "unit": "PCS",
+        "category": "Safety Equipment"
+      },
+      "warehouseId": 3,
+      "warehouse": {
+        "id": 3,
+        "code": "SBY-01",
+        "name": "Surabaya Hub",
+        "city": "Surabaya"
+      },
+      "quantity": 25,
+      "unit": "PCS",
+      "updatedAt": "2026-09-11T13:45:00Z"
+    },
+    {
+      "id": 9,
+      "productId": 6,
+      "product": {
+        "id": 6,
+        "sku": "SAFE-003",
+        "name": "Safety Goggles",
+        "unit": "BOX",
+        "category": "Safety Equipment"
+      },
+      "warehouseId": 3,
+      "warehouse": {
+        "id": 3,
+        "code": "SBY-01",
+        "name": "Surabaya Hub",
+        "city": "Surabaya"
+      },
+      "quantity": 0,
+      "unit": "BOX",
+      "updatedAt": "2026-09-01T07:00:00Z"
+    },
+    {
+      "id": 10,
+      "productId": 7,
+      "product": {
+        "id": 7,
+        "sku": "OIL-002",
+        "name": "Hydraulic Oil",
+        "unit": "LITER",
+        "category": "Lubricants"
+      },
+      "warehouseId": 3,
+      "warehouse": {
+        "id": 3,
+        "code": "SBY-01",
+        "name": "Surabaya Hub",
+        "city": "Surabaya"
+      },
+      "quantity": 120,
+      "unit": "LITER",
+      "updatedAt": "2026-09-11T13:45:00Z"
+    },
+    {
+      "id": 11,
+      "productId": 8,
+      "product": {
+        "id": 8,
+        "sku": "OIL-003",
+        "name": "Grease Cartridge",
+        "unit": "PCS",
+        "category": "Lubricants"
+      },
+      "warehouseId": 3,
+      "warehouse": {
+        "id": 3,
+        "code": "SBY-01",
+        "name": "Surabaya Hub",
+        "city": "Surabaya"
+      },
+      "quantity": 30,
+      "unit": "PCS",
+      "updatedAt": "2026-09-01T07:00:00Z"
+    },
+    {
+      "id": 12,
+      "productId": 9,
+      "product": {
+        "id": 9,
+        "sku": "BRG-001",
+        "name": "Ball Bearing 6204",
+        "unit": "PCS",
+        "category": "Spare Parts"
+      },
+      "warehouseId": 1,
+      "warehouse": {
+        "id": 1,
+        "code": "JKT-01",
+        "name": "Jakarta Warehouse",
+        "city": "Jakarta"
+      },
+      "quantity": 64,
+      "unit": "PCS",
+      "updatedAt": "2026-09-01T07:00:00Z"
+    },
+    {
+      "id": 13,
+      "productId": 10,
+      "product": {
+        "id": 10,
+        "sku": "BLT-001",
+        "name": "V-Belt A-52",
+        "unit": "PCS",
+        "category": "Spare Parts"
+      },
+      "warehouseId": 1,
+      "warehouse": {
+        "id": 1,
+        "code": "JKT-01",
+        "name": "Jakarta Warehouse",
+        "city": "Jakarta"
+      },
+      "quantity": 40,
+      "unit": "PCS",
+      "updatedAt": "2026-09-01T07:00:00Z"
+    },
+    {
+      "id": 14,
+      "productId": 11,
+      "product": {
+        "id": 11,
+        "sku": "CLN-001",
+        "name": "Degreaser Concentrate",
+        "unit": "LITER",
+        "category": "Cleaning"
+      },
+      "warehouseId": 2,
+      "warehouse": {
+        "id": 2,
+        "code": "MAIN-01",
+        "name": "Main Warehouse",
+        "city": "Bekasi"
+      },
+      "quantity": 18,
+      "unit": "LITER",
+      "updatedAt": "2026-09-01T07:00:00Z"
+    },
+    {
+      "id": 15,
+      "productId": 12,
+      "product": {
+        "id": 12,
+        "sku": "PKG-001",
+        "name": "Carton Box 40x30",
+        "unit": "PCS",
+        "category": "Packaging"
+      },
+      "warehouseId": 2,
+      "warehouse": {
+        "id": 2,
+        "code": "MAIN-01",
+        "name": "Main Warehouse",
+        "city": "Bekasi"
+      },
+      "quantity": 250,
+      "unit": "PCS",
+      "updatedAt": "2026-09-01T07:00:00Z"
+    },
+    {
+      "id": 16,
+      "productId": 13,
+      "product": {
+        "id": 13,
+        "sku": "TOL-001",
+        "name": "Torque Wrench Set",
+        "unit": "SET",
+        "category": "Tools"
+      },
+      "warehouseId": 3,
+      "warehouse": {
+        "id": 3,
+        "code": "SBY-01",
+        "name": "Surabaya Hub",
+        "city": "Surabaya"
+      },
+      "quantity": 2,
+      "unit": "SET",
+      "updatedAt": "2026-09-01T07:00:00Z"
+    },
+    {
+      "id": 17,
+      "productId": 14,
+      "product": {
+        "id": 14,
+        "sku": "ELC-001",
+        "name": "LED High Bay 150W",
+        "unit": "PCS",
+        "category": "Electrical"
+      },
+      "warehouseId": 3,
+      "warehouse": {
+        "id": 3,
+        "code": "SBY-01",
+        "name": "Surabaya Hub",
+        "city": "Surabaya"
+      },
+      "quantity": 8,
+      "unit": "PCS",
+      "updatedAt": "2026-09-01T07:00:00Z"
+    },
+    {
+      "id": 18,
+      "productId": 15,
+      "product": {
+        "id": 15,
+        "sku": "CHM-001",
+        "name": "Industrial Detergent",
+        "unit": "KG",
+        "category": "Cleaning"
+      },
+      "warehouseId": 2,
+      "warehouse": {
+        "id": 2,
+        "code": "MAIN-01",
+        "name": "Main Warehouse",
+        "city": "Bekasi"
+      },
+      "quantity": 80,
+      "unit": "KG",
+      "updatedAt": "2026-09-01T07:00:00Z"
+    }
+  ],
+  "inventoryMovements": [
+    {
+      "id": 1,
+      "productId": 3,
+      "product": {
+        "id": 3,
+        "sku": "FILT-001",
+        "name": "Industrial Filter A",
+        "unit": "PCS",
+        "category": "Spare Parts"
+      },
+      "warehouseId": 1,
+      "warehouse": {
+        "id": 1,
+        "code": "JKT-01",
+        "name": "Jakarta Warehouse",
+        "city": "Jakarta"
+      },
+      "type": "ADJUSTMENT",
+      "quantity": 35,
+      "referenceNumber": "OPENING-2026-09",
+      "goodsReceiptId": null,
+      "purchaseOrderId": null,
+      "purchaseOrderNumber": null,
+      "createdAt": "2026-09-01T07:00:00Z"
+    },
+    {
+      "id": 2,
+      "productId": 5,
+      "product": {
+        "id": 5,
+        "sku": "SAFE-002",
+        "name": "Safety Helmet",
+        "unit": "PCS",
+        "category": "Safety Equipment"
+      },
+      "warehouseId": 1,
+      "warehouse": {
+        "id": 1,
+        "code": "JKT-01",
+        "name": "Jakarta Warehouse",
+        "city": "Jakarta"
+      },
+      "type": "ADJUSTMENT",
+      "quantity": 12,
+      "referenceNumber": "OPENING-2026-09",
+      "goodsReceiptId": null,
+      "purchaseOrderId": null,
+      "purchaseOrderNumber": null,
+      "createdAt": "2026-09-01T07:00:00Z"
+    },
+    {
+      "id": 3,
+      "productId": 9,
+      "product": {
+        "id": 9,
+        "sku": "BRG-001",
+        "name": "Ball Bearing 6204",
+        "unit": "PCS",
+        "category": "Spare Parts"
+      },
+      "warehouseId": 1,
+      "warehouse": {
+        "id": 1,
+        "code": "JKT-01",
+        "name": "Jakarta Warehouse",
+        "city": "Jakarta"
+      },
+      "type": "ADJUSTMENT",
+      "quantity": 64,
+      "referenceNumber": "OPENING-2026-09",
+      "goodsReceiptId": null,
+      "purchaseOrderId": null,
+      "purchaseOrderNumber": null,
+      "createdAt": "2026-09-01T07:00:00Z"
+    },
+    {
+      "id": 4,
+      "productId": 10,
+      "product": {
+        "id": 10,
+        "sku": "BLT-001",
+        "name": "V-Belt A-52",
+        "unit": "PCS",
+        "category": "Spare Parts"
+      },
+      "warehouseId": 1,
+      "warehouse": {
+        "id": 1,
+        "code": "JKT-01",
+        "name": "Jakarta Warehouse",
+        "city": "Jakarta"
+      },
+      "type": "ADJUSTMENT",
+      "quantity": 40,
+      "referenceNumber": "OPENING-2026-09",
+      "goodsReceiptId": null,
+      "purchaseOrderId": null,
+      "purchaseOrderNumber": null,
+      "createdAt": "2026-09-01T07:00:00Z"
+    },
+    {
+      "id": 5,
+      "productId": 12,
+      "product": {
+        "id": 12,
+        "sku": "PKG-001",
+        "name": "Carton Box 40x30",
+        "unit": "PCS",
+        "category": "Packaging"
+      },
+      "warehouseId": 2,
+      "warehouse": {
+        "id": 2,
+        "code": "MAIN-01",
+        "name": "Main Warehouse",
+        "city": "Bekasi"
+      },
+      "type": "ADJUSTMENT",
+      "quantity": 250,
+      "referenceNumber": "OPENING-2026-09",
+      "goodsReceiptId": null,
+      "purchaseOrderId": null,
+      "purchaseOrderNumber": null,
+      "createdAt": "2026-09-01T07:00:00Z"
+    },
+    {
+      "id": 6,
+      "productId": 11,
+      "product": {
+        "id": 11,
+        "sku": "CLN-001",
+        "name": "Degreaser Concentrate",
+        "unit": "LITER",
+        "category": "Cleaning"
+      },
+      "warehouseId": 2,
+      "warehouse": {
+        "id": 2,
+        "code": "MAIN-01",
+        "name": "Main Warehouse",
+        "city": "Bekasi"
+      },
+      "type": "ADJUSTMENT",
+      "quantity": 18,
+      "referenceNumber": "OPENING-2026-09",
+      "goodsReceiptId": null,
+      "purchaseOrderId": null,
+      "purchaseOrderNumber": null,
+      "createdAt": "2026-09-01T07:00:00Z"
+    },
+    {
+      "id": 7,
+      "productId": 4,
+      "product": {
+        "id": 4,
+        "sku": "FILT-002",
+        "name": "Industrial Filter B",
+        "unit": "PCS",
+        "category": "Spare Parts"
+      },
+      "warehouseId": 2,
+      "warehouse": {
+        "id": 2,
+        "code": "MAIN-01",
+        "name": "Main Warehouse",
+        "city": "Bekasi"
+      },
+      "type": "ADJUSTMENT",
+      "quantity": 22,
+      "referenceNumber": "OPENING-2026-09",
+      "goodsReceiptId": null,
+      "purchaseOrderId": null,
+      "purchaseOrderNumber": null,
+      "createdAt": "2026-09-01T07:00:00Z"
+    },
+    {
+      "id": 8,
+      "productId": 15,
+      "product": {
+        "id": 15,
+        "sku": "CHM-001",
+        "name": "Industrial Detergent",
+        "unit": "KG",
+        "category": "Cleaning"
+      },
+      "warehouseId": 2,
+      "warehouse": {
+        "id": 2,
+        "code": "MAIN-01",
+        "name": "Main Warehouse",
+        "city": "Bekasi"
+      },
+      "type": "ADJUSTMENT",
+      "quantity": 80,
+      "referenceNumber": "OPENING-2026-09",
+      "goodsReceiptId": null,
+      "purchaseOrderId": null,
+      "purchaseOrderNumber": null,
+      "createdAt": "2026-09-01T07:00:00Z"
+    },
+    {
+      "id": 9,
+      "productId": 3,
+      "product": {
+        "id": 3,
+        "sku": "FILT-001",
+        "name": "Industrial Filter A",
+        "unit": "PCS",
+        "category": "Spare Parts"
+      },
+      "warehouseId": 2,
+      "warehouse": {
+        "id": 2,
+        "code": "MAIN-01",
+        "name": "Main Warehouse",
+        "city": "Bekasi"
+      },
+      "type": "ADJUSTMENT",
+      "quantity": 15,
+      "referenceNumber": "OPENING-2026-09",
+      "goodsReceiptId": null,
+      "purchaseOrderId": null,
+      "purchaseOrderNumber": null,
+      "createdAt": "2026-09-01T07:00:00Z"
+    },
+    {
+      "id": 10,
+      "productId": 14,
+      "product": {
+        "id": 14,
+        "sku": "ELC-001",
+        "name": "LED High Bay 150W",
+        "unit": "PCS",
+        "category": "Electrical"
+      },
+      "warehouseId": 3,
+      "warehouse": {
+        "id": 3,
+        "code": "SBY-01",
+        "name": "Surabaya Hub",
+        "city": "Surabaya"
+      },
+      "type": "ADJUSTMENT",
+      "quantity": 8,
+      "referenceNumber": "OPENING-2026-09",
+      "goodsReceiptId": null,
+      "purchaseOrderId": null,
+      "purchaseOrderNumber": null,
+      "createdAt": "2026-09-01T07:00:00Z"
+    },
+    {
+      "id": 11,
+      "productId": 13,
+      "product": {
+        "id": 13,
+        "sku": "TOL-001",
+        "name": "Torque Wrench Set",
+        "unit": "SET",
+        "category": "Tools"
+      },
+      "warehouseId": 3,
+      "warehouse": {
+        "id": 3,
+        "code": "SBY-01",
+        "name": "Surabaya Hub",
+        "city": "Surabaya"
+      },
+      "type": "ADJUSTMENT",
+      "quantity": 2,
+      "referenceNumber": "OPENING-2026-09",
+      "goodsReceiptId": null,
+      "purchaseOrderId": null,
+      "purchaseOrderNumber": null,
+      "createdAt": "2026-09-01T07:00:00Z"
+    },
+    {
+      "id": 12,
+      "productId": 8,
+      "product": {
+        "id": 8,
+        "sku": "OIL-003",
+        "name": "Grease Cartridge",
+        "unit": "PCS",
+        "category": "Lubricants"
+      },
+      "warehouseId": 3,
+      "warehouse": {
+        "id": 3,
+        "code": "SBY-01",
+        "name": "Surabaya Hub",
+        "city": "Surabaya"
+      },
+      "type": "ADJUSTMENT",
+      "quantity": 30,
+      "referenceNumber": "OPENING-2026-09",
+      "goodsReceiptId": null,
+      "purchaseOrderId": null,
+      "purchaseOrderNumber": null,
+      "createdAt": "2026-09-01T07:00:00Z"
+    },
+    {
+      "id": 13,
+      "productId": 1,
+      "product": {
+        "id": 1,
+        "sku": "OIL-001",
+        "name": "Industrial Oil",
+        "unit": "PCS",
+        "category": "Lubricants"
+      },
+      "warehouseId": 1,
+      "warehouse": {
+        "id": 1,
+        "code": "JKT-01",
+        "name": "Jakarta Warehouse",
+        "city": "Jakarta"
+      },
+      "type": "PURCHASE_RECEIPT",
+      "quantity": 60,
+      "referenceNumber": "GR-2026-000001",
+      "goodsReceiptId": 1,
+      "purchaseOrderId": 1,
+      "purchaseOrderNumber": "PO-2026-000001",
+      "createdAt": "2026-09-06T13:45:00Z"
+    },
+    {
+      "id": 14,
+      "productId": 1,
+      "product": {
+        "id": 1,
+        "sku": "OIL-001",
+        "name": "Industrial Oil",
+        "unit": "PCS",
+        "category": "Lubricants"
+      },
+      "warehouseId": 1,
+      "warehouse": {
+        "id": 1,
+        "code": "JKT-01",
+        "name": "Jakarta Warehouse",
+        "city": "Jakarta"
+      },
+      "type": "PURCHASE_RECEIPT",
+      "quantity": 40,
+      "referenceNumber": "GR-2026-000002",
+      "goodsReceiptId": 2,
+      "purchaseOrderId": 1,
+      "purchaseOrderNumber": "PO-2026-000001",
+      "createdAt": "2026-09-07T13:45:00Z"
+    },
+    {
+      "id": 15,
+      "productId": 1,
+      "product": {
+        "id": 1,
+        "sku": "OIL-001",
+        "name": "Industrial Oil",
+        "unit": "PCS",
+        "category": "Lubricants"
+      },
+      "warehouseId": 2,
+      "warehouse": {
+        "id": 2,
+        "code": "MAIN-01",
+        "name": "Main Warehouse",
+        "city": "Bekasi"
+      },
+      "type": "PURCHASE_RECEIPT",
+      "quantity": 60,
+      "referenceNumber": "GR-2026-000003",
+      "goodsReceiptId": 3,
+      "purchaseOrderId": 2,
+      "purchaseOrderNumber": "PO-2026-000002",
+      "createdAt": "2026-09-08T13:45:00Z"
+    },
+    {
+      "id": 16,
+      "productId": 1,
+      "product": {
+        "id": 1,
+        "sku": "OIL-001",
+        "name": "Industrial Oil",
+        "unit": "PCS",
+        "category": "Lubricants"
+      },
+      "warehouseId": 1,
+      "warehouse": {
+        "id": 1,
+        "code": "JKT-01",
+        "name": "Jakarta Warehouse",
+        "city": "Jakarta"
+      },
+      "type": "PURCHASE_RECEIPT",
+      "quantity": 20,
+      "referenceNumber": "GR-2026-000004",
+      "goodsReceiptId": 4,
+      "purchaseOrderId": 3,
+      "purchaseOrderNumber": "PO-2026-000003",
+      "createdAt": "2026-09-09T13:45:00Z"
+    },
+    {
+      "id": 17,
+      "productId": 2,
+      "product": {
+        "id": 2,
+        "sku": "SAFE-001",
+        "name": "Safety Gloves",
+        "unit": "BOX",
+        "category": "Safety Equipment"
+      },
+      "warehouseId": 1,
+      "warehouse": {
+        "id": 1,
+        "code": "JKT-01",
+        "name": "Jakarta Warehouse",
+        "city": "Jakarta"
+      },
+      "type": "PURCHASE_RECEIPT",
+      "quantity": 20,
+      "referenceNumber": "GR-2026-000004",
+      "goodsReceiptId": 4,
+      "purchaseOrderId": 3,
+      "purchaseOrderNumber": "PO-2026-000003",
+      "createdAt": "2026-09-09T13:45:00Z"
+    },
+    {
+      "id": 18,
+      "productId": 7,
+      "product": {
+        "id": 7,
+        "sku": "OIL-002",
+        "name": "Hydraulic Oil",
+        "unit": "LITER",
+        "category": "Lubricants"
+      },
+      "warehouseId": 3,
+      "warehouse": {
+        "id": 3,
+        "code": "SBY-01",
+        "name": "Surabaya Hub",
+        "city": "Surabaya"
+      },
+      "type": "PURCHASE_RECEIPT",
+      "quantity": 120,
+      "referenceNumber": "GR-2026-000005",
+      "goodsReceiptId": 5,
+      "purchaseOrderId": 4,
+      "purchaseOrderNumber": "PO-2026-000004",
+      "createdAt": "2026-09-11T13:45:00Z"
+    },
+    {
+      "id": 19,
+      "productId": 5,
+      "product": {
+        "id": 5,
+        "sku": "SAFE-002",
+        "name": "Safety Helmet",
+        "unit": "PCS",
+        "category": "Safety Equipment"
+      },
+      "warehouseId": 3,
+      "warehouse": {
+        "id": 3,
+        "code": "SBY-01",
+        "name": "Surabaya Hub",
+        "city": "Surabaya"
+      },
+      "type": "PURCHASE_RECEIPT",
+      "quantity": 25,
+      "referenceNumber": "GR-2026-000005",
+      "goodsReceiptId": 5,
+      "purchaseOrderId": 4,
+      "purchaseOrderNumber": "PO-2026-000004",
+      "createdAt": "2026-09-11T13:45:00Z"
+    }
+  ]
+}
