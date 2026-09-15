@@ -41,7 +41,7 @@ const menus = [
     {
         isGroup: false,
         name: "Inventory",
-        url: "/",
+        url: "/inventory",
         icon: <IconPackage className="text-xs text-dark-active" />
     },
 
