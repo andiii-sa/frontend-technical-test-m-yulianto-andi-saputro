@@ -35,7 +35,7 @@ const menus = [
     {
         isGroup: false,
         name: "Purchase Orders",
-        url: "/",
+        url: "/purchase-orders",
         icon: <IconCart className="text-xs text-dark-active" />
     },
     {

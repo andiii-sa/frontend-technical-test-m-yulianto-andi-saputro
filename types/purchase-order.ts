@@ -105,3 +105,13 @@ export interface PurchaseOrderFilters {
   page?: number;
   limit?: number;
 }
+
+export interface ReceiveGoodsPayload {
+    purchaseOrderId: number;
+    items: { purchaseOrderItemId: number; quantity: number }[];
+}
+
+export type ReceiveAction =
+    | { visible: false }
+    | { visible: true; enabled: true }
+    | { visible: true; enabled: false; reason: string };

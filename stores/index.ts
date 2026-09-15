@@ -4,7 +4,7 @@ import { createJSONStorage, persist } from "zustand/middleware";
 import { createStore } from "zustand/vanilla";
 
 export type GeneralState = {
-  user: User | null;
+  user: User ;
   isUser: boolean;
   isApprover: boolean;
   breadcrumb: string[];

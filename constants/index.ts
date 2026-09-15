@@ -17,3 +17,12 @@ export const listStatus = [
     {value:"APPROVED", label: "Approved"},
     {value:"REJECTED", label: "Rejected"}
 ]
+
+export const listStatusPurchaseOrders = [
+    {value:"", label: "All Status"},
+    {value:"DRAFT", label: "Draft"},
+    {value:"ORDERED", label: "Ordered"},
+    {value:"PARTIALLY_RECEIVED", label: "Partially Received"},
+    {value:"RECEIVED", label: "Received"},
+    {value:"CANCELLED", label: "Cancelled"}
+]

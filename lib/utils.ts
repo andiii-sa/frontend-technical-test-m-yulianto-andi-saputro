@@ -20,4 +20,11 @@ export const typeBadgeStatusPurchase = {
     APPROVED: "green",
     DRAFT: "gray",
     REJECTED: "red",
+    PARTIALLY_RECEIVED: 'yellow',
+    ORDERED: "blue",
+    RECEIVED: "green",
+    CANCELLED: "red",
 };
+
+const numFmt = new Intl.NumberFormat("en-US");
+export const formatNumber = (n: number) => numFmt.format(n);
