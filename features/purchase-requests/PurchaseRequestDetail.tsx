@@ -18,6 +18,7 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import Link from "next/link";
+import AppTable from "@/components/base/AppTable";
 
 
 interface PurchaseRequestDetailProps {
@@ -126,38 +127,42 @@ export const PurchaseRequestDetail = ({
                     </div>
                 </CardHeader>
 
-                <CardContent className="p-0">
-                    <Table>
-                        <TableHeader>
-                            <TableRow>
-                                <TableHead className="pl-6">Product</TableHead>
-
-                                <TableHead>SKU</TableHead>
-
-                                <TableHead className="text-right">Quantity</TableHead>
-
-                                <TableHead className="w-30">Unit</TableHead>
-                            </TableRow>
-                        </TableHeader>
-
-                        <TableBody>
-                            {data.items.map((item) => (
-                                <TableRow key={item.id}>
-                                    <TableCell className="pl-6 font-medium">
-                                        {item.product.name}
-                                    </TableCell>
-
-                                    <TableCell className="text-muted-foreground">
-                                        {item.product.sku}
-                                    </TableCell>
-
-                                    <TableCell className="text-right">{item.quantity}</TableCell>
-
-                                    <TableCell>{item.unit}</TableCell>
-                                </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
+                <CardContent className="px-1 py-0">
+                    <AppTable
+                        headers={[
+                            {
+                                label: "Product",
+                                key: "product",
+                                renderItem: (_v: string, row: any) => row?.product?.name
+                            },
+                            {
+                                label: "SKU",
+                                key: "sku",
+                                renderItem: (_v: string, row: any) => row?.product?.sku
+                            },
+                            {
+                                label: "Quantity",
+                                key: "quantity",
+                                renderItem: (_v: string, row: any) => row?.quantity
+                            },
+                            {
+                                label: "Unit",
+                                key: "unit",
+                            },
+                        ]}
+                        data={data?.items || []}
+                        showPaginationMore={false}
+                        showPaginationNumber={false}
+                        titleEmpty="This request has no items."
+                        subtitleEmpty=""
+                        perPage={0}
+                        total={0}
+                        pageNumber={1}
+                        lengthPage={1}
+                        handleChangePage={() => { }}
+                        handleChangePerPage={() => { }}
+                        handleRetryFetch={() => { }}
+                    />
                 </CardContent>
             </Card>
 
