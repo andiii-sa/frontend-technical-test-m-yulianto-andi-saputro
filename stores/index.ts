@@ -8,11 +8,13 @@ export type GeneralState = {
   isUser: boolean;
   isApprover: boolean;
   breadcrumb: string[];
+  network: boolean
 };
 
 export type GeneralActions = {
   setUser: (user: User) => void;
   setBreadcrumb: (breadcrumb: string[]) => void;
+  setNetwork: (value: boolean) => void;
 };
 
 export type GeneralStore = GeneralState & GeneralActions;
@@ -22,6 +24,7 @@ export const defaultInitState: GeneralState = {
   breadcrumb: ["Dashboard"],
   isApprover: (listUsers[1] as User).role === "APPROVER",
   isUser: (listUsers[1] as User).role === "USER",
+  network: true
 };
 
 export const createGeneralStore = (
@@ -40,6 +43,7 @@ export const createGeneralStore = (
           }),
 
         setBreadcrumb: (breadcrumb: string[]) => set({ breadcrumb }),
+        setNetwork: (value: boolean) => set({ network: value }),
       }),
       {
         name: "general-store",
@@ -49,6 +53,7 @@ export const createGeneralStore = (
         partialize: (state) => ({
           user: state.user,
           breadcrumb: state.breadcrumb,
+          network: state.network,
         }),
       },
     ),

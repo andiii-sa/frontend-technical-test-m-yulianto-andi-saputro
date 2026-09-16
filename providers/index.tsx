@@ -15,6 +15,8 @@ export interface GeneralStoreProviderProps {
 
 export const GeneralStoreProvider = ({ children }: GeneralStoreProviderProps) => {
   const [store] = useState(() => createGeneralStore())
+  registerGeneralStore(store)
+
   return <GeneralStoreContext.Provider value={store}>{children}</GeneralStoreContext.Provider>
 }
 
@@ -25,4 +27,17 @@ export const useGeneralStore = <T,>(selector: (store: GeneralStore) => T): T => 
   }
 
   return useStore(generalStoreContext, selector)
+}
+
+export const useNetworkMode = () => useGeneralStore((s) => s.network)
+
+let storeRef: GeneralStoreApi | null = null;
+
+export function registerGeneralStore(store: GeneralStoreApi) {
+  if (typeof window === "undefined") return;
+  storeRef = store;
+}
+
+export function getGeneralState() {
+  return storeRef?.getState() ?? null;
 }

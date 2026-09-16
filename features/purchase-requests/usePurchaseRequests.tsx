@@ -236,6 +236,7 @@ const usePurchaseRequests = () => {
         try {
             await purchaseRequestApprove.mutateAsync({ id: Number(dialogForm.data?.id), payload: { action: "APPROVE", reason: "" } })
 
+            setDialogForm((prev) => ({ ...prev, open: false }));
             onActionSuccess("Purchase Request approved successfully");
         } catch (err) {
             toast.add({
@@ -246,8 +247,7 @@ const usePurchaseRequests = () => {
                         : "Ooops, something wrong, please try again.",
                 type: "error",
             });
-        } finally {
-            setDialogForm((prev) => ({ ...prev, open: false }));
+            setDialogConfirm((prev) => ({ ...prev, loading: false }));
         }
     };
 
@@ -272,6 +272,7 @@ const usePurchaseRequests = () => {
         try {
             await purchaseRequestApprove.mutateAsync({ id: Number(dialogForm.data?.id), payload: { action: "REJECT", reason: dialogForm.rejectReason } })
 
+            setDialogForm((prev) => ({ ...prev, open: false }));
             onActionSuccess("Purchase Request rejected successfully");
         } catch (err) {
             toast.add({
@@ -282,8 +283,7 @@ const usePurchaseRequests = () => {
                         : "Ooops, something wrong, please try again.",
                 type: "error",
             });
-        } finally {
-            setDialogForm((prev) => ({ ...prev, open: false }));
+            setDialogConfirm((prev) => ({ ...prev, loading: false }));
         }
     };
 
@@ -315,8 +315,7 @@ const usePurchaseRequests = () => {
                         : "Ooops, something wrong, please try again.",
                 type: "error",
             });
-        } finally {
-            setDialogForm((prev) => ({ ...prev, open: false }));
+            setDialogConfirm((prev) => ({ ...prev, loading: false }));
         }
     };
 
@@ -328,7 +327,7 @@ const usePurchaseRequests = () => {
                 ...dialogForm.form,
                 isDraft: dialogForm?.isDraft
             })
-
+            setDialogForm((prev) => ({ ...prev, open: false }));
             onActionSuccess("Purchase Request created successfully");
         } catch (err) {
             toast.add({
@@ -339,8 +338,7 @@ const usePurchaseRequests = () => {
                         : "Ooops, something wrong, please try again.",
                 type: "error",
             });
-        } finally {
-            setDialogForm((prev) => ({ ...prev, open: false }));
+            setDialogConfirm((prev) => ({ ...prev, loading: false }));
         }
     };
 
@@ -355,7 +353,7 @@ const usePurchaseRequests = () => {
                     isDraft: dialogForm?.isDraft
                 }
             })
-
+            setDialogForm((prev) => ({ ...prev, open: false }));
             onActionSuccess("Purchase Request edited successfully");
         } catch (err) {
             toast.add({
@@ -366,8 +364,7 @@ const usePurchaseRequests = () => {
                         : "Ooops, something wrong, please try again.",
                 type: "error",
             });
-        } finally {
-            setDialogForm((prev) => ({ ...prev, open: false }));
+            setDialogConfirm((prev) => ({ ...prev, loading: false }));
         }
     };
 

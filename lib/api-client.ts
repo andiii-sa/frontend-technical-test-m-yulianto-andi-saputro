@@ -1,15 +1,24 @@
 import { delay } from "@/mock/db";
+import { getGeneralState } from "@/providers";
 import { IResApi } from "@/types";
 
 export class ApiError extends Error {
   constructor(public status: number, message: string) {
     super(message);
   }
+  get isNetwork() {
+    return this.status === 0;
+  }
 }
 
 const BASE_URL = "/api"; 
 
 export async function apiFetch<T extends IResApi>(path: string, init?: RequestInit): Promise<T> {
+  if (getGeneralState()?.network === false) {
+    await delay();
+    throw new ApiError(0, "Can't reach the server. Check your connection.");
+  }
+
   let res: Response;
   await delay()
   try {

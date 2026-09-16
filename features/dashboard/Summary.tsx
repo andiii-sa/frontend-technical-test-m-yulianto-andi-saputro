@@ -1,3 +1,4 @@
+import ErrorState from '@/components/shared/ErrorState'
 import { Skeleton } from '@/components/ui/skeleton'
 import { DashboardSummary } from '@/types'
 import { useRouter } from 'next/navigation'
@@ -10,7 +11,7 @@ interface SummaryProps {
     handleRetryFetch: () => void
 }
 
-const Summary = ({ items, isLoading }: SummaryProps) => {
+const Summary = ({ items, isLoading, isError, handleRetryFetch }: SummaryProps) => {
     return (
         <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 mt-3.5">
             {
@@ -18,6 +19,14 @@ const Summary = ({ items, isLoading }: SummaryProps) => {
                     Array.from({ length: 4 }, (_, i) => (
                         <SummaryItemSkeleton key={i} />
                     ))
+                ) : isError ? (
+                    <ErrorState
+                        isErrorFetch={isError}
+                        handleRetryFetch={handleRetryFetch}
+                        isLoading={isLoading}
+                        className="sm:col-span-2 md:col-span-4"
+                        isBordered
+                    />
                 ) :
                     items.map((item, idx) => (
                         <SummaryItem key={idx} item={item} />

@@ -8,10 +8,15 @@ import { Button } from "../ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu"
 import { Separator } from "../ui/separator"
 import { SidebarTrigger } from "../ui/sidebar"
+import { Switch } from "../ui/switch"
+import { Label } from "../ui/label"
+import { cn } from "cn"
+import { useQueryClient } from "@tanstack/react-query"
 
 
 const Navbar = () => {
-    const { user, setUser, breadcrumb } = useGeneralStore((s) => (s))
+    const queryClient = useQueryClient();
+    const { user, setUser, breadcrumb, network, setNetwork } = useGeneralStore((s) => (s))
 
     return (
         <nav className="flex sticky top-0 z-20 bg-white shrink-0 items-center gap-2 border-b p-2 md:p-4 lg:p-5.5">
@@ -23,6 +28,17 @@ const Navbar = () => {
                 />
                 <h1 className="text-base font-medium">{breadcrumb.map(v => v)}</h1>
                 <div className="ml-auto flex items-center gap-2">
+                    <div className={cn('flex items-center space-x-2 px-2 p-2 border rounded', network ? 'border-green-500 bg-green-100' : 'border-red-500 bg-red-100')}>
+                        <Label htmlFor="network-mode">{network ? 'Success' : 'Error'} Mode</Label>
+                        <Switch
+                            id="network-mode"
+                            checked={network}
+                            onCheckedChange={(e) => {
+                                setNetwork(e)
+                                queryClient.resetQueries();
+                            }}
+                        />
+                    </div>
                     <DropdownMenu>
                         <DropdownMenuTrigger render={<Button variant="outline">
                             <span className="hidden sm:block">Login as : {user?.name}</span> <span>({user?.role})</span> <ChevronDown />

@@ -1,11 +1,11 @@
 import { cn } from "cn";
+import { ChevronDown } from "lucide-react";
 import { ReactNode } from "react";
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "../ui/table";
-import { IconAlert, IconDocument, IconSearch } from "@/assets/icons";
+import ErrorState from "../shared/ErrorState";
 import PaginationSize from "../ui/PaginationSize";
 import PaginationTable from "../ui/PaginationTable";
 import { Button } from "../ui/button";
-import { ChevronDown } from "lucide-react";
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "../ui/table";
 
 interface AppTableProps {
     caption?: ReactNode;
@@ -104,35 +104,18 @@ const AppTable = ({
                     ) : !data?.length ? (
                         <TableRow>
                             <TableCell colSpan={headers.length} className="text-center">
-                                <div className="flex flex-col gap-2 items-center py-6 px-4">
-                                    <div className="p-2 border rounded-md grid place-items-center mx-auto bg-surface">
-                                        {isErrorFetch ? (
-                                            <IconAlert className="size-8" />
-                                        ) : isHaveFilter ? (
-                                            <IconSearch className="size-8" />
-                                        ) : (
-                                            <IconDocument className="size-8" />
-                                        )}
-                                    </div>
-                                    <h4 className="font-medium text-sm">
-                                        {isErrorFetch
-                                            ? "Gagal memuat data"
-                                            : isHaveFilter
-                                                ? "Data Tidak Ditemukan"
-                                                : titleEmpty || "Tidak Ada Terdapat data"}
-                                    </h4>
-                                    <p className="text-xs text-fg-muted whitespace-break-spaces">
-                                        {isErrorFetch
-                                            ? "Terjadi kesalahan saat memuat data. Silakan coba lagi."
-                                            : isHaveFilter
-                                                ? "Mohon coba menggunakan kata kunci yang berbeda atau sesuaikan \npengaturan filter untuk mendapatkan hasil yang relevan"
-                                                : subtitleEmpty || "Anda Belum Memiliki Data"}
-                                    </p>
-
-                                    {isErrorFetch && <Button variant="destructive" className="mt-3" onClick={handleRetryFetch} loading={isLoading}>Coba Lagi</Button>}
-                                    {isHaveFilter && !data?.length && <Button variant="default" className="mt-3" onClick={handleResetFilter} loading={isLoading}>Reset Filter</Button>}
-                                    {showAddButton && !isHaveFilter && !data?.length && <Button variant="default" className="mt-3" onClick={handleAddData} loading={isLoading}>Tambah Data</Button>}
-                                </div>
+                                <ErrorState
+                                    isErrorFetch={isErrorFetch}
+                                    isHaveFilter={isHaveFilter}
+                                    titleEmpty={titleEmpty}
+                                    subtitleEmpty={subtitleEmpty}
+                                    handleRetryFetch={handleRetryFetch}
+                                    handleResetFilter={handleResetFilter}
+                                    showAddButton={showAddButton}
+                                    handleAddData={handleAddData}
+                                    isLoading={isLoading}
+                                    data={data}
+                                />
                             </TableCell>
                         </TableRow>
                     ) : (
