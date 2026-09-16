@@ -8,7 +8,6 @@ type PurchaseOrderDetaislPageProps = {
 
 const PurchaseOrdersDetailPage = async ({ params }: PurchaseOrderDetaislPageProps) => {
   const { id } = await params;
-  console.log(id)
 
   return (
     <div>

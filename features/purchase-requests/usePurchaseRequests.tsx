@@ -7,21 +7,37 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem,
 import { toast } from "@/components/ui/toast";
 import { convertDate, typeBadgeStatusPurchase } from "@/lib/utils";
 import { useGeneralStore } from "@/providers";
+import { usePurchaseRequestApprove, usePurchaseRequestCreate, usePurchaseRequestDelete, usePurchaseRequestUpdate } from "@/services/purchase-request/queries";
 import { PurchaseRequestListItem } from "@/types";
 import { Eye, FileCheck, MoreHorizontal, Pencil, Trash2 } from "lucide-react";
 import { useState } from "react";
 
 const usePurchaseRequests = () => {
     const { isUser, isApprover } = useGeneralStore((s) => s);
+    const initialFilter = {
+        q: "",
+        perPage: 5,
+        page: 1,
+        status: '',
+        warehouseId: ""
+    }
+    const [filter, setFilter] = useState(initialFilter)
+    const [paramsApi, setParamsApi] = useState(initialFilter)
+
     const { dialogConfirm, setDialogConfirm } = useDialogConfirm();
     const [dialogForm, setDialogForm] = useState<{
         open: boolean;
         type: "ADD" | "EDIT" | "VIEW" | "APPROVE_REJECT";
         data?: PurchaseRequestListItem | null;
         form?: any;
-        rejectReason?: string
-    }>({ open: false, type: "ADD", data: null });
+        rejectReason?: string;
+        isDraft?: boolean
+    }>({ open: false, type: "ADD", data: null, isDraft: false });
 
+    const purchaseRequestCreate = usePurchaseRequestCreate();
+    const purchaseRequestUpdate = usePurchaseRequestUpdate();
+    const purchaseRequestApprove = usePurchaseRequestApprove();
+    const purchaseRequestDelete = usePurchaseRequestDelete();
 
     const requestPurchaseHeaders = [
         {
@@ -87,7 +103,7 @@ const usePurchaseRequests = () => {
                                 </DropdownMenuItem>
                             )}
                             <DropdownMenuItem
-                                onClick={() => handleDelete()}
+                                onClick={() => handleDelete(row)}
                                 className="text-red-600"
                             >
                                 <Trash2 /> Delete
@@ -115,7 +131,8 @@ const usePurchaseRequests = () => {
         setDialogForm({ open: true, type: "APPROVE_REJECT", data: item, rejectReason: "" });
     };
 
-    const handleDelete = () => {
+    const handleDelete = (item: PurchaseRequestListItem) => {
+        setDialogForm({ open: false, type: "VIEW", data: item });
         setDialogConfirm({
             open: true,
             type: "cancel",
@@ -147,11 +164,11 @@ const usePurchaseRequests = () => {
     };
 
     const handleSubmit = (data: any, isDraft: boolean) => {
-        setDialogForm((prev) => ({ ...prev, form: data }));
+        setDialogForm((prev) => ({ ...prev, form: data, isDraft: isDraft }));
 
         setDialogConfirm({
             open: true,
-            type: "cancel",
+            type: "confirm",
             action: dialogForm.type === "ADD" ? "ADD" : "EDIT",
             title:
                 dialogForm.type === "ADD"
@@ -174,10 +191,10 @@ const usePurchaseRequests = () => {
                 dialogForm.type === "ADD"
                     ? isDraft
                         ? "Save as Draft"
-                        : "Add"
+                        : "Save"
                     : isDraft
                         ? "Save as Draft"
-                        : "Edit",
+                        : "Save",
             persistent: true,
         });
     };
@@ -208,16 +225,28 @@ const usePurchaseRequests = () => {
         });
     }
 
-    const onApprove = () => {
+    const onApprove = async () => {
         setDialogConfirm((prev) => ({ ...prev, loading: true }));
 
-        setTimeout(() => {
-            setDialogForm((prev) => ({ ...prev, open: false }));
+        try {
+            await purchaseRequestApprove.mutateAsync({ id: Number(dialogForm.data?.id), payload: { action: "APPROVE", reason: "" } })
+
             onActionSuccess("Purchase Request approved successfully");
-        }, 3000);
+        } catch (err) {
+            toast.add({
+                title: "Error",
+                description:
+                    err instanceof Error
+                        ? err.message
+                        : "Ooops, something wrong, please try again.",
+                type: "error",
+            });
+        } finally {
+            setDialogForm((prev) => ({ ...prev, open: false }));
+        }
     };
 
-    const onReject = () => {
+    const onReject = async () => {
         if (!dialogForm.rejectReason?.trim()) {
             toast.add({
                 title: "Error",
@@ -234,10 +263,23 @@ const usePurchaseRequests = () => {
             return;
         }
         setDialogConfirm((prev) => ({ ...prev, loading: true }));
-        setTimeout(() => {
-            setDialogForm((prev) => ({ ...prev, open: false }));
+
+        try {
+            await purchaseRequestApprove.mutateAsync({ id: Number(dialogForm.data?.id), payload: { action: "REJECT", reason: dialogForm.rejectReason } })
+
             onActionSuccess("Purchase Request rejected successfully");
-        }, 3000);
+        } catch (err) {
+            toast.add({
+                title: "Error",
+                description:
+                    err instanceof Error
+                        ? err.message
+                        : "Ooops, something wrong, please try again.",
+                type: "error",
+            });
+        } finally {
+            setDialogForm((prev) => ({ ...prev, open: false }));
+        }
     };
 
     const onActionSuccess = (title: string, description?: string) => {
@@ -254,36 +296,115 @@ const usePurchaseRequests = () => {
         });
     };
 
-    const onActionDelete = () => {
+    const onActionDelete = async () => {
         setDialogConfirm((prev) => ({ ...prev, loading: true }));
-
-        setTimeout(() => {
+        try {
+            await purchaseRequestDelete.mutateAsync(Number(dialogForm.data?.id))
             onActionSuccess("Purchase Request deleted successfully");
-        }, 3000);
+        } catch (err) {
+            toast.add({
+                title: "Error",
+                description:
+                    err instanceof Error
+                        ? err.message
+                        : "Ooops, something wrong, please try again.",
+                type: "error",
+            });
+        } finally {
+            setDialogForm((prev) => ({ ...prev, open: false }));
+        }
     };
 
-    const onActionAdd = () => {
+    const onActionAdd = async () => {
         setDialogConfirm((prev) => ({ ...prev, loading: true }));
 
-        setTimeout(() => {
-            setDialogForm((prev) => ({ ...prev, open: false }));
+        try {
+            await purchaseRequestCreate.mutateAsync({
+                ...dialogForm.form,
+                isDraft: dialogForm?.isDraft
+            })
+
             onActionSuccess("Purchase Request created successfully");
-        }, 3000);
+        } catch (err) {
+            toast.add({
+                title: "Error",
+                description:
+                    err instanceof Error
+                        ? err.message
+                        : "Ooops, something wrong, please try again.",
+                type: "error",
+            });
+        } finally {
+            setDialogForm((prev) => ({ ...prev, open: false }));
+        }
     };
 
-    const onActionEdit = () => {
+    const onActionEdit = async () => {
         setDialogConfirm((prev) => ({ ...prev, loading: true }));
 
-        setTimeout(() => {
-            setDialogForm((prev) => ({ ...prev, open: false }));
+        try {
+            await purchaseRequestUpdate.mutateAsync({
+                id: Number(dialogForm.data?.id),
+                payload: {
+                    ...dialogForm.form,
+                    isDraft: dialogForm?.isDraft
+                }
+            })
+
             onActionSuccess("Purchase Request edited successfully");
-        }, 3000);
+        } catch (err) {
+            toast.add({
+                title: "Error",
+                description:
+                    err instanceof Error
+                        ? err.message
+                        : "Ooops, something wrong, please try again.",
+                type: "error",
+            });
+        } finally {
+            setDialogForm((prev) => ({ ...prev, open: false }));
+        }
     };
 
     const onActionLeave = () => {
         setDialogConfirm((prev) => ({ ...prev, open: false }));
         setDialogForm((prev) => ({ ...prev, open: false }));
     };
+
+    const handleChangeFilter = (field: keyof typeof initialFilter, value: string) => {
+        setFilter(prev => ({
+            ...prev,
+            [field]: value
+        }))
+    }
+    const handleChangeParamsApi = (field: keyof typeof initialFilter, value: string) => {
+        setParamsApi(prev => ({
+            ...prev,
+            [field]: value
+        }))
+    }
+
+    const handleFilter = () => {
+        setParamsApi(filter)
+    }
+
+    const handleReset = () => {
+        setFilter(initialFilter)
+        setParamsApi(initialFilter)
+    }
+
+    const handleChangePage = (value: number) => {
+        handleChangeFilter('page', String(value))
+        handleChangeParamsApi('page', String(value))
+    }
+
+    const handleChangePerPage = (value: number) => {
+        handleChangeFilter('page', String(1))
+        handleChangeParamsApi('page', String(1))
+
+        handleChangeFilter('perPage', String(value))
+        handleChangeParamsApi('perPage', String(value))
+    }
 
     return {
         requestPurchaseHeaders,
@@ -308,7 +429,16 @@ const usePurchaseRequests = () => {
         isApprover,
         isUser,
         handleApprove,
-        handleReject
+        handleReject,
+
+        filter,
+        setFilter,
+        paramsApi,
+        handleChangeFilter,
+        handleChangePage,
+        handleChangePerPage,
+        handleFilter,
+        handleReset
     }
 }
 

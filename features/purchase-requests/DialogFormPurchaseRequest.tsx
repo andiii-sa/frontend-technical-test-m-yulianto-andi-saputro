@@ -29,7 +29,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useMemo } from "react";
 import * as z from "zod";
 import { PurchaseRequestDetail } from "./PurchaseRequestDetail";
-import { ScrollArea } from "@/components/ui/scroll-area";
 
 
 type DialogFormPurchaseRequestProps = {
@@ -123,7 +122,6 @@ const DialogFormPurchaseRequest = ({
     }, [data, open]);
 
     function onSubmit(data: z.infer<typeof formSchema>, isDraft: boolean) {
-        console.log("data", data);
         handleSubmit(data, isDraft);
     }
 
@@ -378,36 +376,40 @@ const DialogFormPurchaseRequest = ({
                     )}
                 </div>
 
-                <DialogFooter className="bg-white mt-4">
-                    <Field orientation="horizontal" className="justify-end">
-                        <Button type="button" variant="outline" onClick={onClose}>
-                            Close
-                        </Button>
-                        {!isReadOnly && (
-                            <>
-                                <Button
-                                    type="button"
-                                    variant={"secondary"}
-                                    form="form-dialog-purchase-request"
-                                    onClick={form.handleSubmit((data) =>
-                                        onSubmit(data, true),
-                                    )}
-                                >
-                                    {type === "EDIT" ? "Save as Draft" : "Save Changes"}
+                {
+                    !isReadOnly && (
+                        <DialogFooter className="bg-white mt-4">
+                            <Field orientation="horizontal" className="justify-end">
+                                <Button type="button" variant="outline" onClick={onClose}>
+                                    Close
                                 </Button>
-                                <Button
-                                    type="button"
-                                    form="form-dialog-purchase-request"
-                                    onClick={form.handleSubmit((data) =>
-                                        onSubmit(data, false),
-                                    )}
-                                >
-                                    Submit for Approval
-                                </Button>
-                            </>
-                        )}
-                    </Field>
-                </DialogFooter>
+                                {!isReadOnly && (
+                                    <>
+                                        <Button
+                                            type="button"
+                                            variant={"secondary"}
+                                            form="form-dialog-purchase-request"
+                                            onClick={form.handleSubmit((data) =>
+                                                onSubmit(data, true),
+                                            )}
+                                        >
+                                            Save as Draft
+                                        </Button>
+                                        <Button
+                                            type="button"
+                                            form="form-dialog-purchase-request"
+                                            onClick={form.handleSubmit((data) =>
+                                                onSubmit(data, false),
+                                            )}
+                                        >
+                                            Submit for Approval
+                                        </Button>
+                                    </>
+                                )}
+                            </Field>
+                        </DialogFooter>
+                    )
+                }
             </DialogContent>
         </Dialog>
     );

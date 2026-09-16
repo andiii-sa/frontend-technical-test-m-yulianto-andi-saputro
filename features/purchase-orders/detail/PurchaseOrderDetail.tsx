@@ -37,7 +37,6 @@ export const PurchaseOrderDetail = ({
     }, [role, data]);
 
     const handleSuccessSubmitGoods = () => {
-        console.log('success')
         setDialogConfirm(prev => ({ ...prev, open: true }))
     }
 

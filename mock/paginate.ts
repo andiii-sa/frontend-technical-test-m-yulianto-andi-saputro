@@ -18,7 +18,6 @@ export function parseListParams(
     sortOrder: ""
   }
   for (const [key, value] of sp.entries()) {
-    console.log(`${key}: ${value}`);
     if(key === 'page'){
       params[key] = toInt(value, 1)
     } else if(key === 'perPage'){

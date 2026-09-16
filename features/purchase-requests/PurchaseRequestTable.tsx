@@ -8,25 +8,17 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { listStatus, listWarehouses } from "@/constants";
-import { PurchaseRequestListItem } from "@/types";
 import {
     Filter
 } from "lucide-react";
 
 import DialogConfirmation from "@/components/shared/DialogConfirmation";
 import { Textarea } from "@/components/ui/textarea";
+import { usePurchaseRequestList } from "@/services/purchase-request/queries";
 import DialogFormPurchaseRequest from "./DialogFormPurchaseRequest";
 import usePurchaseRequests from "./usePurchaseRequests";
 
-interface PurchaseRequestTableProps {
-    items: PurchaseRequestListItem[];
-    handleRetryFetch: () => void;
-}
-
-const PurchaseRequestTable = ({
-    items,
-    handleRetryFetch,
-}: PurchaseRequestTableProps) => {
+const PurchaseRequestTable = () => {
     const {
         requestPurchaseHeaders,
         isUser,
@@ -44,8 +36,18 @@ const PurchaseRequestTable = ({
         onActionDelete,
         onActionEdit,
         onActionLeave,
-        setDialogForm
+        setDialogForm,
+
+        filter,
+        handleChangeFilter,
+        handleChangePage,
+        handleChangePerPage,
+        handleFilter,
+        handleReset,
+        paramsApi,
     } = usePurchaseRequests();
+
+    const { data, isPending, isFetching, isError, refetch } = usePurchaseRequestList(paramsApi);
 
     return (
         <div>
@@ -59,29 +61,43 @@ const PurchaseRequestTable = ({
             <AppTable
                 className=" mt-3"
                 headers={requestPurchaseHeaders}
-                data={items || []}
-                isLoading={false}
-                perPage={10}
-                total={100}
-                pageNumber={1}
-                lengthPage={10}
-                isHaveFilter={false}
+                data={data?.data || []}
+                isLoading={isPending || isFetching}
+                perPage={filter.perPage || 0}
+                total={data?.stats.totalData || 0}
+                pageNumber={filter.page || 0}
+                lengthPage={data?.stats.totalPage || 0}
+                isHaveFilter={
+                    filter?.q.trim() || filter?.status || filter?.warehouseId
+                        ? true
+                        : false
+                }
                 titleEmpty="No purchase requests yet"
                 subtitleEmpty={`Anda belum memiliki data.`}
-                isErrorFetch={false}
-                handleChangePage={() => { }}
-                handleChangePerPage={() => { }}
-                showAddButton={true}
+                isErrorFetch={isError}
+                handleChangePage={handleChangePage}
+                handleChangePerPage={handleChangePerPage}
+                showAddButton={false}
                 handleAddData={() => { }}
-                handleResetFilter={() => { }}
+                handleResetFilter={handleReset}
                 headContent={
                     <div className="px-3.5 py-1.5 gap-2 border-b flex flex-col md:flex-row md:items-center justify-between flex-wrap">
                         <h4 className="font-medium text-xs text-fg">Purchase Requests</h4>
 
                         <div className="flex items-center gap-2">
                             <Field orientation="horizontal">
-                                <Input type="search" placeholder="Search requests..." />
-                                <BaseSelect items={listStatus} placeholder="Status" value="" />
+                                <Input
+                                    type="search"
+                                    placeholder="Search requests..."
+                                    value={filter.q}
+                                    onChange={(e) => handleChangeFilter("q", e.target.value)}
+                                />
+                                <BaseSelect
+                                    items={listStatus}
+                                    placeholder="Status"
+                                    value={filter.status}
+                                    onValueChange={(e: any) => handleChangeFilter("status", e)}
+                                />
                                 <BaseSelect
                                     items={[
                                         { value: "", label: "All Warehouse" },
@@ -91,9 +107,16 @@ const PurchaseRequestTable = ({
                                         })) || []),
                                     ]}
                                     placeholder="Warehouse"
-                                    value=""
+                                    onValueChange={(e: any) =>
+                                        handleChangeFilter("warehouseId", e)
+                                    }
+                                    value={filter?.warehouseId}
                                 />
-                                <Button variant="outline" loading={false}>
+                                <Button
+                                    variant="outline"
+                                    loading={isPending || isFetching}
+                                    onClick={handleFilter}
+                                >
                                     <Filter />
                                     Filter
                                 </Button>
@@ -101,7 +124,7 @@ const PurchaseRequestTable = ({
                         </div>
                     </div>
                 }
-                handleRetryFetch={handleRetryFetch}
+                handleRetryFetch={refetch}
             />
 
             <DialogFormPurchaseRequest

@@ -85,19 +85,25 @@ export interface PurchaseRequestSummary {
 
 export interface PurchaseRequestItemPayload {
   productId: ID;
-  quantity: number;
+  productQty: number;
+  productUnit?: string;
 }
 
 export interface CreatePurchaseRequestPayload {
   warehouseId: ID;
   notes?: string | null;
-  items: PurchaseRequestItemPayload[];
+  product: PurchaseRequestItemPayload[];
+  isDraft?: boolean
 }
 
 export type UpdatePurchaseRequestPayload = CreatePurchaseRequestPayload;
 
 export interface RejectPurchaseRequestPayload {
-  reason: string;
+  reason?: string;
+}
+
+export interface ApproveRejectPurchaseRequestPayload extends RejectPurchaseRequestPayload {
+  action : string
 }
 
 export interface PurchaseRequestFilters {
