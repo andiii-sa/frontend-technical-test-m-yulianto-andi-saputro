@@ -53,7 +53,7 @@ const menus = [
         children: [
             {
                 name: "Goods Receipt",
-                url: "/",
+                url: "/goods-receipts",
                 icon: <IconCheck className="text-xs text-dark-active" />
             },
             {
