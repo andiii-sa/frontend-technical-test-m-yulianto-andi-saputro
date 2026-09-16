@@ -29,6 +29,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useMemo } from "react";
 import * as z from "zod";
 import { PurchaseRequestDetail } from "./PurchaseRequestDetail";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 
 type DialogFormPurchaseRequestProps = {
@@ -149,262 +150,264 @@ const DialogFormPurchaseRequest = ({
                 <DialogHeader>
                     <DialogTitle>{title}</DialogTitle>
                 </DialogHeader>
-                {isReadOnly && data ? (
-                    <PurchaseRequestDetail
-                        data={data}
-                        isApproveReject={type === 'APPROVE_REJECT'}
-                        handleClose={onClose}
-                        handleApprove={handleApprove}
-                        handleReject={handleReject}
-                    />
-                ) : (
-                    <form id="form-dialog-purchase-request" className="space-y-2">
-                        <FieldGroup>
-                            <Controller
-                                name="warehouseId"
-                                control={form.control}
-                                render={({ field, fieldState }) => (
-                                    <Field data-invalid={fieldState.invalid}>
-                                        <FieldLabel htmlFor="form-select-warehouseId">
-                                            Warehouse
-                                        </FieldLabel>
-                                        <BaseSelect
-                                            {...field}
-                                            id="form-select-warehouseId"
-                                            invalid={fieldState.invalid}
-                                            placeholder="Select Warehouse"
-                                            items={
-                                                listWarehouses?.map((item) => ({
-                                                    value: item.id.toString(),
-                                                    label: item.name,
-                                                })) || []
-                                            }
-                                            value={field.value}
-                                            onValueChange={field.onChange}
-                                            name={field.name}
-                                            disabled={isReadOnly}
-                                        />
-                                        {fieldState.invalid && (
-                                            <FieldError errors={[fieldState.error]} />
-                                        )}
-                                    </Field>
-                                )}
-                            />
-                        </FieldGroup>
-
-                        <FieldGroup>
-                            <Controller
-                                name="notes"
-                                control={form.control}
-                                render={({ field, fieldState }) => (
-                                    <Field data-invalid={fieldState.invalid}>
-                                        <FieldLabel htmlFor="form-textarea-notes">Notes</FieldLabel>
-                                        <Textarea
-                                            {...field}
-                                            id="form-textarea-notes"
-                                            aria-invalid={fieldState.invalid}
-                                            placeholder="Add request notes..."
-                                            className="min-h-30"
-                                            readOnly={isReadOnly}
-                                        />
-                                        {fieldState.invalid && (
-                                            <FieldError errors={[fieldState.error]} />
-                                        )}
-                                    </Field>
-                                )}
-                            />
-                        </FieldGroup>
-
-                        <FieldSet className="gap-1">
-                            <FieldLegend variant="label">Product</FieldLegend>
-                            <FieldGroup className="gap-1">
-                                {fieldsProduct.map((field, index) => (
-                                    <div
-                                        key={index}
-                                        className="grid grid-cols-1 gap-2 p-1.5 rounded-sm border bg-slate-50"
-                                    >
-                                        <Controller
-                                            name={`product.${index}.productId`}
-                                            control={form.control}
-                                            render={({ field: controllerField, fieldState }) => (
-                                                <Field
-                                                    orientation="horizontal"
-                                                    data-invalid={fieldState.invalid}
-                                                >
-                                                    <Field data-invalid={fieldState.invalid}>
-                                                        <BaseSelect
-                                                            {...controllerField}
-                                                            id="form-select-productId"
-                                                            invalid={fieldState.invalid}
-                                                            placeholder="Select Product"
-                                                            items={
-                                                                listProducts?.map((item) => ({
-                                                                    value: item.id.toString(),
-                                                                    label: item.name,
-                                                                })) || []
-                                                            }
-                                                            value={controllerField.value}
-                                                            onValueChange={(value: any) => {
-                                                                const isAlready = fieldsProduct.some(
-                                                                    (item) => item.productId === value,
-                                                                );
-                                                                if (isAlready) {
-                                                                    form.setError(`product.${index}.productId`, {
-                                                                        type: "custom",
-                                                                        message: "Product already exists",
-                                                                    });
-                                                                    return;
-                                                                }
-                                                                controllerField.onChange(value);
-                                                                const unit =
-                                                                    listProducts
-                                                                        ?.find((f) => f.id === Number(value))
-                                                                        ?.unit?.toString() || "";
-                                                                form.setValue(
-                                                                    `product.${index}.productUnit`,
-                                                                    unit,
-                                                                );
-                                                            }}
-                                                            name={controllerField.name}
-                                                            className="bg-white"
-                                                            disabled={isReadOnly}
-                                                        />
-                                                        {fieldState.invalid && (
-                                                            <FieldError errors={[fieldState.error]} />
-                                                        )}
-                                                    </Field>
-                                                </Field>
-                                            )}
-                                        />
-                                        <div className="flex gap-1">
-                                            <Controller
-                                                name={`product.${index}.productQty`}
-                                                control={form.control}
-                                                render={({ field: controllerField, fieldState }) => (
-                                                    <Field
-                                                        orientation="horizontal"
-                                                        data-invalid={fieldState.invalid}
-                                                        className="items-baseline shrink"
-                                                    >
-                                                        <Field data-invalid={fieldState.invalid}>
-                                                            <Input
-                                                                {...controllerField}
-                                                                id="form-select-productQty"
-                                                                aria-invalid={fieldState.invalid}
-                                                                placeholder="Qty"
-                                                                value={controllerField.value}
-                                                                name={controllerField.name}
-                                                                onChange={(e) =>
-                                                                    controllerField.onChange(
-                                                                        Number(e.target.value) || "",
-                                                                    )
-                                                                }
-                                                                min={1}
-                                                                type="number"
-                                                                className="bg-white"
-                                                                readOnly={isReadOnly}
-                                                            />
-                                                            {fieldState.invalid && (
-                                                                <FieldError errors={[fieldState.error]} />
-                                                            )}
-                                                        </Field>
-                                                    </Field>
-                                                )}
+                <div className="overflow-y-auto max-h-[85vh] scrollbar-none px-1 py-1" >
+                    {isReadOnly && data ? (
+                        <PurchaseRequestDetail
+                            data={data}
+                            isApproveReject={type === 'APPROVE_REJECT'}
+                            handleClose={onClose}
+                            handleApprove={handleApprove}
+                            handleReject={handleReject}
+                        />
+                    ) : (
+                        <form id="form-dialog-purchase-request" className="space-y-2">
+                            <FieldGroup>
+                                <Controller
+                                    name="warehouseId"
+                                    control={form.control}
+                                    render={({ field, fieldState }) => (
+                                        <Field data-invalid={fieldState.invalid}>
+                                            <FieldLabel htmlFor="form-select-warehouseId">
+                                                Warehouse
+                                            </FieldLabel>
+                                            <BaseSelect
+                                                {...field}
+                                                id="form-select-warehouseId"
+                                                invalid={fieldState.invalid}
+                                                placeholder="Select Warehouse"
+                                                items={
+                                                    listWarehouses?.map((item) => ({
+                                                        value: item.id.toString(),
+                                                        label: item.name,
+                                                    })) || []
+                                                }
+                                                value={field.value}
+                                                onValueChange={field.onChange}
+                                                name={field.name}
+                                                disabled={isReadOnly}
                                             />
-                                            <Controller
-                                                name={`product.${index}.productUnit`}
-                                                control={form.control}
-                                                render={({ field: controllerField, fieldState }) => (
-                                                    <Field
-                                                        orientation="horizontal"
-                                                        data-invalid={fieldState.invalid}
-                                                        className="items-baseline shrink"
-                                                    >
-                                                        <Field data-invalid={fieldState.invalid}>
-                                                            <Input
-                                                                {...controllerField}
-                                                                id="form-select-productUnit"
-                                                                aria-invalid={fieldState.invalid}
-                                                                placeholder="Unit"
-                                                                value={controllerField.value}
-                                                                name={controllerField.name}
-                                                                readOnly
-                                                                className="bg-white"
-                                                            />
-                                                            {fieldState.invalid && (
-                                                                <FieldError errors={[fieldState.error]} />
-                                                            )}
-                                                        </Field>
-                                                    </Field>
-                                                )}
-                                            />
-                                            {!isReadOnly && (
-                                                <Button
-                                                    variant="destructive"
-                                                    size={"sm"}
-                                                    onClick={() => removeProduct(index)}
-                                                >
-                                                    <Trash2 />
-                                                </Button>
+                                            {fieldState.invalid && (
+                                                <FieldError errors={[fieldState.error]} />
                                             )}
-                                        </div>
-                                    </div>
-                                ))}
-                                {!isReadOnly && (
-                                    <Button
-                                        type="button"
-                                        variant="outline"
-                                        size="sm"
-                                        onClick={() =>
-                                            appendProduct({
-                                                productId: "",
-                                                productQty: 0,
-                                                productUnit: "",
-                                            })
-                                        }
-                                        className="mt-2"
-                                    >
-                                        <IconPlus /> Add Product
-                                    </Button>
-                                )}
+                                        </Field>
+                                    )}
+                                />
                             </FieldGroup>
-                            {form.formState.errors.product?.root && (
-                                <FieldError errors={[form.formState.errors.product.root]} />
-                            )}
-                        </FieldSet>
 
-                        <DialogFooter className="bg-white mt-4">
-                            <Field orientation="horizontal" className="justify-end">
-                                <Button type="button" variant="outline" onClick={onClose}>
-                                    Close
-                                </Button>
-                                {!isReadOnly && (
-                                    <>
+                            <FieldGroup>
+                                <Controller
+                                    name="notes"
+                                    control={form.control}
+                                    render={({ field, fieldState }) => (
+                                        <Field data-invalid={fieldState.invalid}>
+                                            <FieldLabel htmlFor="form-textarea-notes">Notes</FieldLabel>
+                                            <Textarea
+                                                {...field}
+                                                id="form-textarea-notes"
+                                                aria-invalid={fieldState.invalid}
+                                                placeholder="Add request notes..."
+                                                className="min-h-30"
+                                                readOnly={isReadOnly}
+                                            />
+                                            {fieldState.invalid && (
+                                                <FieldError errors={[fieldState.error]} />
+                                            )}
+                                        </Field>
+                                    )}
+                                />
+                            </FieldGroup>
+
+                            <FieldSet className="gap-1">
+                                <FieldLegend variant="label">Product</FieldLegend>
+                                <FieldGroup className="gap-1">
+                                    {fieldsProduct.map((field, index) => (
+                                        <div
+                                            key={index}
+                                            className="grid grid-cols-1 gap-2 p-1.5 rounded-sm border bg-slate-50"
+                                        >
+                                            <Controller
+                                                name={`product.${index}.productId`}
+                                                control={form.control}
+                                                render={({ field: controllerField, fieldState }) => (
+                                                    <Field
+                                                        orientation="horizontal"
+                                                        data-invalid={fieldState.invalid}
+                                                    >
+                                                        <Field data-invalid={fieldState.invalid}>
+                                                            <BaseSelect
+                                                                {...controllerField}
+                                                                id="form-select-productId"
+                                                                invalid={fieldState.invalid}
+                                                                placeholder="Select Product"
+                                                                items={
+                                                                    listProducts?.map((item) => ({
+                                                                        value: item.id.toString(),
+                                                                        label: item.name,
+                                                                    })) || []
+                                                                }
+                                                                value={controllerField.value}
+                                                                onValueChange={(value: any) => {
+                                                                    const isAlready = fieldsProduct.some(
+                                                                        (item) => item.productId === value,
+                                                                    );
+                                                                    if (isAlready) {
+                                                                        form.setError(`product.${index}.productId`, {
+                                                                            type: "custom",
+                                                                            message: "Product already exists",
+                                                                        });
+                                                                        return;
+                                                                    }
+                                                                    controllerField.onChange(value);
+                                                                    const unit =
+                                                                        listProducts
+                                                                            ?.find((f) => f.id === Number(value))
+                                                                            ?.unit?.toString() || "";
+                                                                    form.setValue(
+                                                                        `product.${index}.productUnit`,
+                                                                        unit,
+                                                                    );
+                                                                }}
+                                                                name={controllerField.name}
+                                                                className="bg-white"
+                                                                disabled={isReadOnly}
+                                                            />
+                                                            {fieldState.invalid && (
+                                                                <FieldError errors={[fieldState.error]} />
+                                                            )}
+                                                        </Field>
+                                                    </Field>
+                                                )}
+                                            />
+                                            <div className="flex gap-1">
+                                                <Controller
+                                                    name={`product.${index}.productQty`}
+                                                    control={form.control}
+                                                    render={({ field: controllerField, fieldState }) => (
+                                                        <Field
+                                                            orientation="horizontal"
+                                                            data-invalid={fieldState.invalid}
+                                                            className="items-baseline shrink"
+                                                        >
+                                                            <Field data-invalid={fieldState.invalid}>
+                                                                <Input
+                                                                    {...controllerField}
+                                                                    id="form-select-productQty"
+                                                                    aria-invalid={fieldState.invalid}
+                                                                    placeholder="Qty"
+                                                                    value={controllerField.value}
+                                                                    name={controllerField.name}
+                                                                    onChange={(e) =>
+                                                                        controllerField.onChange(
+                                                                            Number(e.target.value) || "",
+                                                                        )
+                                                                    }
+                                                                    min={1}
+                                                                    type="number"
+                                                                    className="bg-white"
+                                                                    readOnly={isReadOnly}
+                                                                />
+                                                                {fieldState.invalid && (
+                                                                    <FieldError errors={[fieldState.error]} />
+                                                                )}
+                                                            </Field>
+                                                        </Field>
+                                                    )}
+                                                />
+                                                <Controller
+                                                    name={`product.${index}.productUnit`}
+                                                    control={form.control}
+                                                    render={({ field: controllerField, fieldState }) => (
+                                                        <Field
+                                                            orientation="horizontal"
+                                                            data-invalid={fieldState.invalid}
+                                                            className="items-baseline shrink"
+                                                        >
+                                                            <Field data-invalid={fieldState.invalid}>
+                                                                <Input
+                                                                    {...controllerField}
+                                                                    id="form-select-productUnit"
+                                                                    aria-invalid={fieldState.invalid}
+                                                                    placeholder="Unit"
+                                                                    value={controllerField.value}
+                                                                    name={controllerField.name}
+                                                                    readOnly
+                                                                    className="bg-white"
+                                                                />
+                                                                {fieldState.invalid && (
+                                                                    <FieldError errors={[fieldState.error]} />
+                                                                )}
+                                                            </Field>
+                                                        </Field>
+                                                    )}
+                                                />
+                                                {!isReadOnly && (
+                                                    <Button
+                                                        variant="destructive"
+                                                        size={"sm"}
+                                                        onClick={() => removeProduct(index)}
+                                                    >
+                                                        <Trash2 />
+                                                    </Button>
+                                                )}
+                                            </div>
+                                        </div>
+                                    ))}
+                                    {!isReadOnly && (
                                         <Button
                                             type="button"
-                                            variant={"secondary"}
-                                            form="form-dialog-purchase-request"
-                                            onClick={form.handleSubmit((data) =>
-                                                onSubmit(data, true),
-                                            )}
+                                            variant="outline"
+                                            size="sm"
+                                            onClick={() =>
+                                                appendProduct({
+                                                    productId: "",
+                                                    productQty: 0,
+                                                    productUnit: "",
+                                                })
+                                            }
+                                            className="mt-2"
                                         >
-                                            {type === "EDIT" ? "Save as Draft" : "Save Changes"}
+                                            <IconPlus /> Add Product
                                         </Button>
-                                        <Button
-                                            type="button"
-                                            form="form-dialog-purchase-request"
-                                            onClick={form.handleSubmit((data) =>
-                                                onSubmit(data, false),
-                                            )}
-                                        >
-                                            Submit for Approval
-                                        </Button>
-                                    </>
+                                    )}
+                                </FieldGroup>
+                                {form.formState.errors.product?.root && (
+                                    <FieldError errors={[form.formState.errors.product.root]} />
                                 )}
-                            </Field>
-                        </DialogFooter>
-                    </form>
-                )}
+                            </FieldSet>
+                        </form>
+                    )}
+                </div>
+
+                <DialogFooter className="bg-white mt-4">
+                    <Field orientation="horizontal" className="justify-end">
+                        <Button type="button" variant="outline" onClick={onClose}>
+                            Close
+                        </Button>
+                        {!isReadOnly && (
+                            <>
+                                <Button
+                                    type="button"
+                                    variant={"secondary"}
+                                    form="form-dialog-purchase-request"
+                                    onClick={form.handleSubmit((data) =>
+                                        onSubmit(data, true),
+                                    )}
+                                >
+                                    {type === "EDIT" ? "Save as Draft" : "Save Changes"}
+                                </Button>
+                                <Button
+                                    type="button"
+                                    form="form-dialog-purchase-request"
+                                    onClick={form.handleSubmit((data) =>
+                                        onSubmit(data, false),
+                                    )}
+                                >
+                                    Submit for Approval
+                                </Button>
+                            </>
+                        )}
+                    </Field>
+                </DialogFooter>
             </DialogContent>
         </Dialog>
     );
