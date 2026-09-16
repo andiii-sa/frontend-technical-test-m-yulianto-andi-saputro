@@ -11,7 +11,7 @@ import { SidebarTrigger } from "../ui/sidebar"
 
 
 const Navbar = () => {
-    const { user, setUser } = useGeneralStore((s) => (s))
+    const { user, setUser, breadcrumb } = useGeneralStore((s) => (s))
 
     return (
         <nav className="flex sticky top-0 z-20 bg-white shrink-0 items-center gap-2 border-b p-2 md:p-4 lg:p-5.5">
@@ -21,7 +21,7 @@ const Navbar = () => {
                     orientation="vertical"
                     className="mx-2 data-[orientation=vertical]:h-auto"
                 />
-                <h1 className="text-base font-medium">Dashboard</h1>
+                <h1 className="text-base font-medium">{breadcrumb.map(v => v)}</h1>
                 <div className="ml-auto flex items-center gap-2">
                     <DropdownMenu>
                         <DropdownMenuTrigger render={<Button variant="outline">

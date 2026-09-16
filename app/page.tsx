@@ -9,8 +9,10 @@ import {
   useDashboardRecentActivity,
   useDashboardSummary,
 } from "@/services/dashboard/queries";
+import { useBreadcrumb } from "@/hooks/use-breadcrumb";
 
 export default function Home() {
+  useBreadcrumb(['Dashboard'])
   const {
     data: summaryData,
     isPending: isPendingSummary,

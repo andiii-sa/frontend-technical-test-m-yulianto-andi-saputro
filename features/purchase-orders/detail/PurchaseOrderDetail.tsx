@@ -19,6 +19,7 @@ import PurchaseOrderDetailNotFound from "./PurchaseOrderNotFound";
 import ReceiptHistoryPanel from "./ReceiptHistoryPanel";
 import ReceiveGoodsDialog from "./ReceiveGoodsDialog";
 import ReceivingProgressPanel from "./ReceivingProgressPanel";
+import { useBreadcrumb } from "@/hooks/use-breadcrumb";
 
 export interface PurchaseOrderDetailProps {
     id: number;
@@ -28,6 +29,8 @@ export const PurchaseOrderDetail = ({
     id,
 }: PurchaseOrderDetailProps) => {
     const role = useGeneralStore(s => s.user.role)
+    useBreadcrumb(['Purchase Orders'])
+
     const [dialogOpen, setDialogOpen] = useState(false);
     const { dialogConfirm, setDialogConfirm } = useDialogConfirm()
 

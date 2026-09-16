@@ -9,6 +9,7 @@ import Header from "./Header";
 import MovementEmptyState from "./MovementEmptyState";
 import MovementList from "./MovementList";
 import StockMovementSkeleton from "./StockMovementSkeleton";
+import { useBreadcrumb } from "@/hooks/use-breadcrumb";
 
 export interface InventoryMovementsDetailProps {
     productId: number;
@@ -20,6 +21,8 @@ export const InventoryMovementsDetail = ({
     warehouseId,
 }: InventoryMovementsDetailProps) => {
     const router = useRouter()
+    useBreadcrumb(['Inventory'])
+
     const { data: stock, isPending: isPendingStock } = useInventoryStockDetail(productId, warehouseId);
     const { data: movement, isPending: isPendingMovement } = useInventoryMovementDetail(productId, warehouseId);
 
