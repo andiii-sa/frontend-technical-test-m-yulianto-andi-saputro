@@ -113,3 +113,7 @@ export interface IParamsApiListPurchaseOrder extends IParamsApiList {
 export interface IParamsApiListInventory extends IParamsApiList {
   warehouse_id?: number;
 }
+// GR
+export interface IParamsApiListGoodsReceipt extends IParamsApiList {
+  warehouse_id?: number;
+}

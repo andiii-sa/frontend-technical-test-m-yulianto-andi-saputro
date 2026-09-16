@@ -81,7 +81,7 @@ const PurchaseOrderTable = () => {
                                 />
                                 <Button
                                     variant="outline"
-                                    loading={false}
+                                    loading={isPending || isFetching}
                                     onClick={handleFilter}
                                 >
                                     <Filter />

@@ -28,7 +28,7 @@ export const GoodsReceiptDetail = ({
                                 {data.purchaseOrder.orderNumber}
                             </Link>
                             <Badge
-                                label={data.purchaseOrder.status?.toLowerCase()}
+                                label={data.purchaseOrder.status?.toLowerCase()?.replaceAll('_', ' ')}
                                 color={typeBadgeStatusPurchase[data.purchaseOrder.status] as BadgeColor}
                                 className="capitalize w-fit"
                             />

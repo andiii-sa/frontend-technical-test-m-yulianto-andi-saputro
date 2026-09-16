@@ -1,4 +1,4 @@
-import { InventoryMovementDetail, InventoryStockListItem, PurchaseOrderListItem, ReceiveGoodsPayload, User } from "@/types";
+import { GoodsReceiptDetail, InventoryMovementDetail, InventoryStockListItem, PurchaseOrderListItem, ReceiveGoodsPayload, User } from "@/types";
 import data from "../constants/data-detail.json";
 
 export const delay = (ms = 500) => new Promise((r) => setTimeout(r, ms));
@@ -77,4 +77,9 @@ export function findInventoryStock(productId: number, warehouseId: number): Inve
 
 export function listInventoryStock(): InventoryStockListItem[] {
   return (data.inventoryStocks as InventoryStockListItem[]);
+}
+
+// GS
+export function listGoodsReceipt(): GoodsReceiptDetail[] {
+  return (data.goodsReceipts as GoodsReceiptDetail[]);
 }

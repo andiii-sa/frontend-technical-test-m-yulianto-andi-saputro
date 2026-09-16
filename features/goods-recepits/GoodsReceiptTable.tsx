@@ -1,61 +1,64 @@
 import AppTable from "@/components/base/AppTable";
 import BaseSelect from "@/components/base/BaseSelect";
 import { Button } from "@/components/ui/button";
-import {
-    Field
-} from "@/components/ui/field";
+import { Field } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { listWarehouses } from "@/constants";
-import { GoodsReceiptDetail } from "@/types";
-import {
-    Filter
-} from "lucide-react";
+import { Filter } from "lucide-react";
 
+import { useGoodsReceiptList } from "@/services/goods-receipt/queries";
 import DialogFormPurchaseRequest from "./DialogDetailGoodsReceipts";
 import useGoodsRecceipts from "./useGoodsRecceipts";
 
-interface GoodsReceiptTableProps {
-    items: GoodsReceiptDetail[];
-    handleRetryFetch: () => void;
-}
-
-const GoodsReceiptTable = ({
-    items,
-    handleRetryFetch,
-}: GoodsReceiptTableProps) => {
+const GoodsReceiptTable = () => {
     const {
         goodsReceiptHeaders,
         dialogForm,
         handleClose,
+        filter,
+        handleChangeFilter,
+        handleChangePage,
+        handleChangePerPage,
+        handleFilter,
+        handleReset,
+        paramsApi,
     } = useGoodsRecceipts();
+
+    const { data, isPending, isFetching, isError, refetch } =
+        useGoodsReceiptList(paramsApi);
 
     return (
         <div>
             <AppTable
                 className=" mt-3"
                 headers={goodsReceiptHeaders}
-                data={items || []}
-                isLoading={false}
-                perPage={10}
-                total={100}
-                pageNumber={1}
-                lengthPage={10}
-                isHaveFilter={false}
+                data={data?.data || []}
+                isLoading={isPending || isFetching}
+                perPage={filter.perPage || 0}
+                total={data?.stats.totalData || 0}
+                pageNumber={filter.page || 0}
+                lengthPage={data?.stats.totalPage || 0}
+                isHaveFilter={filter?.q.trim() || filter?.warehouseId ? true : false}
                 titleEmpty="No goods receipt yet"
                 subtitleEmpty={`Anda belum memiliki data.`}
-                isErrorFetch={false}
-                handleChangePage={() => { }}
-                handleChangePerPage={() => { }}
-                showAddButton={true}
+                isErrorFetch={isError}
+                handleChangePage={handleChangePage}
+                handleChangePerPage={handleChangePerPage}
+                showAddButton={false}
                 handleAddData={() => { }}
-                handleResetFilter={() => { }}
+                handleResetFilter={handleReset}
                 headContent={
                     <div className="px-3.5 py-1.5 gap-2 border-b flex flex-col md:flex-row md:items-center justify-between flex-wrap">
                         <h4 className="font-medium text-xs text-fg">Goods Receipt List</h4>
 
                         <div className="flex items-center gap-2">
                             <Field orientation="horizontal">
-                                <Input type="search" placeholder="Search ..." />
+                                <Input
+                                    type="search"
+                                    placeholder="Search Receipt/purchase ..."
+                                    value={filter.q}
+                                    onChange={(e) => handleChangeFilter("q", e.target.value)}
+                                />
                                 <BaseSelect
                                     items={[
                                         { value: "", label: "All Warehouse" },
@@ -65,9 +68,16 @@ const GoodsReceiptTable = ({
                                         })) || []),
                                     ]}
                                     placeholder="Warehouse"
-                                    value=""
+                                    onValueChange={(e: any) =>
+                                        handleChangeFilter("warehouseId", e)
+                                    }
+                                    value={filter?.warehouseId}
                                 />
-                                <Button variant="outline" loading={false}>
+                                <Button
+                                    variant="outline"
+                                    loading={isPending || isFetching}
+                                    onClick={handleFilter}
+                                >
                                     <Filter />
                                     Filter
                                 </Button>
@@ -75,7 +85,7 @@ const GoodsReceiptTable = ({
                         </div>
                     </div>
                 }
-                handleRetryFetch={handleRetryFetch}
+                handleRetryFetch={refetch}
             />
 
             <DialogFormPurchaseRequest
