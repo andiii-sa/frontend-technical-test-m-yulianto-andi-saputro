@@ -77,7 +77,7 @@ export const PurchaseOrderDetail = ({
                     <div className="lg:col-span-2">
                         <OrderInformationPanel
                             data={data}
-                            purchaseRequestHref={() => "/"}
+                            purchaseRequestHref={() => "#"}
                         />
                     </div>
                     <ReceivingProgressPanel data={data} />
@@ -86,7 +86,7 @@ export const PurchaseOrderDetail = ({
                 <ItemsPanel items={data.items} />
                 <ReceiptHistoryPanel
                     receipts={data.goodsReceipts}
-                    goodsReceiptHref={(value) => "/goods-recepits/" + value}
+                    goodsReceiptHref={() => "#"}
                 />
             </div>
 
