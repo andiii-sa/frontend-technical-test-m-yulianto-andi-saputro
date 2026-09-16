@@ -7,18 +7,10 @@ import {
     Package
 } from "lucide-react";
 
+import AppTable from "@/components/base/AppTable";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from "@/components/ui/table";
 import Link from "next/link";
-import AppTable from "@/components/base/AppTable";
 
 
 interface PurchaseRequestDetailProps {

@@ -91,7 +91,7 @@ const PurchaseRequestTable = ({ showColumnAction = true, showButtonAdd = true, t
                         <h4 className="font-medium text-xs text-fg">{titleTable || 'Purchase Requests'}</h4>
 
                         <div className="flex items-center gap-2">
-                            <Field orientation="horizontal">
+                            <Field orientation="horizontal" className="max-sm:flex-wrap">
                                 <Input
                                     type="search"
                                     placeholder="Search requests..."

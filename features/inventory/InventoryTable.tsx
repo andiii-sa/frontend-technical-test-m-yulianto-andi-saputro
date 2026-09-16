@@ -49,7 +49,7 @@ const InventoryTable = () => {
                         <h4 className="font-medium text-xs text-fg">Inventory List</h4>
 
                         <div className="flex items-center gap-2">
-                            <Field orientation="horizontal">
+                            <Field orientation="horizontal" className="max-sm:flex-wrap">
                                 <Input
                                     type="search"
                                     placeholder="Search Product / SKU ..."

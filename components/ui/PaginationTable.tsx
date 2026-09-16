@@ -66,7 +66,7 @@ const PaginationTable = ({
     const paginationItems = getPaginationItems();
     return (
         <Pagination className="mx-0 w-fit">
-            <PaginationContent>
+            <PaginationContent className="flex-wrap">
                 <PaginationItem>
                     <PaginationLink
                         href="#"

@@ -25,7 +25,7 @@ const Navbar = () => {
                 <div className="ml-auto flex items-center gap-2">
                     <DropdownMenu>
                         <DropdownMenuTrigger render={<Button variant="outline">
-                            Login as : {user?.name} ({user?.role}) <ChevronDown />
+                            <span className="hidden sm:block">Login as : {user?.name}</span> <span>({user?.role})</span> <ChevronDown />
                         </Button>} />
                         <DropdownMenuContent>
                             <DropdownMenuGroup>
