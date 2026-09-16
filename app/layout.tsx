@@ -7,6 +7,7 @@ import { AppSidebar } from "@/components/base/AppSidebar";
 import Navbar from "@/components/base/Navbar";
 import { GeneralStoreProvider } from "@/providers";
 import { Toaster } from "@/components/ui/toast";
+import { Providers } from "./providers";
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -32,18 +33,21 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-sans", inter.variable)}
     >
       <body className="min-h-full flex flex-col">
-        <GeneralStoreProvider>
-          <SidebarProvider>
-            <AppSidebar />
-            <SidebarInset>
-              <Navbar />
-              <main className="p-2 sm:px-4 md:py-3 lg:px-5.5 lg:py-4">
-                {children}
-              </main>
-              <Toaster />
-            </SidebarInset>
-          </SidebarProvider>
-        </GeneralStoreProvider>
+        <Providers>
+          <GeneralStoreProvider>
+            <SidebarProvider>
+              <AppSidebar />
+              <SidebarInset>
+                <Navbar />
+                <main className="p-2 sm:px-4 md:py-3 lg:px-5.5 lg:py-4">
+                  {children}
+                </main>
+                <Toaster />
+              </SidebarInset>
+            </SidebarProvider>
+          </GeneralStoreProvider>
+
+        </Providers>
       </body>
     </html>
   );
