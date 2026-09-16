@@ -3,23 +3,24 @@
 
 import DialogConfirmation from "@/components/shared/DialogConfirmation";
 import { useDialogConfirm } from "@/components/shared/DialogConfirmation/useDialogConfirm";
+import ErrorState from "@/components/shared/ErrorState";
+import { Button } from "@/components/ui/button";
 import {
     getReceiveAction
 } from "@/helpers/purchase-order";
+import { useBreadcrumb } from "@/hooks/use-breadcrumb";
 import { ApiError } from "@/lib/api-client";
 import { useGeneralStore } from "@/providers";
 import { usePurchaseOrderDetail } from "@/services/purchase-order/queries";
+import Link from "next/link";
 import { useMemo, useState } from "react";
 import Header from "./Header";
 import ItemsPanel from "./ItemsPanel";
 import OrderInformationPanel from "./OrderInformationPanel";
-import PurchaseOrderDetailError from "./PurchaseOrderDetailError";
 import PurchaseOrderDetailSkeleton from "./PurchaseOrderDetailSkeleton";
-import PurchaseOrderDetailNotFound from "./PurchaseOrderNotFound";
 import ReceiptHistoryPanel from "./ReceiptHistoryPanel";
 import ReceiveGoodsDialog from "./ReceiveGoodsDialog";
 import ReceivingProgressPanel from "./ReceivingProgressPanel";
-import { useBreadcrumb } from "@/hooks/use-breadcrumb";
 
 export interface PurchaseOrderDetailProps {
     id: number;
@@ -45,8 +46,22 @@ export const PurchaseOrderDetail = ({
 
     if (isPending) return <PurchaseOrderDetailSkeleton />;
     if (isError) {
-        if (error instanceof ApiError && error.status === 404) return <PurchaseOrderDetailNotFound />;
-        return <PurchaseOrderDetailError onRetry={() => refetch()} />;
+        return <ErrorState
+            isErrorFetch={isError && error instanceof ApiError && error.status !== 404 ? true : false}
+            handleRetryFetch={() => refetch()}
+            isHaveFilter={false}
+            subtitleEmpty={`Data tidak ditemukan atau terhapus.`}
+            isLoading={isPending}
+            data={data}
+            isBordered={true}
+            showAddButton={false}
+        >
+            <Link href={'/purchase-orders'}>
+                <Button variant="outline">
+                    Back to Purchase Orders
+                </Button>
+            </Link>
+        </ErrorState>
     }
 
     return (

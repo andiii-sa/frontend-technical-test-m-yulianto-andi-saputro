@@ -1,7 +1,7 @@
 import { IconAlert, IconDocument, IconSearch } from "@/assets/icons";
-import React from "react";
-import { Button } from "../ui/button";
 import { cn } from "cn";
+import { Button } from "../ui/button";
+import { ReactNode } from "react";
 
 type ErrorStateProps = {
     isErrorFetch?: boolean;
@@ -13,9 +13,10 @@ type ErrorStateProps = {
     showAddButton?: boolean;
     handleAddData?: () => void;
     isLoading?: boolean;
-    data?: any[];
+    data?: any[] | any;
     className?: string
     isBordered?: boolean
+    children?: ReactNode
 };
 
 const ErrorState = (props: ErrorStateProps) => {
@@ -31,7 +32,8 @@ const ErrorState = (props: ErrorStateProps) => {
         isLoading,
         data,
         className,
-        isBordered
+        isBordered,
+        children
     } = props;
     return (
         <div className={cn("flex flex-col gap-2 items-center py-6 px-4", isBordered && "border rounded-md", className)}>
@@ -56,7 +58,7 @@ const ErrorState = (props: ErrorStateProps) => {
                     ? "Terjadi kesalahan saat memuat data. Silakan coba lagi."
                     : isHaveFilter
                         ? "Mohon coba menggunakan kata kunci yang berbeda atau sesuaikan \npengaturan filter untuk mendapatkan hasil yang relevan"
-                        : subtitleEmpty || "Anda Belum Memiliki Data"}
+                        : subtitleEmpty || "Anda Tidak Memiliki Data"}
             </p>
 
             {isErrorFetch && (
@@ -89,6 +91,8 @@ const ErrorState = (props: ErrorStateProps) => {
                     Tambah Data
                 </Button>
             )}
+
+            {children}
         </div>
     );
 };
