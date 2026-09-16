@@ -1,6 +1,8 @@
 import {
   ApproveRejectPurchaseRequestPayload,
   CreatePurchaseRequestPayload,
+  DashboardRecentActivity,
+  DashboardSummary,
   GoodsReceiptDetail,
   InventoryMovementDetail,
   InventoryStockListItem,
@@ -226,4 +228,53 @@ export function updatePurchaseRequstApproveReject(id:number, payload:ApproveReje
   };
 
   return item as any
+}
+
+// Dashboard
+export function summaryDashboard(): DashboardSummary[]{
+  return ([
+    {
+    label: "Total Purchase Requests",
+    value: data.purchaseRequests.length || 0,
+    description: "+6 this month",
+  },
+  {
+    label: "Waiting for Approval",
+    value: data.purchaseRequests?.filter(f => f.status === 'SUBMITTED').length || 0,
+    description: "Requires manager action",
+  },
+  {
+    label: "Active Purchase Orders",
+    value: data.purchaseOrders?.filter(f => f.status === 'ORDERED' || f.status === 'PARTIALLY_RECEIVED').length || 0,
+    description: "12 expected this week",
+  },
+  {
+    label: "Partially Received Orders",
+    value: data.purchaseOrders?.filter(f => f.status === 'PARTIALLY_RECEIVED').length || 0,
+    description: "Receiving still in progress",
+  },
+  ]);
+}
+
+export function recentActivityDashboard(): DashboardRecentActivity[]{
+  return ([
+    {
+    status: "APPROVED",
+    label: "PR-2026-0047 Approved",
+    description: "Approved by Alex Morgan",
+    date: "2026-09-01T09:00:00Z",
+  },
+  {
+    status: "ORDERED",
+    label: "PO-2026-0047 Ordered",
+    description: "Sent to Pacific Industrial Supply.",
+    date: "2026-09-01T09:00:00Z",
+  },
+  {
+    status: "RECEIPT",
+    label: "Partial Goods Receipt",
+    description: "120 of 200 units received.",
+    date: "2026-09-01T09:00:00Z",
+  },
+  ]);
 }

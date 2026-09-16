@@ -18,7 +18,13 @@ import { usePurchaseRequestList } from "@/services/purchase-request/queries";
 import DialogFormPurchaseRequest from "./DialogFormPurchaseRequest";
 import usePurchaseRequests from "./usePurchaseRequests";
 
-const PurchaseRequestTable = () => {
+interface PurchaseRequestTableProps {
+    showColumnAction?: boolean
+    showButtonAdd?: boolean
+    titleTable?: string
+    className?: string
+}
+const PurchaseRequestTable = ({ showColumnAction = true, showButtonAdd = true, titleTable, className }: PurchaseRequestTableProps) => {
     const {
         requestPurchaseHeaders,
         isUser,
@@ -50,9 +56,9 @@ const PurchaseRequestTable = () => {
     const { data, isPending, isFetching, isError, refetch } = usePurchaseRequestList(paramsApi);
 
     return (
-        <div>
+        <div className={className}>
             {
-                isUser && (
+                showButtonAdd && isUser && (
                     <Button onClick={handleAdd}>
                         <IconPlus /> Create Purchase Request
                     </Button>
@@ -60,7 +66,7 @@ const PurchaseRequestTable = () => {
             }
             <AppTable
                 className=" mt-3"
-                headers={requestPurchaseHeaders}
+                headers={showColumnAction ? requestPurchaseHeaders : requestPurchaseHeaders?.filter(f => f.key !== 'actions')}
                 data={data?.data || []}
                 isLoading={isPending || isFetching}
                 perPage={filter.perPage || 0}
@@ -82,7 +88,7 @@ const PurchaseRequestTable = () => {
                 handleResetFilter={handleReset}
                 headContent={
                     <div className="px-3.5 py-1.5 gap-2 border-b flex flex-col md:flex-row md:items-center justify-between flex-wrap">
-                        <h4 className="font-medium text-xs text-fg">Purchase Requests</h4>
+                        <h4 className="font-medium text-xs text-fg">{titleTable || 'Purchase Requests'}</h4>
 
                         <div className="flex items-center gap-2">
                             <Field orientation="horizontal">

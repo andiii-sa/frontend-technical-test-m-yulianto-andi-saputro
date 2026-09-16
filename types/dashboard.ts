@@ -7,14 +7,9 @@
 import type { ID, ISODateString } from "./common";
 
 export interface DashboardSummary {
-  /** Seluruh Purchase Request tanpa memandang status. */
-  totalPurchaseRequests: number;
-  /** Purchase Request berstatus SUBMITTED. */
-  waitingApproval: number;
-  /** Purchase Order berstatus ORDERED + PARTIALLY_RECEIVED. */
-  activePurchaseOrders: number;
-  /** Purchase Order berstatus PARTIALLY_RECEIVED. */
-  partiallyReceived: number;
+  label: string;
+  value: number;
+  description: string;
 }
 
 export type ActivityType =
@@ -25,7 +20,10 @@ export type ActivityType =
   | "PURCHASE_ORDER_CREATED"
   | "GOODS_RECEIVED";
 
-export type ActivityEntity = "PURCHASE_REQUEST" | "PURCHASE_ORDER" | "GOODS_RECEIPT";
+export type ActivityEntity =
+  | "PURCHASE_REQUEST"
+  | "PURCHASE_ORDER"
+  | "GOODS_RECEIPT";
 
 export interface ActivityItem {
   id: string;
@@ -38,4 +36,11 @@ export interface ActivityItem {
   warehouseName: string;
   actorName: string;
   createdAt: ISODateString;
+}
+
+export interface DashboardRecentActivity {
+  status: string;
+  label: string;
+  description: string;
+  date: string;
 }

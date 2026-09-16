@@ -1,17 +1,15 @@
 import { IconChart, IconCheck, IconPackage } from '@/assets/icons';
 import AppTable from '@/components/base/AppTable';
+import { DashboardRecentActivity } from '@/types';
 
 interface RecentActivityProps {
-    items: {
-        label: string
-        description: string
-        status: string,
-        date: string | Date,
-    }[]
+    items: DashboardRecentActivity[]
     handleRetryFetch: () => void
+    isLoading: boolean
+    isError: boolean
 }
 
-const RecentActivity = ({ items, handleRetryFetch }: RecentActivityProps) => {
+const RecentActivity = ({ items, handleRetryFetch, isLoading, isError }: RecentActivityProps) => {
 
     const recentActivityHeaders = [
         {
@@ -36,7 +34,7 @@ const RecentActivity = ({ items, handleRetryFetch }: RecentActivityProps) => {
             className="lg:col-span-3 h-fit"
             headers={recentActivityHeaders}
             data={items || []}
-            isLoading={false}
+            isLoading={isLoading}
             perPage={10}
             total={100}
             pageNumber={1}
@@ -44,13 +42,13 @@ const RecentActivity = ({ items, handleRetryFetch }: RecentActivityProps) => {
             isHaveFilter={false}
             titleEmpty="Data Tidak Ditemukan"
             subtitleEmpty={`Anda belum memiliki data aktivitas.`}
-            isErrorFetch={false}
+            isErrorFetch={isError}
             handleChangePage={() => { }}
             handleChangePerPage={() => { }}
             title="Recent Activity"
             showHeader={false}
             showPaginationNumber={false}
-            showPaginationMore={true}
+            showPaginationMore={false}
             handleRetryFetch={handleRetryFetch}
         />
     )
