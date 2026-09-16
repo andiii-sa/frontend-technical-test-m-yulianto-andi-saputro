@@ -1,5 +1,6 @@
 import { Skeleton } from '@/components/ui/skeleton'
 import { DashboardSummary } from '@/types'
+import { useRouter } from 'next/navigation'
 import React from 'react'
 
 interface SummaryProps {
@@ -28,8 +29,30 @@ const Summary = ({ items, isLoading }: SummaryProps) => {
 export default Summary
 
 const SummaryItem = ({ item }: { item: DashboardSummary }) => {
+    const router = useRouter()
+    const handleClick = () => {
+        let url = ''
+        switch (item.label) {
+            case 'Total Purchase Requests':
+                url = '/purchase-requests'
+                break
+            case 'Waiting for Approval':
+                url = '/purchase-requests?status=SUBMITTED'
+                break
+            case 'Active Purchase Orders':
+                url = '/purchase-orders?status=ORDERED'
+                break
+            case 'Partially Received Orders':
+                url = '/purchase-orders?status=PARTIALLY_RECEIVED'
+                break
+            default:
+                break
+        }
+
+        router.push(url)
+    }
     return (
-        <div className="card">
+        <div className="card cursor-pointer hover:scale-105 transition-all hover:shadow-md" onClick={handleClick}>
             <div className="text-fg-muted font-normal text-xs text-">
                 {item.label}
             </div>

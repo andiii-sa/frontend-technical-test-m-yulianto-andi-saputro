@@ -7,6 +7,7 @@ import { convertDate, typeBadgeStatusPurchase } from "@/lib/utils";
 import { PurchaseOrderListItem } from "@/types";
 import { Eye } from "lucide-react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 const usePurchaseOrders = () => {
@@ -17,8 +18,18 @@ const usePurchaseOrders = () => {
         status: '',
         warehouseId: ""
     }
-    const [filter, setFilter] = useState(initialFilter)
-    const [paramsApi, setParamsApi] = useState(initialFilter)
+    const searchParams = useSearchParams()
+    const statusParams = searchParams.get('status')
+
+    const [filter, setFilter] = useState({
+        ...initialFilter,
+        status: statusParams || ''
+    })
+    const [paramsApi, setParamsApi] = useState({
+        ...initialFilter,
+        status: statusParams || ''
+    })
+
 
     const requestPurchaseHeaders = [
         {
