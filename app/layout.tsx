@@ -8,6 +8,7 @@ import Navbar from "@/components/base/Navbar";
 import { GeneralStoreProvider } from "@/providers";
 import { Toaster } from "@/components/ui/toast";
 import { Providers } from "./providers";
+import { Suspense } from "react";
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -36,14 +37,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Providers>
           <GeneralStoreProvider>
             <SidebarProvider>
-              <AppSidebar />
-              <SidebarInset>
-                <Navbar />
-                <main className="p-2 sm:px-4 md:py-3 lg:px-5.5 lg:py-4">
-                  {children}
-                </main>
-                <Toaster />
-              </SidebarInset>
+              <Suspense>
+                <AppSidebar />
+                <SidebarInset>
+                  <Navbar />
+                  <main className="p-2 sm:px-4 md:py-3 lg:px-5.5 lg:py-4">
+                    {children}
+                  </main>
+                  <Toaster />
+                </SidebarInset>
+              </Suspense>
             </SidebarProvider>
           </GeneralStoreProvider>
 
