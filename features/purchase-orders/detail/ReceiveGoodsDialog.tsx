@@ -13,6 +13,7 @@ import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/toast";
 import { getRemaining } from "@/helpers/purchase-order";
 import { formatNumber } from "@/lib/utils";
+import { useReceiveGoods } from "@/services/purchase-order/queries";
 import {
     PurchaseOrderItemDetail,
     PurchaseOrderListItem,
@@ -30,12 +31,12 @@ const ReceiveGoodsDialog = ({
     onOpenChange: (open: boolean) => void;
     handleSuccessSubmit: () => void;
 }) => {
+    const receiveGoods = useReceiveGoods();
     const openItems = useMemo(
         () => data.items.filter((i) => getRemaining(i) > 0),
         [data.items],
     );
     const [qty, setQty] = useState<Record<number, string>>({});
-    const [submitting, setSubmitting] = useState(false);
 
     const fieldError = (item: PurchaseOrderItemDetail) => {
         const raw = qty[item.id];
@@ -49,27 +50,24 @@ const ReceiveGoodsDialog = ({
 
     const total = openItems.reduce((s, i) => s + (Number(qty[i.id]) || 0), 0);
     const hasError = openItems.some((i) => fieldError(i));
-    const canSubmit = total > 0 && !hasError && !submitting;
+    const canSubmit = total > 0 && !hasError && !receiveGoods.isPending;
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!canSubmit) return;
-        setSubmitting(true);
         try {
-            // await postData({
-            //     purchaseOrderId: data.id,
-            //     items: openItems
-            //         .map((i) => ({
-            //             purchaseOrderItemId: i.id,
-            //             quantity: Number(qty[i.id]) || 0,
-            //         }))
-            //         .filter((l) => l.quantity > 0),
-            // });
+            await receiveGoods.mutateAsync({
+                purchaseOrderId: data.id,
+                items: openItems
+                    .map((i) => ({
+                        purchaseOrderItemId: i.id,
+                        quantity: Number(qty[i.id]) || 0,
+                    }))
+                    .filter((l) => l.quantity > 0),
+            });
 
-            setTimeout(() => {
-                handleSuccessSubmit();
-                onOpenChange(false);
-            }, 2000);
+            handleSuccessSubmit();
+            onOpenChange(false);
         } catch (err) {
             toast.add({
                 title: "Error",
@@ -79,15 +77,11 @@ const ReceiveGoodsDialog = ({
                         : "Goods couldn't be received. Try again.",
                 type: "error",
             });
-        } finally {
-            setTimeout(() => {
-                setSubmitting(false);
-            }, 2000);
         }
     };
 
     return (
-        <Dialog open={open} onOpenChange={(o) => !submitting && onOpenChange(o)}>
+        <Dialog open={open} onOpenChange={(o) => !receiveGoods.isPending && onOpenChange(o)}>
             <DialogContent className="sm:max-w-lg">
                 <form onSubmit={handleSubmit}>
                     <DialogHeader>
@@ -173,11 +167,11 @@ const ReceiveGoodsDialog = ({
                                 type="button"
                                 variant="outline"
                                 onClick={() => onOpenChange(false)}
-                                disabled={submitting}
+                                disabled={receiveGoods.isPending}
                             >
                                 Cancel
                             </Button>
-                            <Button type="submit" disabled={!canSubmit} loading={submitting}>
+                            <Button type="submit" disabled={!canSubmit} loading={receiveGoods.isPending}>
                                 Receive goods
                             </Button>
                         </div>

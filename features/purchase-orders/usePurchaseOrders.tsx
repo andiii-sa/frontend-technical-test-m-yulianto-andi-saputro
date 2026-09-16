@@ -7,8 +7,19 @@ import { convertDate, typeBadgeStatusPurchase } from "@/lib/utils";
 import { PurchaseOrderListItem } from "@/types";
 import { Eye } from "lucide-react";
 import Link from "next/link";
+import { useState } from "react";
 
 const usePurchaseOrders = () => {
+    const initialFilter = {
+        q: "",
+        perPage: 5,
+        page: 1,
+        status: '',
+        warehouseId: ""
+    }
+    const [filter, setFilter] = useState(initialFilter)
+    const [paramsApi, setParamsApi] = useState(initialFilter)
+
     const requestPurchaseHeaders = [
         {
             label: "PO Number",
@@ -67,8 +78,51 @@ const usePurchaseOrders = () => {
         },
     ];
 
+    const handleChangeFilter = (field: keyof typeof initialFilter, value: string) => {
+        setFilter(prev => ({
+            ...prev,
+            [field]: value
+        }))
+    }
+    const handleChangeParamsApi = (field: keyof typeof initialFilter, value: string) => {
+        setParamsApi(prev => ({
+            ...prev,
+            [field]: value
+        }))
+    }
+
+    const handleFilter = () => {
+        setParamsApi(filter)
+    }
+
+    const handleReset = () => {
+        setFilter(initialFilter)
+        setParamsApi(initialFilter)
+    }
+
+    const handleChangePage = (value: number) => {
+        handleChangeFilter('page', String(value))
+        handleChangeParamsApi('page', String(value))
+    }
+
+    const handleChangePerPage = (value: number) => {
+        handleChangeFilter('page', String(1))
+        handleChangeParamsApi('page', String(1))
+
+        handleChangeFilter('perPage', String(value))
+        handleChangeParamsApi('perPage', String(value))
+    }
+
     return {
         requestPurchaseHeaders,
+        filter,
+        setFilter,
+        paramsApi,
+        handleChangeFilter,
+        handleChangePage,
+        handleChangePerPage,
+        handleFilter,
+        handleReset
     }
 }
 

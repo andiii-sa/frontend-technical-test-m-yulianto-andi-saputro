@@ -91,7 +91,7 @@ const AppTable = ({
                     </TableRow>
                 </TableHeader>
                 <TableBody className="text-sm">
-                    {isLoading && !data?.length ? (
+                    {isLoading ? (
                         Array.from({ length: perPage }).map((_, idx) => (
                             <TableRow key={idx}>
                                 {headers.map((_, idy) => (

@@ -8,7 +8,7 @@ interface PaginationSizeProps {
     onChange: (value: number) => void;
 }
 
-const listPage = [10, 20, 50, 100];
+const listPage = [5, 10, 20, 50, 100];
 
 const PaginationSize = ({
     perPage,
