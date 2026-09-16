@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
+import Link from "next/link";
 
 interface PurechaseRequestReviewProps {
     count: number;
@@ -23,7 +24,9 @@ const PurechaseRequestReview = ({
                     Review pending requests before they delay downstream purchasing.
                 </p>
             </div>
-            <Button size="sm">Review requests</Button>
+            <Link href={{ pathname: '/purchase-requests', query: { status: 'SUBMITTED' } }}>
+                <Button size="sm">Review requests</Button>
+            </Link>
         </section>
     );
 };

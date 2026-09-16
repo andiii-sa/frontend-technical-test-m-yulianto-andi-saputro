@@ -10,10 +10,15 @@ import { useGeneralStore } from "@/providers";
 import { usePurchaseRequestApprove, usePurchaseRequestCreate, usePurchaseRequestDelete, usePurchaseRequestUpdate } from "@/services/purchase-request/queries";
 import { PurchaseRequestListItem } from "@/types";
 import { Eye, FileCheck, MoreHorizontal, Pencil, Trash2 } from "lucide-react";
+import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 const usePurchaseRequests = () => {
     const { isUser, isApprover } = useGeneralStore((s) => s);
+    const searchParams = useSearchParams()
+    const statusParams = searchParams.get('status')
+    const createParams = searchParams.get('create')
+
     const initialFilter = {
         q: "",
         perPage: 5,
@@ -21,8 +26,8 @@ const usePurchaseRequests = () => {
         status: '',
         warehouseId: ""
     }
-    const [filter, setFilter] = useState(initialFilter)
-    const [paramsApi, setParamsApi] = useState(initialFilter)
+    const [filter, setFilter] = useState({ ...initialFilter, status: statusParams || '' })
+    const [paramsApi, setParamsApi] = useState({ ...initialFilter, status: statusParams || '' })
 
     const { dialogConfirm, setDialogConfirm } = useDialogConfirm();
     const [dialogForm, setDialogForm] = useState<{
@@ -32,7 +37,7 @@ const usePurchaseRequests = () => {
         form?: any;
         rejectReason?: string;
         isDraft?: boolean
-    }>({ open: false, type: "ADD", data: null, isDraft: false });
+    }>({ open: createParams === 'true' || false, type: "ADD", data: null, isDraft: false });
 
     const purchaseRequestCreate = usePurchaseRequestCreate();
     const purchaseRequestUpdate = usePurchaseRequestUpdate();

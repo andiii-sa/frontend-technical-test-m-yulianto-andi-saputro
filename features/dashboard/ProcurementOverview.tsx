@@ -1,5 +1,6 @@
 import { IconDownload, IconPlus } from "@/assets/icons"
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 const ProcurementOverview = () => {
     return (
@@ -17,9 +18,11 @@ const ProcurementOverview = () => {
                 <Button variant="outline" size="sm">
                     <IconDownload /> Export
                 </Button>
-                <Button size="sm">
-                    <IconPlus /> Create Purchase Request
-                </Button>
+                <Link href={{ pathname: '/purchase-requests', query: { create: true } }}>
+                    <Button size="sm">
+                        <IconPlus /> Create Purchase Request
+                    </Button>
+                </Link>
             </div>
         </section>
     )
