@@ -1,15 +1,10 @@
 "use client";
 
-import {
-    InventoryMovementDetail,
-    InventoryStockListItem
-} from "@/types";
 
 import { Button } from "@/components/ui/button";
-import { listInventoryMovements, listInventoryStocks } from "@/constants";
+import { useInventoryMovementDetail, useInventoryStockDetail } from "@/services/inventory/queries";
 import { ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
 import Header from "./Header";
 import MovementEmptyState from "./MovementEmptyState";
 import MovementList from "./MovementList";
@@ -25,31 +20,14 @@ export const InventoryMovementsDetail = ({
     warehouseId,
 }: InventoryMovementsDetailProps) => {
     const router = useRouter()
-    const [data, setData] = useState<InventoryStockListItem>();
-    const [movement, setMovement] = useState<InventoryMovementDetail[]>();
-    const [loading, setLoading] = useState(true);
-
-    const fetchData = useCallback(async () => {
-        const findInventory = listInventoryStocks.find((f) => f.productId === productId && f.warehouseId === warehouseId);
-        const findMovements = listInventoryMovements.filter((f) => f.productId === productId && f.warehouseId === warehouseId);
-        // setLoading(true)
-
-        setTimeout(() => {
-            setData(findInventory as InventoryStockListItem);
-            setMovement(findMovements as InventoryMovementDetail[]);
-            setLoading(false);
-        }, 3000);
-    }, [productId, warehouseId]);
-
-    useEffect(() => {
-        fetchData();
-    }, [fetchData]);
+    const { data: stock, isPending: isPendingStock } = useInventoryStockDetail(productId, warehouseId);
+    const { data: movement, isPending: isPendingMovement } = useInventoryMovementDetail(productId, warehouseId);
 
     return (
         <>
-            {loading ? (
+            {isPendingStock || isPendingMovement ? (
                 <StockMovementSkeleton />
-            ) : !data ? (
+            ) : !stock ? (
                 <MovementEmptyState />
             ) : (
                 <div className="w-full space-y-4">
@@ -58,7 +36,7 @@ export const InventoryMovementsDetail = ({
                         Inventory Movement
                     </Button>
                     <Header
-                        data={data}
+                        data={stock}
                     />
                     <MovementList movements={movement ?? []} />
                 </div>

@@ -1,4 +1,4 @@
-import { PurchaseOrderListItem, ReceiveGoodsPayload, User } from "@/types";
+import { InventoryMovementDetail, InventoryStockListItem, PurchaseOrderListItem, ReceiveGoodsPayload, User } from "@/types";
 import data from "../constants/data-detail.json";
 
 export const delay = (ms = 500) => new Promise((r) => setTimeout(r, ms));
@@ -9,6 +9,7 @@ export class HttpError extends Error {
   }
 }
 
+// Purchase Order
 export function findPurchaseOrder(id: number): PurchaseOrderListItem | null {
   return (data.purchaseOrders.find((po) => po.id === id ) as unknown as PurchaseOrderListItem) ?? null;
 }
@@ -63,4 +64,17 @@ export function receiveGoods(payload: ReceiveGoodsPayload): PurchaseOrderListIte
   });
 
   return po;
+}
+
+// Inventory
+export function findListInventoryMovement(productId: number, warehouseId: number): InventoryMovementDetail[] | null {
+  return (data.inventoryMovements.filter((po) => po.productId === productId && po.warehouseId === warehouseId) as unknown as InventoryMovementDetail[]) ?? [];
+}
+
+export function findInventoryStock(productId: number, warehouseId: number): InventoryStockListItem | null {
+  return (data.inventoryStocks.find((po) => po.productId === productId && po.warehouseId === warehouseId) as InventoryStockListItem) ?? null;
+}
+
+export function listInventoryStock(): InventoryStockListItem[] {
+  return (data.inventoryStocks as InventoryStockListItem[]);
 }

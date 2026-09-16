@@ -109,3 +109,7 @@ export interface IParamsApiListPurchaseOrder extends IParamsApiList {
   warehouse_id?: number;
   status?: string
 }
+// INV
+export interface IParamsApiListInventory extends IParamsApiList {
+  warehouse_id?: number;
+}

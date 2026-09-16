@@ -9,28 +9,24 @@ import MovementEmptyState from "./MovementEmptyState";
 import { formatMovementType, formatSignedQuantity } from "@/helpers/inventory";
 
 const MovementList = ({ movements }: { movements: InventoryMovementDetail[] }) => {
-    const sorted = [...movements].sort(
-        (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-    );
-
     return (
         <Card>
             <CardHeader className="py-0">
                 <CardTitle className="text-lg">
                     Movements
-                    {sorted.length > 0 && (
+                    {movements.length > 0 && (
                         <span className="ml-2 font-normal text-muted-foreground">
-                            {sorted.length}
+                            {movements.length}
                         </span>
                     )}
                 </CardTitle>
             </CardHeader>
             <CardContent className="p-0">
-                {sorted.length === 0 ? (
+                {movements.length === 0 ? (
                     <MovementEmptyState />
                 ) : (
                     <ul className="divide-y border-t">
-                        {sorted.map((m) => (
+                        {movements.map((m) => (
                             <MovementItem key={m.id} movement={m} />
                         ))}
                     </ul>

@@ -1,58 +1,61 @@
 import AppTable from "@/components/base/AppTable";
 import BaseSelect from "@/components/base/BaseSelect";
 import { Button } from "@/components/ui/button";
-import {
-    Field
-} from "@/components/ui/field";
+import { Field } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { listWarehouses } from "@/constants";
-import { InventoryStockListItem } from "@/types";
-import {
-    Filter
-} from "lucide-react";
+import { Filter } from "lucide-react";
 
+import { useInventoryStockList } from "@/services/inventory/queries";
 import useInventory from "./useInventory";
 
-interface InventoryTableProps {
-    items: InventoryStockListItem[];
-    handleRetryFetch: () => void;
-}
 
-const InventoryTable = ({
-    items,
-    handleRetryFetch,
-}: InventoryTableProps) => {
+const InventoryTable = () => {
     const {
         inventoryHeaders,
+        filter,
+        handleChangeFilter,
+        handleChangePage,
+        handleChangePerPage,
+        handleFilter,
+        handleReset,
+        paramsApi,
     } = useInventory();
+
+    const { data, isPending, isFetching, isError, refetch } = useInventoryStockList(paramsApi);
 
     return (
         <div>
             <AppTable
                 className=" mt-3"
                 headers={inventoryHeaders}
-                data={items || []}
-                isLoading={false}
-                perPage={10}
-                total={100}
-                pageNumber={1}
-                lengthPage={10}
-                isHaveFilter={false}
+                data={data?.data || []}
+                isLoading={isPending || isFetching}
+                perPage={filter.perPage || 0}
+                total={data?.stats.totalData || 0}
+                pageNumber={filter.page || 0}
+                lengthPage={data?.stats.totalPage || 0}
+                isHaveFilter={filter?.q.trim() || filter?.warehouseId ? true : false}
                 titleEmpty="No inventorys yet"
                 subtitleEmpty={`Anda belum memiliki data.`}
-                isErrorFetch={false}
-                handleChangePage={() => { }}
-                handleChangePerPage={() => { }}
-                showAddButton={true}
+                isErrorFetch={isError}
+                handleChangePage={handleChangePage}
+                handleChangePerPage={handleChangePerPage}
+                showAddButton={false}
                 handleAddData={() => { }}
-                handleResetFilter={() => { }}
+                handleResetFilter={handleReset}
                 headContent={
                     <div className="px-3.5 py-1.5 gap-2 border-b flex flex-col md:flex-row md:items-center justify-between flex-wrap">
                         <h4 className="font-medium text-xs text-fg">Inventory List</h4>
 
                         <div className="flex items-center gap-2">
                             <Field orientation="horizontal">
-                                <Input type="search" placeholder="Search Product / SKU ..." />
+                                <Input
+                                    type="search"
+                                    placeholder="Search Product / SKU ..."
+                                    value={filter.q}
+                                    onChange={(e) => handleChangeFilter("q", e.target.value)}
+                                />
                                 <BaseSelect
                                     items={[
                                         { value: "", label: "All Warehouse" },
@@ -62,9 +65,16 @@ const InventoryTable = ({
                                         })) || []),
                                     ]}
                                     placeholder="Warehouse"
-                                    value=""
+                                    onValueChange={(e: any) =>
+                                        handleChangeFilter("warehouseId", e)
+                                    }
+                                    value={filter?.warehouseId}
                                 />
-                                <Button variant="outline" loading={false}>
+                                <Button
+                                    variant="outline"
+                                    loading={false}
+                                    onClick={handleFilter}
+                                >
                                     <Filter />
                                     Filter
                                 </Button>
@@ -72,7 +82,7 @@ const InventoryTable = ({
                         </div>
                     </div>
                 }
-                handleRetryFetch={handleRetryFetch}
+                handleRetryFetch={refetch}
             />
         </div>
     );
